@@ -81,7 +81,7 @@
 
             margin-bottom: 10px;
 
-            border: 2px solid #007bff;
+            
 
             border-radius: 5px;
 
@@ -175,58 +175,11 @@
 
         }
 
-        select#setor {
-    
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
-    }
+        
 
-select#cpd_responsavel{
-    
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
-
-}
-
-    select#coletor {
-       
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
-
-    }
-
-
-
-    select#retirada_devolucao {
-       
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
-
-    }
+ .bootstrap-select .dropdown-toggle .filter-option {
+           
+        }
 
 
 
@@ -262,3 +215,41 @@ select#cpd_responsavel{
   display: block;
   margin: 5px 0;
 }
+
+.valid {
+            border: 2px solid green;
+        }
+        .invalid {
+            border: 2px solid red;
+        }
+        /* Adicione este estilo para alterar a cor da borda quando o campo está focado */
+        input:focus {
+            border: 2px solid black;
+        }
+        /* Estilos para os ícones */
+        .valid-icon, .invalid-icon {
+            position: absolute;
+            right: 10px;
+            top: calc(65% - 0.01em); /* Centraliza verticalmente o ícone */
+            display: none;
+        }
+        .valid-icon {
+            color: green;
+        }
+        .invalid-icon {
+            color: red;
+        }
+        /* Adicione um padding ao campo de entrada para evitar que o texto se sobreponha ao ícone */
+        input {
+            padding-right: 30px;
+        }
+
+
+
+
+         .valid-select .btn-light {
+            border: 1px solid green;
+        }
+        .invalid-select .btn-light {
+            border: 1px solid red;
+        }

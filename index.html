@@ -26,6 +26,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" rel="stylesheet" />
 
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
 
 
 </head>
@@ -42,16 +44,24 @@
     <h5 style="margin-top: 0;">COLETOR📝</h5>
 </div>
  
-        <div class="sm-branding-footer">
+        <div class="sm-branding-footer" >
             <a href="https://joabsm.github.io/termos/" target="_blank">⚠️ Ler termos responsabilidade sobre o coletor</a>
         </div>
-        <div class="sm__form__fields">
+
+        <div class="sm__form__fields" style="position: relative;">
             <fieldset>
                 <legend>Nome Completo: <span class="asterisco-vermelho"></span></legend>
+                 <small id="nomeHelp" class="form-text text-muted">Número mínimo de letras: 10</small>
             <label for="nome_completo"></label>
-            <input type="text" id="nome_completo" name="nome_completo" placeholder="Digite seu nome completo aqui"required>
+            <input type="text" id="nome_completo" name="nome_completo" placeholder="Digite seu nome completo aqui" pattern=".{10,}" required>
+
+            <i class="fas fa-check valid-icon" id="valid-icon"></i>
+            <i class="fas fa-times invalid-icon" id="invalid-icon"></i>
+        </div>
+
             
-            <label for="setor">Selecione Setor: <span class="asterisco-vermelho">*</span></label>
+    <div class="sm__form__fields">
+            <label for="setor">Selecione Setor: <span class="asterisco-vermelho"></span></label>
             <select id="setor" name="setor" class="selectpicker" data-width="100%" required>
                 <option value="">-- Selecione --</option>
                 <option value="Deposito">Deposito</option>
@@ -60,7 +70,7 @@
                 <option value="Prevencao_de_perdas">Prevenção de perdas</option>
             </select>
        
-            <label for="coletor">Selecione numero do coletor: <span class="asterisco-vermelho">*</span></label>
+            <label for="coletor">Selecione numero do coletor: <span class="asterisco-vermelho"></span></label>
             <select id="coletor" name="coletor" class="selectpicker" data-width="100%" required>
                 <option value="">-- Selecione --</option>
                <option value="Coletor01">Coletor- 01</option>
@@ -85,14 +95,14 @@
                 <option value="Coletor20">Coletor- 20</option>
             </select>
 
-            <label for="retirada_devolucao">Retirando ou Devolvendo "coletor"? <span class="asterisco-vermelho">*</span></label>
+            <label for="retirada_devolucao">Retirando ou Devolvendo "coletor"? <span class="asterisco-vermelho"></span></label>
             <select id="retirada_devolucao" name="retirada_devolucao" class="selectpicker" data-width="100%" required>
                 <option value="">-- Selecione --</option>
                 <option value="Retirado">Retirando</option>
                 <option value="Devolvido">Devolvendo</option>
             </select>
 
-            <label for="cpd_responsavel">CPD Responsável no local: <span class="asterisco-vermelho">*</span></label>
+            <label for="cpd_responsavel">CPD Responsável no local: <span class="asterisco-vermelho"></span></label>
             <select id="cpd_responsavel" name="cpd_responsavel" class="selectpicker" data-width="100%" required>
                 <option value="">-- Selecione --</option>
                 <option value="JONILSON DO NASCIMENTO SANTOS">Jonilson Santos</option>
@@ -111,7 +121,7 @@
                  
              </fieldset>
            <fieldset>
-  <legend>Marque as caixas como Ok:<span class="asterisco-vermelho"></span></legend>
+  <legend>Marque as caixas como Ok: <span class="asterisco-vermelho"></span></legend>
   <div class="checkbox-container">
     <div class="checkbox-group">
       <input type="checkbox" id="select_all" onclick="toggleCheckboxes(this)" />
@@ -142,8 +152,8 @@
       <label for="alça">Alça</label>
     </div>
   </div>
-</fieldset>
-        </div>
+  </fieldset>
+</div>
        
         <div class="sm-actions__container">
     <a href="https://joabsm.github.io/suportecpd/" class="sm-btn sm-btn--support"><i class="fa-solid fa-house fa-beat-fade" style="color: #f3f4f7;"></i> Suporte</a>

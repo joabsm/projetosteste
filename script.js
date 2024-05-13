@@ -291,3 +291,40 @@ document.getElementById('cpd_responsavel').addEventListener('change', verificarS
 $(document).ready(function() {
             $('.selectpicker').selectpicker();
         });
+
+
+
+ 
+
+ document.getElementById('nome_completo').addEventListener('input', function() {
+            if (this.value.length >= 10) {
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+                document.getElementById('valid-icon').style.display = 'block';
+                document.getElementById('invalid-icon').style.display = 'none';
+            } else {
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+                document.getElementById('valid-icon').style.display = 'none';
+                document.getElementById('invalid-icon').style.display = 'block';
+            }
+        });
+
+$(document).ready(function() {
+            $('.selectpicker').selectpicker();
+
+            // Adicione um ouvinte de evento 'changed.bs.select' a cada select
+            $('.selectpicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                // Verifique se uma opção foi selecionada
+                if (this.value) {
+                    // Se uma opção foi selecionada, adicione a classe 'valid-select' e remova 'invalid-select'
+                    $(this).parent().addClass('valid-select').removeClass('invalid-select');
+                } else {
+                    // Se nenhuma opção foi selecionada, adicione a classe 'invalid-select' e remova 'valid-select'
+                    $(this).parent().addClass('invalid-select').removeClass('valid-select');
+                }
+            });
+
+            // Acione o evento 'change' em cada select para definir a cor da borda inicial
+            $('.selectpicker').trigger('change');
+        });

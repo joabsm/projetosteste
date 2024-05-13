@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="icon" href="https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLETORES</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<!-- Inclua o CSS do Bootstrap e do Bootstrap Select aqui -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+   
+    <!-- Seu conteúdo aqui -->
+    <form id="meuFormulario" method="post" action="https://api.sheetmonkey.io/form/3LYYTQDqgosfg2vzMwknPe" autoComplete="on" class="sm__form">
+    <div style="text-align: center;">
+    <h1 style="margin-top: 0;">FORMULÁRIO</h1>
+    <div style="display: inline-block;">
+        <img src="https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png" alt="Imagem Esquerda" style="width: 50px; vertical-align: middle;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Yw9zWZgbxvPrO7ZbAKQ2S2hxW4Rm8bz6zzHT4IMdgU7DDrxT1kYdVuabMjpE8jujbRo&usqp=CAU" alt="Imagem Direita" style="width: 80px; vertical-align: middle;">
+    </div>
+    <h5 style="margin-top: 0;">COLETOR📝</h5>
+</div>
+ 
+        <div class="sm-branding-footer">
+            <a href="https://joabsm.github.io/termos/" target="_blank">⚠️ Ler termos responsabilidade sobre o coletor</a>
+        </div>
+        <div class="sm__form__fields">
+            <fieldset>
+                <legend>Nome Completo: <span class="asterisco-vermelho"></span></legend>
+            <label for="nome_completo"></label>
+            <input type="text" id="nome_completo" name="nome_completo" placeholder="Digite seu nome completo aqui"required>
+            
+            <label for="setor">Selecione Setor: <span class="asterisco-vermelho">*</span></label>
+            <select id="setor" name="setor" class="selectpicker" data-width="100%" required>
+                <option value="">-- Selecione --</option>
+                <option value="Deposito">Deposito</option>
+                <option value="Auditoria">Auditoria</option>
+                <option value="Frios">Frios</option>
+                <option value="Prevencao_de_perdas">Prevenção de perdas</option>
+            </select>
+       
+            <label for="coletor">Selecione numero do coletor: <span class="asterisco-vermelho">*</span></label>
+            <select id="coletor" name="coletor" class="selectpicker" data-width="100%" required>
+                <option value="">-- Selecione --</option>
+               <option value="Coletor01">Coletor- 01</option>
+                <option value="Coletor02">Coletor- 02</option>
+                <option value="Coletor03">Coletor- 03</option>
+                <option value="Coletor04">Coletor- 04</option>
+                <option value="Coletor05">Coletor- 05</option>
+                <option value="Coletor06">Coletor- 06</option>
+                <option value="Coletor07">Coletor- 07</option>
+                <option value="Coletor08">Coletor- 08</option>
+                <option value="Coletor09">Coletor- 09</option>
+                <option value="Coletor10">Coletor- 10</option>
+                <option value="Coletor11">Coletor- 11</option>
+                <option value="Coletor12">Coletor- 12</option>
+                <option value="Coletor13">Coletor- 13</option>
+                <option value="Coletor14">Coletor- 14</option>
+                <option value="Coletor15">Coletor- 15</option>
+                <option value="Coletor16">Coletor- 16</option>
+                <option value="Coletor17">Coletor- 17</option>
+                <option value="Coletor18">Coletor- 18</option>
+                <option value="Coletor19">Coletor- 19</option>
+                <option value="Coletor20">Coletor- 20</option>
+            </select>
+
+            <label for="retirada_devolucao">Retirando ou Devolvendo "coletor"? <span class="asterisco-vermelho">*</span></label>
+            <select id="retirada_devolucao" name="retirada_devolucao" class="selectpicker" data-width="100%" required>
+                <option value="">-- Selecione --</option>
+                <option value="Retirado">Retirando</option>
+                <option value="Devolvido">Devolvendo</option>
+            </select>
+
+            <label for="cpd_responsavel">CPD Responsável no local: <span class="asterisco-vermelho">*</span></label>
+            <select id="cpd_responsavel" name="cpd_responsavel" class="selectpicker" data-width="100%" required>
+                <option value="">-- Selecione --</option>
+                <option value="JONILSON DO NASCIMENTO SANTOS">Jonilson Santos</option>
+                <option value="MATEUS PEREIRA MAIA">Mateus Maia</option>
+                <option value="JOAB DA SILVA MOTA">Joab Mota</option>
+                <option value="EDI CARVALHO NOVAES">Edy Carvalho</option>
+                <option value="Sem_cpd">Sem Cpd</option>
+            </select>
+
+              <div id="alertaDevolucao" class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
+  <strong>Atenção!</strong> Por favor, Deixa coletor de baixo da mesa.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+                 
+             </fieldset>
+           <fieldset>
+  <legend>Marque as caixas como Ok:<span class="asterisco-vermelho"></span></legend>
+  <div class="checkbox-container">
+    <div class="checkbox-group">
+      <input type="checkbox" id="select_all" onclick="toggleCheckboxes(this)" />
+      <label for="select_all"><strong>Marcar Todas</strong></label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="scanner" name="informações" value="Scanner" />
+      <label for="scanner">Scanner</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="touch_screen" name="informações" value="Touch-screen" />
+      <label for="touch_screen">Touch-screen</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="bateria" name="informações" value="Bateria" />
+      <label for="bateria">Bateria</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="capa" name="informações" value="Capa" />
+      <label for="capa">Capa</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="teclado" name="informações" value="Teclado" />
+      <label for="teclado">Teclado</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="alça" name="informações" value="Alça" />
+      <label for="alça">Alça</label>
+    </div>
+  </div>
+</fieldset>
+        </div>
+       
+        <div class="sm-actions__container">
+    <a href="https://joabsm.github.io/suportecpd/" class="sm-btn sm-btn--support"><i class="fa-solid fa-house fa-beat-fade" style="color: #f3f4f7;"></i> Suporte</a>
+    <button type="submit" class="sm-btn sm-btn--primary"><i class="fa-solid fa-play fa-beat-fade" style="color: #f6f7f9;"></i>  Enviar formulário</button>
+</div>
+
+        
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+     <!-- Inclua o jQuery, o JS do Bootstrap e do Bootstrap Select aqui -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+
+
+<script src="script.js"></script>
+</body>
+</html>

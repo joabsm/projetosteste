@@ -1,0 +1,264 @@
+
+
+
+/* Estilos adicionais para alinhar os rótulos com as caixas de seleção */
+
+        .checkbox-group {
+
+            display: flex;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        .checkbox-group input[type="checkbox"] {
+
+            margin-right: 5px;
+
+        }
+
+         body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #4682B4;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+
+        header, nav, main, aside, footer {
+
+            padding: 20px;
+
+            margin: 10px;
+
+        }
+
+
+
+        .sm__form {
+
+            background-color: #fff;
+
+            padding: 20px;
+
+            border-radius: 5px;
+
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
+
+            max-width: 500px;
+
+            margin: 20px auto;
+
+        }
+
+
+
+        .sm__form__fields label {
+
+            display: block;
+
+            margin-bottom: 1px;
+
+
+
+        }
+
+       .sm__form__fields input[type="text"] {
+
+            width: 100%;
+
+            padding: 10px;
+
+            margin-bottom: 10px;
+
+            border: 2px solid #007bff;
+
+            border-radius: 5px;
+
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */  
+
+        }
+
+
+
+        .sm-actions__container {
+
+            text-align: right;
+
+            display: flex;
+
+            justify-content: space-between;
+
+        }
+
+
+
+        .sm-btn {
+
+            padding: 10px 20px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background-color: #007bff;
+
+            color: #fff;
+
+            cursor: pointer;
+
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
+
+        }
+
+
+
+        .sm-btn--primary:hover {
+
+            background-color: #0056b3;
+
+        }
+
+        .sm-btn--support {
+
+    background-color: #28a745; /* Cor de fundo para o botão de suporte */
+
+}
+
+
+
+.sm-btn--support:hover {
+
+    background-color: #218838; /* Cor de fundo ao passar o mouse para o botão de suporte */
+
+}
+
+
+
+        .sm-branding-footer {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+        }
+
+
+
+        .sm-branding-footer a {
+
+            color: #007bff;
+
+            text-decoration: none;
+
+            font-size: 0.9em;
+
+            text-align: left;
+
+        }
+
+
+
+        .sm-branding-footer a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        select#setor {
+    
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
+    }
+
+select#cpd_responsavel{
+    
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
+
+}
+
+    select#coletor {
+       
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
+
+    }
+
+
+
+    select#retirada_devolucao {
+       
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */ 
+
+    }
+
+
+
+    h1 {
+
+  color: #4A90E2;
+
+  font-size: 36px;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  margin-bottom: 10px;
+
+    }
+    .asterisco-vermelho::before {
+    content: "*";
+    color: red;
+  }
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-group {
+  flex: 0 0 50%; /* Ajusta para 50% da largura do container */
+}
+
+/* Estilos adicionais para alinhar e melhorar a aparência */
+.checkbox-group label {
+  display: block;
+  margin: 5px 0;
+}

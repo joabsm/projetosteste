@@ -293,22 +293,29 @@ $(document).ready(function() {
         });
 
 
+document.getElementById('nome_completo').addEventListener('input', function() {
+    // Verifique se o usuário começou a digitar no campo
+    if (this.value.length > 0) {
+        // Se o usuário começou a digitar, verifique o comprimento do valor
+        if (this.value.length >= 10) {
+            this.classList.remove('invalid');
+            this.classList.add('valid');
+            document.getElementById('valid-icon').style.display = 'block';
+            document.getElementById('invalid-icon').style.display = 'none';
+        } else {
+            this.classList.remove('valid');
+            this.classList.add('invalid');
+            document.getElementById('valid-icon').style.display = 'none';
+            document.getElementById('invalid-icon').style.display = 'block';
+        }
+    } else {
+        // Se o usuário ainda não começou a digitar, oculte ambos os ícones
+        document.getElementById('valid-icon').style.display = 'none';
+        document.getElementById('invalid-icon').style.display = 'none';
+    }
+});
 
- 
 
- document.getElementById('nome_completo').addEventListener('input', function() {
-            if (this.value.length >= 10) {
-                this.classList.remove('invalid');
-                this.classList.add('valid');
-                document.getElementById('valid-icon').style.display = 'block';
-                document.getElementById('invalid-icon').style.display = 'none';
-            } else {
-                this.classList.remove('valid');
-                this.classList.add('invalid');
-                document.getElementById('valid-icon').style.display = 'none';
-                document.getElementById('invalid-icon').style.display = 'block';
-            }
-        });
 
 $(document).ready(function() {
             $('.selectpicker').selectpicker();

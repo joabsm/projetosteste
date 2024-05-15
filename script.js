@@ -3,7 +3,7 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
 
 // Verifica se o código do QR Code confere
   if (codigoQRElement.value === "Loja04SuperGoiasCpd") {
-            
+
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -210,9 +210,17 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
        // Sempre envia os dados para o Telegram
     enviarDadosParaTelegram(dados);
     }
-} else {
-    // Informa ao usuário que o código do QR Code está incorreto
-    outputElement.innerText = 'Código do QR Code inválido. Por favor, tente novamente.';
+
+
+
+  } else {
+    // Exibe um alerta de erro com SweetAlert2
+    Swal.fire({
+      title: 'Erro!',
+      text: 'Código do QR Code inválido. Por favor, tente novamente.',
+      icon: 'error',
+      confirmButtonText: 'Tentar novamente'
+    });
   }
 
 
@@ -352,20 +360,31 @@ const readerElement = document.getElementById('reader');
 const codigoQRElement = document.getElementById('codigo-qr');
 
 function onScanSuccess(decodedText, decodedResult) {
-  // Armazena o texto decodificado no campo de senha
+ // Armazena o texto decodificado no campo de senha
   codigoQRElement.value = decodedText;
   // Esconde o leitor de QR Code
   readerElement.style.display = 'none';
-  // Exibe uma mensagem de sucesso
-  outputElement.innerText = 'QR Code lido com sucesso!';
   // Para a câmera após a leitura bem-sucedida
   html5QrcodeScanner.stop();
+  // Exibe um alerta de sucesso com SweetAlert2
+  Swal.fire({
+    title: 'Sucesso!',
+    text: 'QR Code lido com sucesso!',
+    icon: 'success',
+    confirmButtonText: 'Ok'
+  });
 }
 
 function onScanFailure(error) {
-  // Em caso de falha na leitura, pode continuar tentando ou informar o usuário
-  console.warn(`Falha na leitura do QR Code: ${error}`);
+  // Exibe um alerta de erro com SweetAlert2
+  Swal.fire({
+    title: 'Erro!',
+    text: `Falha na leitura do QR Code: ${error}`,
+    icon: 'error',
+    confirmButtonText: 'Tentar novamente'
+  });
 }
+
 
 let html5QrcodeScanner;
 
@@ -374,6 +393,6 @@ btnAtivarCamera.addEventListener('click', () => {
   html5QrcodeScanner = new Html5Qrcode("reader");
   html5QrcodeScanner.start({ facingMode: "environment" }, {
     fps: 10,
-    qrbox: { width: 350, height: 300 }
+    qrbox: { width: 300, height: 300 }
   }, onScanSuccess, onScanFailure);
 });

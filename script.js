@@ -376,13 +376,8 @@ function onScanSuccess(decodedText, decodedResult) {
 }
 
 function onScanFailure(error) {
-  // Exibe um alerta de erro com SweetAlert2
-  Swal.fire({
-    title: 'Erro!',
-    text: `Falha na leitura do QR Code: ${error}`,
-    icon: 'error',
-    confirmButtonText: 'Tentar novamente'
-  });
+  // Em caso de falha na leitura, pode continuar tentando ou informar o usuário
+  console.warn(`Falha na leitura do QR Code: ${error}`);
 }
 
 

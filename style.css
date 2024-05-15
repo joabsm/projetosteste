@@ -25,7 +25,7 @@
 
             font-family: Arial, sans-serif;
 
-             background-color: #007bff;
+            background-color: #4682B4;
 
             margin: 0;
 
@@ -254,14 +254,7 @@
             border: 1px solid red;
         }
 
-
-
-
-        /* Estilos Gerais */
-body, button, input {
-  font-family: 'Arial', sans-serif;
-}
-
+        
 /* Botão de Ativação da Câmera */
 #btn-ativar-camera {
   background-color: #4CAF50; /* Cor de fundo verde */

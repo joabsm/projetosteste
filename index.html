@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COLETORES</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
    <link rel="stylesheet" type="text/css" href="style.css">
@@ -26,7 +26,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" rel="stylesheet" />
 
-     
+   
 
 
 
@@ -39,7 +39,7 @@
     <h1 style="margin-top: 0;">FORMULÁRIO</h1>
     <div style="display: inline-block;">
         <img src="https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png" alt="Imagem Esquerda" style="width: 50px; vertical-align: middle;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Yw9zWZgbxvPrO7ZbAKQ2S2hxW4Rm8bz6zzHT4IMdgU7DDrxT1kYdVuabMjpE8jujbRo&usqp=CAU" alt="Imagem Direita" style="width: 80px; vertical-align: middle;">
+        <img src="https://rhsso.grupomateus.com.br/auth/resources/48s6k/login/mateus/imgs/logo.png" alt="Imagem Direita" style="width: 80px; vertical-align: middle;">
     </div>
     <h5 style="margin-top: 0;">COLETOR📝</h5>
 </div>
@@ -55,7 +55,7 @@
             <label for="nome_completo"></label>
             <input type="text" id="nome_completo" name="nome_completo" placeholder="Digite seu nome completo aqui" pattern=".{10,}" required>
 
-            <!-- Adicione os ícones aqui -->
+           <!-- Adicione os ícones aqui -->
 <i class="fas fa-check-circle valid-icon" id="valid-icon"></i>
 <i class="fas fa-times-circle invalid-icon" id="invalid-icon"></i>
 
@@ -114,6 +114,10 @@
                 <option value="Sem_cpd">Sem Cpd</option>
             </select>
 
+             <button type="button" id="btn-ativar-camera">Ativar Câmera</button>
+  <div id="reader" style="width:300px;height:200px;display:none;"></div>
+  <input type="password" id="codigo-qr" name="codigo-qr" style="display:none;">
+
               <div id="alertaDevolucao" class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
   <strong>Atenção!</strong> Por favor, Deixa coletor de baixo da mesa.
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -164,6 +168,7 @@
 
         
     </form>
+    <p id="output"></p>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
      <!-- Inclua o jQuery, o JS do Bootstrap e do Bootstrap Select aqui -->

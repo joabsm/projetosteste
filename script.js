@@ -1,5 +1,11 @@
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
+
+
+ // Verifica se o código do QR Code confere
+  const codigoQR = document.getElementById('codigo-qr').value;
+  if (codigoQR === "Loja04SuperGoiasCpd") {
+
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -207,14 +213,18 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
     enviarDadosParaTelegram(dados);
     }
 
+     alert('Formulário enviado com sucesso!');
+  } else {
+    // Informa ao usuário que o código do QR Code está incorreto
+    alert('Código do QR Code inválido. Por favor, tente novamente.');
+  }
 
 
-         
 
 });
 
 window.onload = function() {
-    exibirAvisoPorMinuto(); // Chama a função do aviso
+    exibirAvisoDiario(); // Chama a função do aviso
 
     // Seu código existente para verificar e inserir valores salvos
     var nomeCompletoSalvo = localStorage.getItem('nomeCompleto');
@@ -238,12 +248,12 @@ window.onload = function() {
 };
 
 
-function exibirAvisoPorMinuto() {
-    // Sua lógica para exibir o aviso
-    var agora = new Date().getTime();
+// Função para exibir o aviso uma vez a cada 24 horas
+    function exibirAvisoDiario() {
+      var agora = new Date().getTime();
       var ultimoAviso = localStorage.getItem('ultimoAviso');
 
-      // Se o último aviso não foi definido ou se já passou um dia, exiba o aviso
+      // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
       if (!ultimoAviso || agora - ultimoAviso >= 24 * 60 * 60 * 1000) {
         Swal.fire({
           title: 'Aviso Importante!',
@@ -255,7 +265,9 @@ function exibirAvisoPorMinuto() {
         // Atualiza o horário do último aviso no localStorage
         localStorage.setItem('ultimoAviso', agora);
       }
-}
+    }
+
+
    
         
 function toggleCheckboxes(checkbox) {
@@ -293,29 +305,22 @@ $(document).ready(function() {
         });
 
 
-document.getElementById('nome_completo').addEventListener('input', function() {
-    // Verifique se o usuário começou a digitar no campo
-    if (this.value.length > 0) {
-        // Se o usuário começou a digitar, verifique o comprimento do valor
-        if (this.value.length >= 10) {
-            this.style.borderColor = 'green';
-            document.getElementById('valid-icon').style.display = 'inline';
-            document.getElementById('invalid-icon').style.display = 'none';
-        } else {
-            this.style.borderColor = 'red';
-            document.getElementById('valid-icon').style.display = 'none';
-            document.getElementById('invalid-icon').style.display = 'inline';
-        }
-    } else {
-        // Se o usuário ainda não começou a digitar, remova a cor da borda e oculte ambos os ícones
-        this.style.borderColor = '';
-        document.getElementById('valid-icon').style.display = 'none';
-        document.getElementById('invalid-icon').style.display = 'none';
-    }
-});
 
+ 
 
-
+ document.getElementById('nome_completo').addEventListener('input', function() {
+            if (this.value.length >= 10) {
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+                document.getElementById('valid-icon').style.display = 'block';
+                document.getElementById('invalid-icon').style.display = 'none';
+            } else {
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+                document.getElementById('valid-icon').style.display = 'none';
+                document.getElementById('invalid-icon').style.display = 'block';
+            }
+        });
 
 $(document).ready(function() {
             $('.selectpicker').selectpicker();
@@ -335,3 +340,39 @@ $(document).ready(function() {
             // Acione o evento 'change' em cada select para definir a cor da borda inicial
             $('.selectpicker').trigger('change');
         });
+
+
+
+
+
+const outputElement = document.getElementById('output');
+const btnAtivarCamera = document.getElementById('btn-ativar-camera');
+const readerElement = document.getElementById('reader');
+const codigoQRElement = document.getElementById('codigo-qr');
+
+function onScanSuccess(decodedText, decodedResult) {
+  // Armazena o texto decodificado no campo de senha
+  codigoQRElement.value = decodedText;
+  // Esconde o leitor de QR Code
+  readerElement.style.display = 'none';
+  // Exibe uma mensagem de sucesso
+  outputElement.innerText = 'QR Code lido com sucesso!';
+  // Para a câmera após a leitura bem-sucedida
+  html5QrcodeScanner.stop();
+}
+
+function onScanFailure(error) {
+  // Em caso de falha na leitura, pode continuar tentando ou informar o usuário
+  console.warn(`Falha na leitura do QR Code: ${error}`);
+}
+
+let html5QrcodeScanner;
+
+btnAtivarCamera.addEventListener('click', () => {
+  readerElement.style.display = 'block';
+  html5QrcodeScanner = new Html5Qrcode("reader");
+  html5QrcodeScanner.start({ facingMode: "environment" }, {
+    fps: 10,
+    qrbox: { width: 300, height: 300 }
+  }, onScanSuccess, onScanFailure);
+});

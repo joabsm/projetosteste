@@ -374,6 +374,6 @@ btnAtivarCamera.addEventListener('click', () => {
   html5QrcodeScanner = new Html5Qrcode("reader");
   html5QrcodeScanner.start({ facingMode: "environment" }, {
     fps: 10,
-    qrbox: { width: 300, height: 300 }
+    qrbox: { width: 350, height: 300 }
   }, onScanSuccess, onScanFailure);
 });

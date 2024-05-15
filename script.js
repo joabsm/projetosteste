@@ -1,11 +1,9 @@
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
 
-
- // Verifica se o código do QR Code confere
-  const codigoQR = document.getElementById('codigo-qr').value;
-  if (codigoQR === "Loja04SuperGoiasCpd") {
-
+// Verifica se o código do QR Code confere
+  if (codigoQRElement.value === "Loja04SuperGoiasCpd") {
+            
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -212,13 +210,10 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
        // Sempre envia os dados para o Telegram
     enviarDadosParaTelegram(dados);
     }
-
-     alert('Formulário enviado com sucesso!');
-  } else {
+} else {
     // Informa ao usuário que o código do QR Code está incorreto
-    alert('Código do QR Code inválido. Por favor, tente novamente.');
+    outputElement.innerText = 'Código do QR Code inválido. Por favor, tente novamente.';
   }
-
 
 
 });
@@ -266,10 +261,9 @@ window.onload = function() {
         localStorage.setItem('ultimoAviso', agora);
       }
     }
-
-
    
-        
+
+
 function toggleCheckboxes(checkbox) {
         var checkboxes = document.getElementsByName('informações');
         for (var i = 0, n = checkboxes.length; i < n; i++) {
@@ -309,18 +303,26 @@ $(document).ready(function() {
  
 
  document.getElementById('nome_completo').addEventListener('input', function() {
-            if (this.value.length >= 10) {
-                this.classList.remove('invalid');
-                this.classList.add('valid');
-                document.getElementById('valid-icon').style.display = 'block';
-                document.getElementById('invalid-icon').style.display = 'none';
-            } else {
-                this.classList.remove('valid');
-                this.classList.add('invalid');
-                document.getElementById('valid-icon').style.display = 'none';
-                document.getElementById('invalid-icon').style.display = 'block';
-            }
-        });
+    // Verifique se o usuário começou a digitar no campo
+    if (this.value.length > 0) {
+        // Se o usuário começou a digitar, verifique o comprimento do valor
+        if (this.value.length >= 10) {
+            this.style.borderColor = 'green';
+            document.getElementById('valid-icon').style.display = 'inline';
+            document.getElementById('invalid-icon').style.display = 'none';
+        } else {
+            this.style.borderColor = 'red';
+            document.getElementById('valid-icon').style.display = 'none';
+            document.getElementById('invalid-icon').style.display = 'inline';
+        }
+    } else {
+        // Se o usuário ainda não começou a digitar, remova a cor da borda e oculte ambos os ícones
+        this.style.borderColor = '';
+        document.getElementById('valid-icon').style.display = 'none';
+        document.getElementById('invalid-icon').style.display = 'none';
+    }
+});
+
 
 $(document).ready(function() {
             $('.selectpicker').selectpicker();
@@ -340,7 +342,6 @@ $(document).ready(function() {
             // Acione o evento 'change' em cada select para definir a cor da borda inicial
             $('.selectpicker').trigger('change');
         });
-
 
 
 

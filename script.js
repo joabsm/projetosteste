@@ -386,8 +386,24 @@ let html5QrcodeScanner;
 btnAtivarCamera.addEventListener('click', () => {
   readerElement.style.display = 'block';
   html5QrcodeScanner = new Html5Qrcode("reader");
-  html5QrcodeScanner.start({ facingMode: "environment" }, {
-    fps: 10,
-    qrbox: { width: 200, height: 100 }
-  }, onScanSuccess, onScanFailure);
+  navigator.mediaDevices.enumerateDevices()
+  .then(function(devices) {
+    var mainCameraId;
+    devices.forEach(function(device) {
+      if (device.kind === 'videoinput' && device.label.includes('back')) {
+        mainCameraId = device.deviceId;
+      }
+    });
+
+    if (mainCameraId) {
+      html5QrcodeScanner.start({ deviceId: { exact: mainCameraId } }, {
+        fps: 10,
+        qrbox: { width: 300, height: 300 }
+      }, onScanSuccess, onScanFailure);
+    }
+  })
+  .catch(function(err) {
+    console.error(err.name + ": " + err.message);
+  });
+
 });

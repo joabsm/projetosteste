@@ -263,7 +263,7 @@
   margin: 8px 0; /* Margem externa */
   border: none; /* Sem borda */
   cursor: pointer; /* Cursor de mão ao passar o mouse */
-  width: 100%; /* Largura total */
+  width: 35%; /* Largura total */
 }
 
 #btn-ativar-camera:hover {

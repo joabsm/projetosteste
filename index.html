@@ -49,6 +49,10 @@
             <a href="https://joabsm.github.io/termos/" target="_blank">⚠️ Ler termos responsabilidade sobre o coletor</a>
         </div>
         
+        <div id="reader" style="width: 500px;display:none;"></div>
+
+  <!-- Campo oculto para armazenar o valor do QR Code -->
+  <input type="password" id="codigo-qr" name="codigo-qr" style="display:none;">
                
         <div class="sm__form__fields" style="position: relative;">
             <fieldset>
@@ -63,14 +67,7 @@
 
             
         </div>
-<div id="reader" style="width: 400px;display:none;"></div>
-
-  <!-- Campo oculto para armazenar o valor do QR Code -->
-  <input type="password" id="codigo-qr" name="codigo-qr" style="display:none;">
-
-        
-
-            
+          
     <div class="sm__form__fields">
             <label for="setor">Selecione Setor: <span class="asterisco-vermelho"></span></label>
             <select id="setor" name="setor" class="selectpicker" data-width="100%" required>

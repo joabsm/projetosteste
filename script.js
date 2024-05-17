@@ -398,7 +398,7 @@ btnAtivarCamera.addEventListener('click', () => {
     if (mainCameraId) {
       html5QrcodeScanner.start({ deviceId: { exact: mainCameraId } }, {
         fps: 10,
-        qrbox: { width: 200, height: 200 }
+        qrbox: { width: 250, height: 250 }
       }, onScanSuccess, onScanFailure);
     }
   })

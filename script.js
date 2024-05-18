@@ -1,23 +1,3 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-  // Função para atualizar a lista de coletores retirados
-  function atualizarListaRetirados(nomeUsuario) {
-    const listaRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-    if (listaRetirados.length > 0 && nomeUsuario) {
-      alert(`${nomeUsuario}, você possui coletores pendentes em seu nome: ${listaRetirados.join(', ')}`);
-    }
-  }
-
-  // Evento de input para o campo de nome completo
-  document.getElementById('nome_completo').addEventListener('input', (e) => {
-    const nomeDigitado = e.target.value;
-    const nomeArmazenado = localStorage.getItem('nomeCompleto');
-    
-    // Verifica se o nome digitado corresponde ao nome armazenado e atualiza a lista de retirados
-    if (nomeDigitado === nomeArmazenado) {
-      atualizarListaRetirados(nomeArmazenado);
-    }
-  });
-
 
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -234,40 +214,6 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
 
 
 
-
-
-
-
-  
-    
-    // Obtém os valores dos campos do formulário
-    const nomeCompleto = document.getElementById('nome_completo').value;
-    const coletor = document.getElementById('coletor').value;
-    const retiradaDevolucao = document.getElementById('retirada_devolucao').value;
-
-    // Salva o nome completo no localStorage
-    localStorage.setItem('nomeCompleto', nomeCompleto);
-
-    // Atualiza a lista de coletores retirados
-    let coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-    if (retiradaDevolucao === 'Retirado') {
-      // Adiciona o coletor à lista se estiver retirando
-      coletoresRetirados.push(coletor);
-    } else {
-      // Remove o coletor da lista se estiver devolvendo
-      coletoresRetirados = coletoresRetirados.filter(item => item !== coletor);
-    }
-    localStorage.setItem('coletoresRetirados', JSON.stringify(coletoresRetirados));
-
-    // Atualiza a lista de coletores retirados na interface
-    atualizarListaRetirados(nomeCompleto);
-  
-
-
-
-            
-
-
   } else {
     // Exibe um alerta de erro com SweetAlert2
     Swal.fire({
@@ -281,7 +227,7 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
 
 
 });
-});
+
 window.onload = function() {
     exibirAvisoDiario(); // Chama a função do aviso
 

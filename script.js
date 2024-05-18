@@ -212,22 +212,12 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
     }
 
 
-document.addEventListener('DOMContentLoaded', (event) => {
-  // Função para atualizar a lista de coletores retirados
-  function atualizarListaRetirados() {
-    const listaRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-    const nomeUsuario = localStorage.getItem('nomeCompleto');
-    if (listaRetirados.length > 0 && nomeUsuario) {
-      alert(`${nomeUsuario}, você possui coletores pendentes em seu nome: ${listaRetirados.join(', ')}`);
-    }
-  }
 
-  // Chama a função ao carregar a página para verificar se existem coletores pendentes
-  atualizarListaRetirados();
 
-  // Evento de submit do formulário
-  document.getElementById('meuFormulario').addEventListener('submit', (e) => {
-    e.preventDefault();
+
+});
+
+  
     
     // Obtém os valores dos campos do formulário
     const nomeCompleto = document.getElementById('nome_completo').value;
@@ -249,11 +239,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     localStorage.setItem('coletoresRetirados', JSON.stringify(coletoresRetirados));
 
     // Atualiza a lista de coletores retirados na interface
-    atualizarListaRetirados();
-  });
-});
-
-
+    atualizarListaRetirados(nomeCompleto);
+  
 
 
 
@@ -455,3 +442,24 @@ btnAtivarCamera.addEventListener('click', () => {
   });
 
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  // Função para atualizar a lista de coletores retirados
+  function atualizarListaRetirados(nomeUsuario) {
+    const listaRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
+    if (listaRetirados.length > 0 && nomeUsuario) {
+      alert(`${nomeUsuario}, você possui coletores pendentes em seu nome: ${listaRetirados.join(', ')}`);
+    }
+  }
+
+  // Evento de input para o campo de nome completo
+  document.getElementById('nome_completo').addEventListener('input', (e) => {
+    const nomeDigitado = e.target.value;
+    const nomeArmazenado = localStorage.getItem('nomeCompleto');
+    
+    // Verifica se o nome digitado corresponde ao nome armazenado e atualiza a lista de retirados
+    if (nomeDigitado === nomeArmazenado) {
+      atualizarListaRetirados(nomeArmazenado);
+    }
+  });
+                                 

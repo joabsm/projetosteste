@@ -215,7 +215,7 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
 
 
 
-});
+
 
   
     
@@ -462,4 +462,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
       atualizarListaRetirados(nomeArmazenado);
     }
   });
+            });
                                  

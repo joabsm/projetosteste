@@ -2,7 +2,7 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
             e.preventDefault();
 
 // Verifica se o código do QR Code confere
-  if (codigoQRElement.value === "Loja04SuperGoiasCpd") {
+  if (codigoQRElement.value === "https://qrco.de/bbLPqg") {
 
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
@@ -212,18 +212,6 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
     }
 
 
-
-  } else {
-    // Exibe um alerta de erro com SweetAlert2
-    Swal.fire({
-      title: 'Erro!',
-      text: 'Código do QR Code inválido. Por favor, tente novamente.',
-      icon: 'error',
-      confirmButtonText: 'Tentar novamente'
-    });
-  }
-
-
 document.addEventListener('DOMContentLoaded', (event) => {
   // Função para atualizar a lista de coletores retirados
   function atualizarListaRetirados() {
@@ -270,6 +258,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
             
+
+
+  } else {
+    // Exibe um alerta de erro com SweetAlert2
+    Swal.fire({
+      title: 'Erro!',
+      text: 'Código do QR Code inválido. Por favor, tente novamente.',
+      icon: 'error',
+      confirmButtonText: 'Tentar novamente'
+    });
+  }
+
 
 
 });

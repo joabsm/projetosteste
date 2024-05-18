@@ -462,5 +462,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       atualizarListaRetirados(nomeArmazenado);
     }
   });
-            });
-                                 
+
+  
+});
+

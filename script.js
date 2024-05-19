@@ -3,7 +3,7 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
             e.preventDefault();
 
 // Verifica se o código do QR Code confere
-  if (codigoQRElement.value === "https://qrco.de/bbLPqg") {
+  if (codigoQRElement.value === "https://joabsm.github.io/coletor/") {
 
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);

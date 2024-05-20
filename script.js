@@ -1,5 +1,7 @@
+exibirDados();
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
+salvarDados();            
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -414,3 +416,45 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }, 30 * 1000);
   });
 });
+function salvarDados() {
+  var nomeCompleto = document.getElementById('nome_completo').value;
+  var coletor = document.getElementById('coletor').value;
+  var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
+   var index = coletoresRetirados.indexOf(coletor);
+    if (index > -1) {
+      // Coletor já está na lista, então remove
+      coletoresRetirados.splice(index, 1);
+    } else {
+      // Coletor não está na lista, então adiciona
+      coletoresRetirados.push(coletor);
+    }
+  
+  // Salva o nome completo e a lista atualizada de coletores no localStorage
+  localStorage.setItem('nomeCompleto', nomeCompleto);
+  localStorage.setItem('coletoresRetirados', JSON.stringify(coletoresRetirados));
+  
+  // Exibe um alerta com o SweetAlert2
+  Swal.fire({
+    title: 'Dados Salvos!',
+    text: 'Seu nome e os coletores retirados foram salvos.',
+    icon: 'success'
+  });
+}
+
+
+// Função para exibir os dados salvos
+function exibirDados() {
+  var nomeCompleto = localStorage.getItem('nomeCompleto');
+  var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
+  
+  if (nomeCompleto && coletoresRetirados.length > 0) {
+    var mensagem = nomeCompleto + ' segue seus coletores retirados:\n' + coletoresRetirados.join('\n');
+    
+    // Exibe um alerta com o SweetAlert2
+    Swal.fire({
+      title: 'Seus Coletores Retirados',
+      text: mensagem,
+      icon: 'info'
+    });
+  }
+}

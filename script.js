@@ -1,10 +1,5 @@
-
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
-
-// Verifica se o código do QR Code confere
-  if (codigoQRElement.value === "https://joabsm.github.io/coletor/") {
-
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -13,6 +8,9 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
         e.preventDefault(); // Impede o envio do formulário apenas se nenhuma caixa estiver marcada
         return false;
     }
+
+
+
     // Cria um elemento de entrada oculto para a data e hora atual
     var currentDateTimeInput = document.createElement('input');
     currentDateTimeInput.setAttribute('type', 'hidden');
@@ -212,21 +210,16 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
     enviarDadosParaTelegram(dados);
     }
 
+   
 
 
-  } else {
-    // Exibe um alerta de erro com SweetAlert2
-    Swal.fire({
-      title: 'Erro!',
-      text: 'Código do QR Code inválido. Por favor, tente novamente.',
-      icon: 'error',
-      confirmButtonText: 'Tentar novamente'
-    });
-  }
 
 
 
 });
+
+
+
 
 window.onload = function() {
     exibirAvisoDiario(); // Chama a função do aviso
@@ -271,9 +264,21 @@ window.onload = function() {
         localStorage.setItem('ultimoAviso', agora);
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
    
-
-
+        
 function toggleCheckboxes(checkbox) {
         var checkboxes = document.getElementsByName('informações');
         for (var i = 0, n = checkboxes.length; i < n; i++) {
@@ -353,65 +358,59 @@ $(document).ready(function() {
             $('.selectpicker').trigger('change');
         });
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  const coletorSelect = document.getElementById('coletor');
+  const retiradaDevolucaoSelect = document.getElementById('retirada_devolucao');
 
+  // Verifica o estado do coletor no LocalStorage ao carregar a página
+  function verificarEstadoColetor() {
+    const savedStatus = localStorage.getItem('coletorStatus');
+    if (savedStatus) {
+      const status = JSON.parse(savedStatus);
+      const currentTime = Date.now();
+      const timeElapsed = currentTime - status.timestamp;
 
-
-const outputElement = document.getElementById('output');
-const btnAtivarCamera = document.getElementById('btn-ativar-camera');
-const readerElement = document.getElementById('reader');
-const codigoQRElement = document.getElementById('codigo-qr');
-
-function onScanSuccess(decodedText, decodedResult) {
- // Armazena o texto decodificado no campo de senha
-  codigoQRElement.value = decodedText;
-  // Esconde o leitor de QR Code
-  readerElement.style.display = 'none';
-  // Para a câmera após a leitura bem-sucedida
-  html5QrcodeScanner.stop();
-  // Exibe um alerta de sucesso com SweetAlert2
-  Swal.fire({
-    title: 'Sucesso!',
-    text: 'QR Code lido com sucesso!',
-    icon: 'success',
-    confirmButtonText: 'Ok'
-  });
-}
-
-function onScanFailure(error) {
-  // Em caso de falha na leitura, pode continuar tentando ou informar o usuário
-  console.warn(`Falha na leitura do QR Code: ${error}`);
-}
-
-
-let html5QrcodeScanner;
-
-btnAtivarCamera.addEventListener('click', () => {
-  readerElement.style.display = 'block';
-  html5QrcodeScanner = new Html5Qrcode("reader");
-  navigator.mediaDevices.enumerateDevices()
-  .then(function(devices) {
-    var mainCameraId;
-    devices.forEach(function(device) {
-      if (device.kind === 'videoinput' && device.label.includes('back')) {
-        mainCameraId = device.deviceId;
+      // Se o tempo desde a última ação for menor que 5 minutos, impede a ação repetida para o mesmo coletor
+      if (timeElapsed < 30 * 1000) {
+        
+        // Impede a seleção do coletor com ação recente
+        const options = coletorSelect.options;
+        for (let i = 0; i < options.length; i++) {
+          if (options[i].value === status.coletor) {
+            options[i].disabled = true;
+            break;
+          }
+        }
       }
-    });
-
-    if (mainCameraId) {
-      html5QrcodeScanner.start({ deviceId: { exact: mainCameraId } }, {
-        fps: 10,
-        qrbox: { width: 250, height: 250 }
-      }, onScanSuccess, onScanFailure);
     }
-  })
-  .catch(function(err) {
-    console.error(err.name + ": " + err.message);
+  }
+
+  verificarEstadoColetor();
+
+  retiradaDevolucaoSelect.addEventListener('change', (event) => {
+    const acao = event.target.value;
+    const coletor = coletorSelect.value;
+
+    // Atualiza o estado no LocalStorage
+    localStorage.setItem('coletorStatus', JSON.stringify({
+      coletor,
+      acao,
+      timestamp: Date.now()
+    }));
+
+    // Reativa todos os coletores após a seleção
+    const options = coletorSelect.options;
+    for (let i = 0; i < options.length; i++) {
+      options[i].disabled = false;
+    }
+
+    // Desativa o coletor por 5 minutos após a ação
+    setTimeout(() => {
+      const status = JSON.parse(localStorage.getItem('coletorStatus'));
+      if (status && status.coletor === coletor && status.acao === acao) {
+        localStorage.removeItem('coletorStatus');
+        options[coletorSelect.selectedIndex].disabled = false;
+      }
+    }, 30 * 1000);
   });
-
 });
-
-
-
-  
-
-

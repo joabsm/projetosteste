@@ -253,36 +253,3 @@
         .invalid-select .btn-light {
             border: 1px solid red;
         }
-
-        
-/* Botão de Ativação da Câmera */
-#btn-ativar-camera {
-  background-color: #4CAF50; /* Cor de fundo verde */
-  color: white; /* Texto branco */
-  padding: 14px 20px; /* Espaçamento interno */
-  margin: 8px 0; /* Margem externa */
-  border: none; /* Sem borda */
-  cursor: pointer; /* Cursor de mão ao passar o mouse */
-  width: 50%; /* Largura total */
-}
-
-#btn-ativar-camera:hover {
-  background-color: #45a049; /* Cor de fundo ao passar o mouse */
-}
-
-/* Área do Leitor de QR Code */
-#reader {
-  border: 1px solid #ddd; /* Borda cinza claro */
-  margin-top: 15px; /* Margem superior */
-  position: relative; /* Posicionamento relativo */
-}
-
-/* Campo de Senha (QR Code) */
-#codigo-qr {
-  width: 100%; /* Largura total */
-  padding: 12px 20px; /* Espaçamento interno */
-  margin: 8px 0; /* Margem externa */
-  display: inline-block; /* Exibição em linha */
-  border: 1px solid #ccc; /* Borda cinza claro */
-  box-sizing: border-box; /* Box-sizing para calcular largura com padding */
-}

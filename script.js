@@ -419,20 +419,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function salvarDados() {
   var nomeCompleto = document.getElementById('nome_completo').value;
   var coletor = document.getElementById('coletor').value;
+  var acao = document.getElementById('acao').value; // Adiciona um campo para a ação: 'retirada' ou 'devolucao'
   var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-   var index = coletoresRetirados.indexOf(coletor);
-    if (index > -1) {
-      // Coletor já está na lista, então remove
-      coletoresRetirados.splice(index, 1);
-    } else {
-      // Coletor não está na lista, então adiciona
-      coletoresRetirados.push(coletor);
+  var agora = new Date().getTime();
+
+  // Verifica se o coletor já está na lista
+  var index = coletoresRetirados.findIndex(function(item) {
+    return item.coletor === coletor;
+  });
+
+  if (acao === 'retirada') {
+    // Se a ação for retirada, adiciona o coletor à lista com um timestamp
+    if (coletor.trim() !== '' && index === -1) {
+      coletoresRetirados.push({ coletor: coletor, timestamp: agora });
     }
-  
+  } else if (acao === 'devolucao') {
+    // Se a ação for devolução e o coletor estiver na lista, remove
+    if (index > -1) {
+      coletoresRetirados.splice(index, 1);
+    }
+  }
+
+  // Limpa os coletores que foram adicionados há mais de 24 horas
+  coletoresRetirados = coletoresRetirados.filter(function(item) {
+    return agora - item.timestamp <= 24 * 60 * 60 * 1000;
+  });
+
   // Salva o nome completo e a lista atualizada de coletores no localStorage
   localStorage.setItem('nomeCompleto', nomeCompleto);
   localStorage.setItem('coletoresRetirados', JSON.stringify(coletoresRetirados));
-  
+
   // Exibe um alerta com o SweetAlert2
   Swal.fire({
     title: 'Dados Salvos!',
@@ -441,14 +457,21 @@ function salvarDados() {
   });
 }
 
-
 // Função para exibir os dados salvos
 function exibirDados() {
   var nomeCompleto = localStorage.getItem('nomeCompleto');
   var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
   
+  // Filtra os coletores que ainda não passaram 24 horas
+  coletoresRetirados = coletoresRetirados.filter(function(item) {
+    var agora = new Date().getTime();
+    return agora - item.timestamp <= 24 * 60 * 60 * 1000;
+  });
+
   if (nomeCompleto && coletoresRetirados.length > 0) {
-    var mensagem = nomeCompleto + ' segue seus coletores retirados:\n' + coletoresRetirados.join('\n');
+    var mensagem = nomeCompleto + ' segue seus coletores retirados:\n' + coletoresRetirados.map(function(item) {
+      return item.coletor;
+    }).join('\n');
     
     // Exibe um alerta com o SweetAlert2
     Swal.fire({

@@ -1,7 +1,5 @@
-exibirDados();
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
-salvarDados();            
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -10,9 +8,6 @@ salvarDados();
         e.preventDefault(); // Impede o envio do formulário apenas se nenhuma caixa estiver marcada
         return false;
     }
-
-
-
     // Cria um elemento de entrada oculto para a data e hora atual
     var currentDateTimeInput = document.createElement('input');
     currentDateTimeInput.setAttribute('type', 'hidden');
@@ -33,13 +28,22 @@ salvarDados();
     var formData = new FormData(this);
 
     // Exibe a notificação do SweetAlert
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Dados enviados com sucesso!',
-        showConfirmButton: false,
-        timer: 2000
-    });
+    const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+Toast.fire({
+  icon: "success",
+ 
+  text: 'Dados enviados com sucesso!'
+});
             var nomeCompleto = document.getElementById('nome_completo').value;
     localStorage.setItem('nomeCompleto', nomeCompleto);
 
@@ -212,16 +216,9 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
     enviarDadosParaTelegram(dados);
     }
 
-   
-
-
-
 
 
 });
-
-
-
 
 window.onload = function() {
     exibirAvisoDiario(); // Chama a função do aviso
@@ -255,30 +252,27 @@ window.onload = function() {
 
       // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
       if (!ultimoAviso || agora - ultimoAviso >= 24 * 60 * 60 * 1000) {
-        Swal.fire({
-          title: 'Aviso Importante!',
-          text: 'Por favor, preencha o formulário na retirada e na devolução do coletor.',
-          icon: 'info',
-          confirmButtonText: 'Ok'
-        });
+    const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: true,
+  timer: 4000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+  toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+Toast.fire({
+  icon: "info",
+  title: 'Aviso Importante!',
+text: 'Por favor, preencha o formulário na retirada e na devolução do coletor.',
+});
 
         // Atualiza o horário do último aviso no localStorage
         localStorage.setItem('ultimoAviso', agora);
       }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
    
         
 function toggleCheckboxes(checkbox) {
@@ -416,68 +410,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }, 30 * 1000);
   });
 });
-function salvarDados() {
-  var nomeCompleto = document.getElementById('nome_completo').value;
-  var coletor = document.getElementById('coletor').value;
-  var acao = document.getElementById('acao').value; // Adiciona um campo para a ação: 'retirada' ou 'devolucao'
-  var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-  var agora = new Date().getTime();
 
-  // Verifica se o coletor já está na lista
-  var index = coletoresRetirados.findIndex(function(item) {
-    return item.coletor === coletor;
-  });
+document.addEventListener('DOMContentLoaded', function() {
+  const setorSelect = document.getElementById('setor');
+  const coletorSelect = document.getElementById('coletor');
+  const retiradaDevolucaoSelect = document.getElementById('retirada_devolucao');
 
-  if (acao === 'retirada') {
-    // Se a ação for retirada, adiciona o coletor à lista com um timestamp
-    if (coletor.trim() !== '' && index === -1) {
-      coletoresRetirados.push({ coletor: coletor, timestamp: agora });
-    }
-  } else if (acao === 'devolucao') {
-    // Se a ação for devolução e o coletor estiver na lista, remove
-    if (index > -1) {
-      coletoresRetirados.splice(index, 1);
-    }
-  }
+  document.getElementById('retirada_devolucao').addEventListener('change', function() {
+    const setor = setorSelect.value;
+    const coletor = coletorSelect.value;
+    const retiradaDevolucao = retiradaDevolucaoSelect.value;
 
-  // Limpa os coletores que foram adicionados há mais de 24 horas
-  coletoresRetirados = coletoresRetirados.filter(function(item) {
-    return agora - item.timestamp <= 24 * 60 * 60 * 1000;
-  });
-
-  // Salva o nome completo e a lista atualizada de coletores no localStorage
-  localStorage.setItem('nomeCompleto', nomeCompleto);
-  localStorage.setItem('coletoresRetirados', JSON.stringify(coletoresRetirados));
-
-  // Exibe um alerta com o SweetAlert2
-  Swal.fire({
-    title: 'Dados Salvos!',
-    text: 'Seu nome e os coletores retirados foram salvos.',
-    icon: 'success'
-  });
-}
-
-// Função para exibir os dados salvos
-function exibirDados() {
-  var nomeCompleto = localStorage.getItem('nomeCompleto');
-  var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-  
-  // Filtra os coletores que ainda não passaram 24 horas
-  coletoresRetirados = coletoresRetirados.filter(function(item) {
-    var agora = new Date().getTime();
-    return agora - item.timestamp <= 24 * 60 * 60 * 1000;
-  });
-
-  if (nomeCompleto && coletoresRetirados.length > 0) {
-    var mensagem = nomeCompleto + ' segue seus coletores retirados:\n' + coletoresRetirados.map(function(item) {
-      return item.coletor;
-    }).join('\n');
+    const coletorNumber = coletor.replace('Coletor-', '').trim();
     
-    // Exibe um alerta com o SweetAlert2
-    Swal.fire({
-      title: 'Seus Coletores Retirados',
-      text: mensagem,
-      icon: 'info'
-    });
+    if (retiradaDevolucao === 'Retirado' && 
+        (setor === 'Frios' || setor === 'Auditoria' || setor === 'Prevencao_de_perdas') &&
+        coletorNumber >= 1 && coletorNumber <= 8) {
+    const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: true,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
   }
-}
+});
+Toast.fire({
+  icon: "warning",
+ title: 'Atenção!',
+text: 'Coletor destinado para pessoel do deposito',
+});
+    }
+  });
+});
+

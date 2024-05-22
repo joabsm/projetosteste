@@ -416,33 +416,31 @@ document.addEventListener('DOMContentLoaded', function() {
   const coletorSelect = document.getElementById('coletor');
   const retiradaDevolucaoSelect = document.getElementById('retirada_devolucao');
 
-  document.getElementById('retirada_devolucao').addEventListener('change', function() {
+  function verificarCondicões() {
     const setor = setorSelect.value;
     const coletor = coletorSelect.value;
     const retiradaDevolucao = retiradaDevolucaoSelect.value;
 
-    const coletorNumber = coletor.replace('Coletor-', '').trim();
-    
+    // Extrair o número do coletor da string (ex: "Coletor- 02" torna-se 2)
+    const coletorNumber = parseInt(coletor.replace('Coletor-', '').trim());
+
+    // Verificar se todas as condições são atendidas
     if (retiradaDevolucao === 'Retirado' && 
         (setor === 'Frios' || setor === 'Auditoria' || setor === 'Prevencao_de_perdas') &&
         coletorNumber >= 1 && coletorNumber <= 8) {
-    const Toast = Swal.mixin({
-  toast: true,
-  position: "top-end",
-  showConfirmButton: true,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
-  }
-});
-Toast.fire({
-  icon: "warning",
- title: 'Atenção!',
-text: 'Coletor destinado para pessoel do deposito',
-});
+      Swal.fire({
+        title: 'Atenção!',
+        text: 'Condição específica atendida.',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      });
     }
-  });
+  }
+
+  // Adicionar ouvintes de evento para todos os selects
+  setorSelect.addEventListener('change', verificarCondicões);
+  coletorSelect.addEventListener('change', verificarCondicões);
+  retiradaDevolucaoSelect.addEventListener('change', verificarCondicões);
 });
+
 

@@ -251,7 +251,7 @@ window.onload = function() {
       var ultimoAviso = localStorage.getItem('ultimoAviso');
 
       // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
-      if (!ultimoAviso || agora - ultimoAviso >= 24 * 60 * 60 * 1000) {
+      if (!ultimoAviso || agora - ultimoAviso >= 30 * 1000) {
     const Toast = Swal.mixin({
   toast: true,
   position: "top-end",

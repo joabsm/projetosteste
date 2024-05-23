@@ -530,19 +530,16 @@ function salvarDados(estaRetirando) {
   });
 }
 
-
-
 // Função para exibir os dados salvos
 function exibirDados() {
   var nomeCompleto = localStorage.getItem('nomeCompleto');
   var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-  
-  // Filtra os coletores que ainda não passaram 24 horas
+              // Filtra os coletores que ainda não passaram 24 horas
   coletoresRetirados = coletoresRetirados.filter(function(item) {
     var agora = new Date().getTime();
     return agora - item.timestamp <= 24 * 60 * 60 * 1000;
   });
-
+  
   if (nomeCompleto && coletoresRetirados.length > 0) {
     var mensagem = nomeCompleto + ' segue seus coletores retirados:\n' + coletoresRetirados.map(function(item) {
       return item.coletor;
@@ -550,13 +547,12 @@ function exibirDados() {
     
     // Exibe um alerta com o SweetAlert2
     Swal.fire({
-      title: `${nomeCompleto}`,
+      title: 'Seus Coletores Retirados',
       text: mensagem,
       icon: 'info'
     });
   }
 }
-
 
 
 

@@ -225,7 +225,7 @@ window.onload = function() {
 
     if (nomeCompletoSalvo) {
         document.getElementById('nome_completo').value = nomeCompletoSalvo;
-        localStorage.removeItem('nomeCompleto');
+        
     }
     if (nomeSetorSalvo) {
         document.getElementById('setor').value = nomeSetorSalvo;

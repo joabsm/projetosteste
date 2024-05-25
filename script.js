@@ -1,7 +1,7 @@
-exibirDados();
+
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
-salvarDados();
+
 
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
@@ -216,7 +216,7 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
 
 window.onload = function() {
     exibirAvisoDiario(); // Chama a função do aviso
-            
+    exibirNotificasao(); // Chama a função da notificação
 
     // Seu código existente para verificar e inserir valores salvos
     var nomeCompletoSalvo = localStorage.getItem('nomeCompleto');
@@ -244,6 +244,7 @@ window.onload = function() {
     function exibirAvisoDiario() {
       var agora = new Date().getTime();
       var ultimoAviso = localStorage.getItem('ultimoAviso');
+     
 
       // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
       if (!ultimoAviso || agora - ultimoAviso >= 24 * 60 * 60 * 1000) {
@@ -263,6 +264,27 @@ Toast.fire({
   title: 'Aviso Importante!',
 text: 'Por favor, preencha o formulário na retirada e na devolução do coletor.',
 });
+
+        // Atualiza o horário do último aviso no localStorage
+        localStorage.setItem('ultimoAviso', agora);
+      }
+    }
+
+    function exibirNotificasao() {
+      var agora = new Date().getTime();
+      var ultimoAviso = localStorage.getItem('ultimoAviso');
+       var nomeSalvo = localStorage.getItem('nomeCompleto');
+
+      // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
+      if (!ultimoAviso || agora - ultimoAviso >= 20 * 1000) {
+    iziToast.show({
+        backgroundColor: '#D3D3D3',
+        messageColor: '#000000',
+                    image: 'https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png',
+                    position: 'topRight',
+                    title: 'Olá!',
+                    message: `Seja bem-vindo de volta, ${nomeSalvo}!`
+                });
 
         // Atualiza o horário do último aviso no localStorage
         localStorage.setItem('ultimoAviso', agora);
@@ -435,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 Toast.fire({
-  title: 'Atenção!',
+  title: '⚠️ Atenção!',
   text: ` Este Coletor-${coletorNumber.toString().padStart(2, '0')} é destinado para setor do "Deposito"`,
   icon: 'warning',
 });
@@ -457,7 +479,7 @@ Toast.fire({
   }
 });
 Toast.fire({
-  title: 'Atenção!',
+  title: '⚠️ Atenção!',
   text: ` Este Coletor-${coletorNumber.toString().padStart(2, '0')} é destinado para setor do "Frios","Auditoria", "Prevencao_de_perdas"`,
   icon: 'warning',
 });
@@ -470,8 +492,8 @@ Toast.fire({
   const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
-  showConfirmButton: false,
-  timer: 4000,
+  showConfirmButton: true,
+  timer: 5000,
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
@@ -480,7 +502,7 @@ Toast.fire({
 });
 Toast.fire({
   title: `${nome_completo}`,
-  text: ` Confere na etiqueta do coletor se realmente é este Numero ${coletorNumber.toString().padStart(2, '0')}`,
+  text: `Antes de finalizar a devolução, confirme se o número do coletor está correto."      >Coletor- ${coletorNumber.toString().padStart(2, '0')} " `,
   icon: 'info',
 });
     }
@@ -494,75 +516,3 @@ Toast.fire({
   coletorSelect.addEventListener('change', verificarCondicões);
   retiradaDevolucaoSelect.addEventListener('change', verificarCondicões);
 });
-
-function salvarDados(estaRetirando) {
-  var nomeCompleto = document.getElementById('nome_completo').value;
-  var coletor = document.getElementById('coletor').value;
-  var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-  var agora = new Date().getTime();
-
-  var index = coletoresRetirados.findIndex(function(item) {
-    return item.coletor === coletor;
-  });
-
-  if (estaRetirando) {
-    if (index === -1 && coletor.trim() !== '') {
-      // Coletor não está na lista e está sendo retirado, então adiciona
-      coletoresRetirados.push({ coletor: coletor, timestamp: agora });
-    }
-  } else {
-    if (index > -1) {
-      // Coletor está na lista e está sendo devolvido, então remove
-      coletoresRetirados.splice(index, 1);
-    }
-  }
-
-  coletoresRetirados = coletoresRetirados.filter(function(item) {
-    return agora - item.timestamp <= 24 * 60 * 60 * 1000;
-  });
-
-  localStorage.setItem('nomeCompleto', nomeCompleto);
-  localStorage.setItem('coletoresRetirados', JSON.stringify(coletoresRetirados));
-
-  Swal.fire({
-    title: 'Dados Salvos!',
-    text: 'Seu nome e os coletores retirados foram salvos.',
-    icon: 'success'
-  });
-}
-
-// Função para exibir os dados salvos
-function exibirDados() {
-  var nomeCompleto = localStorage.getItem('nomeCompleto');
-  var coletoresRetirados = JSON.parse(localStorage.getItem('coletoresRetirados')) || [];
-              // Filtra os coletores que ainda não passaram 24 horas
-  coletoresRetirados = coletoresRetirados.filter(function(item) {
-    var agora = new Date().getTime();
-    return agora - item.timestamp <= 24 * 60 * 60 * 1000;
-  });
-  
-  if (nomeCompleto && coletoresRetirados.length > 0) {
-    var mensagem = nomeCompleto + ' segue seus coletores retirados:\n' + coletoresRetirados.map(function(item) {
-      return item.coletor;
-    }).join('\n');
-    
-    // Exibe um alerta com o SweetAlert2
-    Swal.fire({
-      title: 'Seus Coletores Retirados',
-      text: mensagem,
-      icon: 'info'
-    });
-  }
-}
-
-setTimeout(function() {
-            var nomeSalvo = localStorage.getItem('nomeCompleto');
-            if (nomeSalvo) {
-                iziToast.success({
-                    title: 'Olá!',
-                    message: `Seja bem-vindo de volta, ${nomeSalvo}!`
-                });
-            }
-        }, 30000); // 30 segundos em milissegundos
-
-

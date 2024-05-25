@@ -2,7 +2,6 @@
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
 
-
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
@@ -230,7 +229,7 @@ window.onload = function() {
     if (nomeSetorSalvo) {
         document.getElementById('setor').value = nomeSetorSalvo;
         $('#setor').selectpicker('refresh'); // Atualiza a exibição do Bootstrap Select
-        localStorage.removeItem('setor');
+        
     }
     if (nomeCpdResponsavelSalvo) {
         document.getElementById('cpd_responsavel').value = nomeCpdResponsavelSalvo;
@@ -251,7 +250,7 @@ window.onload = function() {
     const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
-  showConfirmButton: true,
+  showConfirmButton: false,
   timer: 4000,
   timerProgressBar: true,
   didOpen: (toast) => {
@@ -274,17 +273,20 @@ text: 'Por favor, preencha o formulário na retirada e na devolução do coletor
       var agora = new Date().getTime();
       var ultimoAviso = localStorage.getItem('ultimoAviso');
        var nomeSalvo = localStorage.getItem('nomeCompleto');
+       var setorSalvo = localStorage.getItem('setor');
 
       // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
       if (!ultimoAviso || agora - ultimoAviso >= 20 * 1000) {
-    iziToast.show({
-        backgroundColor: '#D3D3D3',
-        messageColor: '#000000',
+    iziToast.success({
+                    
+                    messageColor: '#000000',
+                    transitionIn: 'bounceInDown',
                     image: 'https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png',
                     position: 'topRight',
-                    title: 'Olá!',
-                    message: `Seja bem-vindo de volta, ${nomeSalvo}!`
+                    title: 'Seus dados foram salvo com sucesso,',
+                    message: `${nomeSalvo} ➡️ Setor: ${setorSalvo}!`
                 });
+    
 
         // Atualiza o horário do último aviso no localStorage
         localStorage.setItem('ultimoAviso', agora);
@@ -492,7 +494,7 @@ Toast.fire({
   const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
-  showConfirmButton: true,
+  showConfirmButton: false,
   timer: 5000,
   timerProgressBar: true,
   didOpen: (toast) => {
@@ -516,3 +518,7 @@ Toast.fire({
   coletorSelect.addEventListener('change', verificarCondicões);
   retiradaDevolucaoSelect.addEventListener('change', verificarCondicões);
 });
+
+
+
+

@@ -216,7 +216,11 @@ doc.text('Data: ' + obterDataAtual(), 20, 225);
 
 window.onload = function() {
     exibirAvisoDiario(); // Chama a função do aviso
-
+            
+iziToast.success({
+                title: 'Olá!',
+                message: `Seja bem-vindo de volta, ${nomeCompleto}!`
+            });
     // Seu código existente para verificar e inserir valores salvos
     var nomeCompletoSalvo = localStorage.getItem('nomeCompleto');
     var nomeSetorSalvo = localStorage.getItem('setor');

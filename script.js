@@ -35,8 +35,8 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
     Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: `Dados enviados com sucesso, ${nomeSalvoSucesso}`,
-        
+        title: 'Dados enviados com sucesso',
+        text: `${nomeSalvoSucesso}`,
         showConfirmButton: false,
         timer: 2000
     });

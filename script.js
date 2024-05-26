@@ -29,11 +29,14 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
     // Prepara os dados do formulário para serem enviados via AJAX
     var formData = new FormData(this);
 
+     var nomeSalvoSucesso = localStorage.getItem('nomeCompleto');
+   
     // Exibe a notificação do SweetAlert
     Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Dados enviados com sucesso!',
+        title: `Dados enviados com sucesso, ${nomeSalvoSucesso}`,
+        
         showConfirmButton: false,
         timer: 2000
     });

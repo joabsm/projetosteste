@@ -1,6 +1,9 @@
 
+
+
 document.getElementById('meuFormulario').addEventListener('submit', function(e) {
             e.preventDefault();
+          
 
     var checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
@@ -29,17 +32,36 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
     // Prepara os dados do formulário para serem enviados via AJAX
     var formData = new FormData(this);
 
-     var nomeSalvoSucesso = localStorage.getItem('nomeCompleto');
+    var nomeSalvoSucesso = localStorage.getItem('nomeCompleto');
    
     // Exibe a notificação do SweetAlert
     Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Dados enviados com sucesso',
-        text: `${nomeSalvoSucesso}`,
+        title: `Dados enviados com sucesso, ${nomeSalvoSucesso}`,
+        
         showConfirmButton: false,
         timer: 2000
     });
+
+
+        // Obtém os valores dos campos do formulário
+            
+            var retiradaDevolucao = document.getElementById('retirada_devolucao').value;
+           
+            var coletor = document.getElementById('coletor').value;
+
+            // Crie um objeto com os dados do formulário
+            var pegaFormulario = {
+                coletor,
+                retiradaDevolucao
+                
+            };
+
+            // Salva os dados no LocalStorage
+            localStorage.setItem('pegaFormulario', JSON.stringify(pegaFormulario));
+
+
             var nomeCompleto = document.getElementById('nome_completo').value;
     localStorage.setItem('nomeCompleto', nomeCompleto);
 
@@ -279,7 +301,7 @@ text: 'Por favor, preencha o formulário na retirada e na devolução do coletor
        var setorSalvo = localStorage.getItem('setor');
 
       // Se o último aviso não foi definido ou se já passou 24 horas, exiba o aviso
-      if (!ultimoAviso || agora - ultimoAviso >= 20 * 1000) {
+      if (!ultimoAviso || agora - ultimoAviso >= 60 * 1000) {
     iziToast.success({
                     
                     messageColor: '#000000',
@@ -497,7 +519,7 @@ Toast.fire({
   const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
-  showConfirmButton: false,
+  showConfirmButton: true,
   timer: 5000,
   timerProgressBar: true,
   didOpen: (toast) => {
@@ -524,4 +546,45 @@ Toast.fire({
 
 
 
+var btAbrirModal = $("#btAbrirModal");
+var modal = $("#modal");
+var modalClose = $("#modal .modal-close");
+var modalBackground = $("#modal .modal-bg");
 
+btAbrirModal.click(function () {
+    modal.fadeIn(500);
+});
+
+modalClose.click(function () {
+    modal.fadeOut(500);
+});
+
+//Caso queira que o dialogo feche ao realizar um click fora dele.
+//
+modalBackground.click(function () {
+  modal.fadeOut(500);
+});
+
+// Exibe os dados em uma tabela quando o botão for clicado
+        const botaoExibirTabela = document.getElementById('exibirTabela');
+        const tabelaDados = document.getElementById('tabelaDados');
+
+        botaoExibirTabela.addEventListener('click', function() {
+        const dadosSalvos = localStorage.getItem('pegaFormulario');
+        if (dadosSalvos) {
+            const dados = JSON.parse(dadosSalvos);
+            const tabelaBody = document.querySelector('#tabelaDados tbody');
+
+            // Crie uma nova linha na tabela para cada conjunto de dados
+            const novaLinha = document.createElement('tr');
+            novaLinha.innerHTML = `
+               
+                <td>${dados.coletor}</td>
+                <td>${dados.retiradaDevolucao}</td>
+            `;
+
+            tabelaBody.appendChild(novaLinha);
+        } else {
+            alert('Nenhum dado salvo ainda.');
+        }
+    });

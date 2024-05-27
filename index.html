@@ -67,7 +67,7 @@
       
     <div class="sm__form__fields">
 
-         <label for="retirada_devolucao">Retirando ou Devolvendo "coletor"? <span class="asterisco-vermelho"></span></label>
+         <label for="retirada_devolucao">Vai retirar ou devolver o coletor? <span class="asterisco-vermelho"></span></label>
             <select id="retirada_devolucao" name="retirada_devolucao" class="selectpicker" data-width="100%" required>
     <option value="">-- Selecione --</option>
                 <option value=""> </option>
@@ -84,8 +84,10 @@
                 <option value="Frios">Frios</option>
                 <option value="Prevencao_de_perdas">Prevenção de perdas</option>
             </select>
-       
+            
+            
             <label for="coletor">Selecione numero do coletor: <span class="asterisco-vermelho"></span></label>
+            <div style="display: flex; align-items: center;" class="sm__form__fields">
             <select id="coletor" name="coletor" class="selectpicker" data-width="100%" required>
                 <option value="">-- Selecione --</option>
                <option value="Coletor01">Coletor- 01</option>
@@ -107,6 +109,11 @@
                
                 
             </select>
+            <button id="btAbrirModal" style="margin-left: 10px;">
+        <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+       
+    </button>
+</div>
 
            
 
@@ -126,8 +133,31 @@
 </div>
 
 
+
+<div id="modal" class="hide">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+        <button id="exibirTabela" class="sm-btn sm-btn--support"> <i class="fas fa-table"></i> Exibir Tabela</button>
+<table id="tabelaDados">
+    <thead>
+        <tr>
+
+            <th>Coletor</th>
+            <th>Retirada/Devolução</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Aqui você exibirá os dados do formulário -->
+    </tbody>
+</table>
+        <a class="modal-close">&#215;</a>
+    </div>
+</div>
+
                  
-             </fieldset>
+             
            <fieldset>
   <legend>Marque as caixas como Ok: <span class="asterisco-vermelho"></span></legend>
   <div class="checkbox-container">
@@ -168,7 +198,10 @@
     <button type="submit" class="sm-btn sm-btn--primary"><i class="fa-solid fa-play fa-beat-fade" style="color: #f6f7f9;"></i>  Enviar formulário</button>
 </div>
 
-        
+       <div class="versao">
+        <span>v1.4.0/Joabsm</span>
+    </div>
+
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -176,6 +209,7 @@
 
      <!-- Inclua o jQuery, o JS do Bootstrap e do Bootstrap Select aqui -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 

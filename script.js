@@ -1130,3 +1130,5 @@ Toast.fire({
 
     });
 
+var clienteSalvo = localStorage.getItem('nomeCompleto');
+    document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"

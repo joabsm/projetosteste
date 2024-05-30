@@ -1,344 +1,590 @@
 
 
 
+
+
+
 /* Estilos adicionais para alinhar os rótulos com as caixas de seleção */
+
+
 
         .checkbox-group {
 
+
+
             display: flex;
+
+
 
             align-items: center;
 
+
+
             margin-bottom: 10px;
 
+
+
         }
+
+
+
+
 
 
 
         .checkbox-group input[type="checkbox"] {
 
+
+
             margin-right: 5px;
 
+
+
         }
+
+
 
          body {
 
+
+
             font-family: Arial, sans-serif;
+
+
 
             background-color: #4682B4;
 
+
+
             margin: 0;
 
-            padding: 0;
+
+
+            padding-top: 45px; /* Ajuste conforme necessário */
+
+
 
         }
 
 
 
-        header, nav, main, aside, footer {
+
+
+
+
+        header, main, aside, footer {
+
+
 
             padding: 20px;
 
+
+
             margin: 10px;
 
+
+
         }
+
+
+
+
 
 
 
         .sm__form {
 
+
+
             background-color: #F0F8FF;
+
+
 
             padding: 20px;
 
+
+
             border-radius: 5px;
+
+
 
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
 
+
+
             max-width: 500px;
+
+
 
             margin: 20px auto;
 
+
+
         }
+
+
+
+
 
 
 
         .sm__form__fields label {
 
+
+
             display: block;
+
+
 
             margin-bottom: 1px;
 
 
 
+
+
+
+
         }
+
+
 
        .sm__form__fields input[type="text"] {
 
+
+
             width: 100%;
+
+
 
             padding: 10px;
 
+
+
             margin-bottom: 10px;
+
+
 
             
 
+
+
             border-radius: 5px;
+
+
 
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */  
 
+
+
         }
+
+
+
+
 
 
 
         .sm-actions__container {
 
+
+
             text-align: right;
+
+
 
             display: flex;
 
+
+
             justify-content: space-between;
 
+
+
         }
+
+
+
+
 
 
 
         .sm-btn {
 
+
+
             padding: 10px 20px;
+
+
 
             border: none;
 
+
+
             border-radius: 5px;
+
+
 
             background-color: #007bff;
 
+
+
             color: #fff;
+
+
 
             cursor: pointer;
 
+
+
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
 
+
+
         }
+
+
+
+
 
 
 
         .sm-btn--primary:hover {
 
+
+
             background-color: #0056b3;
 
+
+
         }
-         .sm-btn--primary {
+
+
+
+        .sm-btn--primary {
+
+
 
             margin-bottom: 20px;
 
+
+
         }
 
-        .exibirTabelaStyle{
-            background-color: #28a745; /* Cor de fundo para o botão de suporte */
-            margin-bottom: 20px;
-            width: 100%;
 
-          padding: 10px 20px;
-
-            border: none;
-
-            border-radius: 5px;
-
-            color: #fff;
-
-            cursor: pointer;
-
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
-        }
 
         .sm-btn--support {
 
+
+
     background-color: #28a745; /* Cor de fundo para o botão de suporte */
+
     margin-bottom: 20px;
 
+
+
 }
+
+
+
+
 
 
 
 .sm-btn--support:hover {
 
+
+
     background-color: #218838; /* Cor de fundo ao passar o mouse para o botão de suporte */
 
+
+
 }
+
+
+
+
 
 
 
         .sm-branding-footer {
 
+
+
             text-align: center;
+
+
 
             margin-top: 20px;
 
+
+
         }
+
+
+
+
 
 
 
         .sm-branding-footer a {
 
+
+
             color: #007bff;
+
+
 
             text-decoration: none;
 
+
+
             font-size: 0.9em;
+
+
 
             text-align: left;
 
+
+
         }
+
+
+
+
 
 
 
         .sm-branding-footer a:hover {
 
+
+
             text-decoration: underline;
 
+
+
         }
+
+
 
         
 
+
+
  .bootstrap-select .dropdown-toggle .filter-option {
+
            
+
         }
+
+
+
+
 
 
 
     h1 {
 
+
+
   color: #4A90E2;
+
+
 
   font-size: 36px;
 
+
+
   font-weight: bold;
+
+
 
   text-align: center;
 
+
+
   margin-bottom: 10px;
 
+
+
     }
+
     .asterisco-vermelho::before {
+
     content: "*";
+
     color: red;
+
   }
 
+
+
 .checkbox-container {
+
   display: flex;
+
   flex-wrap: wrap;
+
 }
+
+
 
 .checkbox-group {
+
   flex: 0 0 50%; /* Ajusta para 50% da largura do container */
+
 }
+
+
 
 /* Estilos adicionais para alinhar e melhorar a aparência */
+
 .checkbox-group label {
+
   display: block;
+
   margin: 5px 0;
+
 }
 
+
+
 .valid {
+
             border: 2px solid green;
-        }
-        .invalid {
-            border: 2px solid red;
-        }
-        /* Adicione este estilo para alterar a cor da borda quando o campo está focado */
-        input:focus {
-            border: 2px solid black;
-        }
-        /* Estilos para os ícones */
-        .valid-icon, .invalid-icon {
-            position: absolute;
-            right: 10px;
-            top: calc(65% - 0.01em); /* Centraliza verticalmente o ícone */
-            display: none;
-        }
-        .valid-icon {
-            color: green;
-        }
-        .invalid-icon {
-            color: red;
-        }
-        /* Adicione um padding ao campo de entrada para evitar que o texto se sobreponha ao ícone */
-        input {
-            padding-right: 30px;
+
         }
 
+        .invalid {
+
+            border: 2px solid red;
+
+        }
+
+        /* Adicione este estilo para alterar a cor da borda quando o campo está focado */
+
+        input:focus {
+
+            border: 2px solid black;
+
+        }
+
+        /* Estilos para os ícones */
+
+        .valid-icon, .invalid-icon {
+
+            position: absolute;
+
+            right: 10px;
+
+            top: calc(65% - 0.01em); /* Centraliza verticalmente o ícone */
+
+            display: none;
+
+        }
+
+        .valid-icon {
+
+            color: green;
+
+        }
+
+        .invalid-icon {
+
+            color: red;
+
+        }
+
+        /* Adicione um padding ao campo de entrada para evitar que o texto se sobreponha ao ícone */
+
+        input {
+
+            padding-right: 30px;
+
+        }
 
 
 
          .valid-select .btn-light {
+
             border: 1px solid green;
+
         }
+
         .invalid-select .btn-light {
+
             border: 1px solid red;
+
         }
-       .versao {
+
+           .versao {
+
             
+
            position: absolute;
+
         }
 
-        .hide {
-    display: none;
-}
-
-.modal-bg {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background: gainsboro;
-    opacity: 0.7;
-}
-
-.modal-content {
-    position: fixed;
-    margin: 0 auto;
-    width: 200px;
-    height: 300px;
-    top: 50px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background: white;
-    box-shadow: 0px 0px 10px black;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.modal-close {
-    font-size: 2rem;
-    line-height: 1;
-    position: absolute;
-    top: 0px;
-    right: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #AAAAAA;
-    font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
-}
 
 
+         .profile-picture {
 
-table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        tr {
-            background-color: #c8e6c9; /* Substitua pela cor desejada */
-        }
-        #btAbrirModal {
-        border: none; /* Remove a borda */
-        background-color: transparent; /* Remove o fundo */
-        cursor: pointer; /* Altera o cursor ao passar o mouse */
+        position: relative; /* Define o contexto de posicionamento */
+
+        width: 40px;
+
+        height: 40px;
+
+        border-radius: 50%; /* Torna a imagem redonda */
+
+        background-image: url('https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png'); /* Substitua pelo caminho da sua imagem */
+
+        background-size: cover;
+
+        background-position: center;
+
     }
+
+
+
+   .navbar-brand {
+
+         position: absolute;
+
+        top: 13px;
+
+        left: 55px;
+
+        
+
+         
+
+    }
+
+
+
+ table {
+
+            border-collapse: collapse;
+
+            width: 100%;
+
+        }
+
+        th, td {
+
+            border: 1px solid #ddd;
+
+            padding: 8px;
+
+            text-align: left;
+
+        }
+
+        tr {
+
+            background-color: #c8e6c9; /* Substitua pela cor desejada */
+
+        }
+
+
+

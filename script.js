@@ -529,7 +529,7 @@ Toast.fire({
             tabelaBody.appendChild(novaLinha);
 
         } else {
-            alert('Nenhum dado salvo ainda.');
+           
         }
    // });
 

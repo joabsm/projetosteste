@@ -28,7 +28,7 @@
             
             margin: 0;
 
-            padding-top: 40px; /* Ajuste conforme necessário */
+            padding-top: 50px; /* Ajuste conforme necessário */
 
         }
 
@@ -96,7 +96,7 @@
 
             display: flex;
 
-            justify-content: space-between;
+        
 
         }
 
@@ -131,6 +131,8 @@
         .sm-btn--primary {
 
             margin-bottom: 20px;
+           width: 100%;
+            
 
         }
 
@@ -138,6 +140,7 @@
 
     background-color: #28a745; /* Cor de fundo para o botão de suporte */
     margin-bottom: 20px;
+    width: 100%;
 
 }
 
@@ -288,3 +291,5 @@
         .retirado {
             color: red;
         }
+
+       

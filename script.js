@@ -51,13 +51,24 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
             var pegaFormulario = {
                 coletor,
                 retiradaDevolucao,
-                 datetime
+                datetime
                 
             };
 
-            // Salva os dados no LocalStorage
-            localStorage.setItem('pegaFormulario', JSON.stringify(pegaFormulario));
+            
+            // Obtenha os dados salvos no LocalStorage, ou uma lista vazia se não houver dados
+            var historico = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
 
+            // Adicione o novo formulário ao início do array
+            historico.unshift(pegaFormulario);
+
+            // Se a lista tiver mais de 5 itens, remova o último
+            if (historico.length > 10) {
+                historico.pop();
+            }
+
+            // Salva a lista atualizada no LocalStorage
+            localStorage.setItem('historicoFormularios', JSON.stringify(historico));
 
 
 
@@ -351,12 +362,6 @@ $(document).ready(function() {
         });
 
 
-
- 
-
-
-
-
 document.addEventListener('DOMContentLoaded', (event) => {
   const coletorSelect = document.getElementById('coletor');
   const retiradaDevolucaoSelect = document.getElementById('retirada_devolucao');
@@ -508,30 +513,31 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-        //botaoExibirTabela.addEventListener('click', function() {
-        const dadosSalvos = localStorage.getItem('pegaFormulario');
-        if (dadosSalvos) {
-            const dados = JSON.parse(dadosSalvos);
-            const tabelaBody = document.querySelector('#tabelaDados tbody');
-            
-            
-            // Crie uma nova linha na tabela para cada conjunto de dados
-            const novaLinha = document.createElement('tr');
-            novaLinha.innerHTML = `
-               
-                <td>${dados.coletor}</td>
-                <td class="${dados.retiradaDevolucao === 'Devolvido' ? 'devolvido' : 'retirado'}">${dados.retiradaDevolucao}</td>
-                <td>${dados.datetime}</td>
-            `;
+       // document.getElementById('exibirTabela').addEventListener('click', function() {
+            const dadosSalvos = localStorage.getItem('historicoFormularios');
+            if (dadosSalvos) {
+                const dados = JSON.parse(dadosSalvos);
+                const tabelaBody = document.querySelector('#tabelaDados tbody');
+                
+                // Limpe o conteúdo da tabela antes de exibir os novos dados
+                tabelaBody.innerHTML = '';
 
-            
+                // Crie uma nova linha na tabela para cada conjunto de dados
+                dados.forEach((dado, index) => {
+                    const novaLinha = document.createElement('tr');
+                    novaLinha.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${dado.coletor}</td>
+                        <td class="${dado.retiradaDevolucao === 'Devolvido' ? 'devolvido' : 'retirado'}">${dado.retiradaDevolucao}</td>
+                        <td>${dado.datetime}</td>
+                    `;
+                    tabelaBody.appendChild(novaLinha);
+                });
 
-            tabelaBody.appendChild(novaLinha);
-
-        } else {
-           
-        }
-   // });
+            } else {
+                
+            }
+       // });
 
         var clienteSalvo = localStorage.getItem('nomeCompleto');
     document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"

@@ -47,20 +47,19 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
            
             var coletor = document.getElementById('coletor').value;
 
-            // Crie um objeto com os dados do formulário
-            var pegaFormulario = {
-                coletor,
-                retiradaDevolucao,
-                datetime
-                
-            };
-
-            
-            // Obtenha os dados salvos no LocalStorage, ou uma lista vazia se não houver dados
+           // Obtenha os dados salvos no LocalStorage, ou uma lista vazia se não houver dados
             var historico = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
 
-            // Adicione o novo formulário ao início do array
-            historico.unshift(pegaFormulario);
+            // Verifique se o coletor já existe na lista
+            var index = historico.findIndex(item => item.coletor === coletor);
+
+            if (index !== -1) {
+                // Atualiza o item existente
+                historico[index] = { coletor, retiradaDevolucao, datetime };
+            } else {
+                // Adiciona um novo item ao início do array
+                historico.unshift({ coletor, retiradaDevolucao, datetime });
+            }
 
             // Se a lista tiver mais de 5 itens, remova o último
             if (historico.length > 10) {
@@ -513,7 +512,7 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-       // document.getElementById('exibirTabela').addEventListener('click', function() {
+       //document.getElementById('exibirTabela').addEventListener('click', function() {
             const dadosSalvos = localStorage.getItem('historicoFormularios');
             if (dadosSalvos) {
                 const dados = JSON.parse(dadosSalvos);
@@ -537,7 +536,7 @@ Toast.fire({
             } else {
                 
             }
-       // });
+        //});
 
         var clienteSalvo = localStorage.getItem('nomeCompleto');
     document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"

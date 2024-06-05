@@ -99,6 +99,24 @@
         
 
         }
+        .gerarRelatorio{
+             background-color: #28a745; /* Cor de fundo para o botão de suporte */
+             margin-bottom: 20px;
+           
+            color: #fff;
+              box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
+             border: none;
+
+
+        }
+        .limparHistorico{
+              background-color: #28a745; /* Cor de fundo para o botão de suporte */
+             margin-bottom: 20px;
+           
+            color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
+             border: none;
+        }
 
 
 
@@ -144,13 +162,12 @@
 
 }
 
-
-
 .sm-btn--support:hover {
 
     background-color: #218838; /* Cor de fundo ao passar o mouse para o botão de suporte */
 
 }
+
 
 
 

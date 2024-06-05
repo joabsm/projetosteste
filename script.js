@@ -47,7 +47,8 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
            
             var coletor = document.getElementById('coletor').value;
 
-           // Obtenha os dados salvos no LocalStorage, ou uma lista vazia se não houver dados
+           
+            // Obtenha os dados salvos no LocalStorage, ou uma lista vazia se não houver dados
             var historico = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
 
             // Verifique se o coletor já existe na lista
@@ -62,7 +63,7 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
             }
 
             // Se a lista tiver mais de 5 itens, remova o último
-            if (historico.length > 10) {
+            if (historico.length > 5) {
                 historico.pop();
             }
 
@@ -512,7 +513,7 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-       //document.getElementById('exibirTabela').addEventListener('click', function() {
+      //document.getElementById('exibirTabela').addEventListener('click', function() {
             const dadosSalvos = localStorage.getItem('historicoFormularios');
             if (dadosSalvos) {
                 const dados = JSON.parse(dadosSalvos);
@@ -537,6 +538,85 @@ Toast.fire({
                 
             }
         //});
+
+        document.getElementById('limparHistorico').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: "Você não poderá reverter isso!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, limpar!',
+                cancelButtonText: 'Não, cancelar!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('historicoFormularios');
+                    document.querySelector('#tabelaDados tbody').innerHTML = '';
+                    Swal.fire(
+                        'Limpo!',
+                        'Seu histórico foi limpo.',
+                        'success'
+                    );
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelado',
+                        'Seu histórico está seguro :)',
+                        'error'
+                    );
+                }
+            });
+        });
+
+        document.getElementById('gerarRelatorio').addEventListener('click', function() {
+            const dadosSalvos = localStorage.getItem('historicoFormularios');
+            if (dadosSalvos) {
+                Swal.fire({
+                    title: 'Escolha o formato do relatório',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'PDF',
+                    cancelButtonText: 'XLSX',
+                    reverseButtons: true
+                }).then((result) => {
+                    const dados = JSON.parse(dadosSalvos);
+                    if (result.isConfirmed) {
+                        gerarRelatorioPDF(dados);
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        gerarRelatorioXLSX(dados);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nenhum dado salvo ainda.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        });
+
+        function gerarRelatorioPDF(dados) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text('Relatório de Coletas', 10, 10);
+
+            let linha = 20;
+            dados.forEach((dado, index) => {
+                doc.text(`${index + 1}. Coletor: ${dado.coletor}, Status: ${dado.retiradaDevolucao}, Data/Hora: ${dado.datetime}`, 10, linha);
+                linha += 10;
+            });
+
+            doc.save('relatorio_coletas.pdf');
+        }
+
+        function gerarRelatorioXLSX(dados) {
+            const worksheet = XLSX.utils.json_to_sheet(dados);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Relatório');
+
+            XLSX.writeFile(workbook, 'relatorio_coletas.xlsx');
+        }
 
         var clienteSalvo = localStorage.getItem('nomeCompleto');
     document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"

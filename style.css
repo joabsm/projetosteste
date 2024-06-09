@@ -102,27 +102,7 @@
         
 
         }
-        .gerarRelatorio{
-             background-color: #28a745; /* Cor de fundo para o botão de suporte */
-             margin-bottom: 20px;
-           
-            color: #fff;
-              box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
-             border: none;
-
-
-        }
-        .limparHistorico{
-              background-color: #28a745; /* Cor de fundo para o botão de suporte */
-             margin-bottom: 20px;
-           
-            color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
-             border: none;
-        }
-
-
-
+       
         .sm-btn {
 
             padding: 10px 20px;
@@ -157,22 +137,7 @@
 
         }
 
-        .sm-btn--support {
-
-    background-color: #28a745; /* Cor de fundo para o botão de suporte */
-    margin-bottom: 20px;
-    width: 100%;
-
-}
-
-.sm-btn--support:hover {
-
-    background-color: #218838; /* Cor de fundo ao passar o mouse para o botão de suporte */
-
-}
-
-
-
+        
 
         .sm-branding-footer {
 
@@ -224,6 +189,11 @@
 
   margin-bottom: 10px;
 
+    }
+    h2{
+        color: #4A90E2;
+         font-size: 15px;
+         text-align: center;
     }
     .asterisco-vermelho::before {
     content: "*";
@@ -317,7 +287,7 @@
             display: inline-flex;
             align-items: center;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 10px;
             cursor: pointer;
             border: none;
             border-radius: 5px;
@@ -350,6 +320,16 @@
             background-color: #2980b9;
         }
 
+        .atualizarRelatorio{
+             background-color:  #28a745;
+            color: white;
+        }
+
+        .atualizarRelatorio:hover{
+             background-color: #218838;
+            
+        }
+
         .edit-btn {
             cursor: pointer;
             color: #3498db;
@@ -362,6 +342,6 @@
         .swal2-container {
             z-index: 1050 !important; /* Ajuste o z-index dos alertas */
         }
-.swal2-container.swal2-center.swal2-fade.swal2-shown {
-  pointer-events: initial !important;
-}
+
+
+

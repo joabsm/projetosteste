@@ -362,3 +362,6 @@
         .swal2-container {
             z-index: 1050 !important; /* Ajuste o z-index dos alertas */
         }
+.swal2-container.swal2-center.swal2-fade.swal2-shown {
+  pointer-events: initial !important;
+}

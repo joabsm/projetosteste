@@ -93,6 +93,47 @@
     </div>
   </div>
 </nav>
+
+<!-- Modal de Senha -->
+    <div class="modal fade" id="senhaModal" tabindex="-1" aria-labelledby="senhaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="senhaModalLabel">Digite a senha de autorização</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="password" id="senhaInput" class="form-control" placeholder="Senha">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmarSenha">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Status -->
+    <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statusModalLabel">Escolha o novo status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <select id="statusSelect" class="form-select">
+                        <option value="Retirado">Retirado</option>
+                        <option value="Devolvido">Devolvido</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmarStatus">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
    
     <!-- Seu conteúdo aqui -->
     <form id="meuFormulario" method="post" action="https://api.sheetmonkey.io/form/3LYYTQDqgosfg2vzMwknPe" autoComplete="on" class="row g-3 needs-validation was-validated" >

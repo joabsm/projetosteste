@@ -40,9 +40,10 @@
         <a class="navbar-brand" href="#">FORMULARIO</a>
 
    
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <button  class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
+
      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
@@ -53,18 +54,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 <div class="offcanvas-header">
-     <button id="exibirTabela" class="sm-btn sm-btn--support" type="button"> <i class="fas fa-table"></i> Historico Retirada/Devolução </button>
+     
          </div>
         <div class="offcanvas-header">
             
            <div style="display: flex; justify-content: space-between; width: 100%;">
-        <button id="limparHistorico" class="btn limparHistorico">
-            <i class="fas fa-trash-alt"></i> Limpar Histórico
-        </button>
+        
         <button id="gerarRelatorio" class="btn gerarRelatorio">
-            <i class="fas fa-file-alt"></i> Gerar Relatório
+            <i class="fas fa-download" aria-hidden="true"></i> Gerar Relatorio
         </button>
+
+        <button id="limparHistorico" class="btn limparHistorico">
+            <i class="fas fa-trash-alt"></i> Limpar Relatorio
+        </button>
+
+        <button id="exibirTabela" class="btn atualizarRelatorio" >
+         <i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
     </div>
+
             </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -86,6 +93,9 @@
         <!-- Aqui você exibirá os dados do formulário -->
     </tbody>
 </table>
+<br>
+ <h2 class="modal-title">Clica em atualizar para mostrar os dados</h2>
+
  </div>
         </ul>
         
@@ -94,16 +104,19 @@
   </div>
 </nav>
 
+
 <!-- Modal de Senha -->
     <div class="modal fade" id="senhaModal" tabindex="-1" aria-labelledby="senhaModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+           
                 <div class="modal-header">
-                    <h5 class="modal-title" id="senhaModalLabel">Digite a senha de autorização</h5>
+           
+                    <h5 class="modal-title" id="senhaModalLabel">Precisa de acesso para editar</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="password" id="senhaInput" class="form-control" placeholder="Senha">
+                    <input type="password" id="senhaInput" class="form-control" placeholder="Digite a Senha">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -122,7 +135,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <select id="statusSelect" class="form-select">
+                    <select id="statusSelect" class="form-select" required>
+                        <option value="">-- Selecione --</option>
                         <option value="Retirado">Retirado</option>
                         <option value="Devolvido">Devolvido</option>
                     </select>

@@ -541,6 +541,7 @@ Toast.fire({
                         senhaModal.show();
 
                         document.getElementById('confirmarSenha').onclick = function() {
+                             
                             const senha = document.getElementById('senhaInput').value;
                             if (senha === '123456') {
                                 senhaModal.hide();
@@ -646,14 +647,14 @@ Toast.fire({
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            doc.text('Relatório de Coletas', 10, 10);
+            doc.text(document.getElementById('nome_completo').value + ' Segue seu Relatório de Coletas', 10, 10);
             let y = 20;
             dados.forEach((dado, index) => {
                 doc.text(`${index + 1}. Coletor: ${dado.coletor}, Status: ${dado.retiradaDevolucao}, Data: ${dado.datetime}`, 10, y);
                 y += 10;
             });
 
-            doc.save('relatorio_coletas.pdf');
+            doc.save(document.getElementById('nome_completo').value + '(Relatório).pdf');
         }
 
         function gerarRelatorioXLSX(dados) {
@@ -665,3 +666,19 @@ Toast.fire({
         }
         var clienteSalvo = localStorage.getItem('nomeCompleto');
     document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"
+
+//mude o corpotamento do botao atualizar
+document.getElementById('exibirTabela').addEventListener('click', function() {
+        var button = this;
+        var icon = button.querySelector('i');
+
+        // Muda o ícone para check
+        icon.classList.remove('fa-refresh');
+        icon.classList.add('fa-check');
+
+        // Depois de 3 segundos, muda o ícone de volta para refresh
+        setTimeout(function() {
+            icon.classList.remove('fa-check');
+            icon.classList.add('fa-refresh');
+        }, 3000);
+    });

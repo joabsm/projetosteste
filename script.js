@@ -512,7 +512,7 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-        document.getElementById('exibirTabela').addEventListener('click', function() {
+       document.getElementById('exibirTabela').addEventListener('click', function() {
             const dadosSalvos = localStorage.getItem('historicoFormularios');
             if (dadosSalvos) {
                 const dados = JSON.parse(dadosSalvos);
@@ -537,54 +537,32 @@ Toast.fire({
                 document.querySelectorAll('.edit-btn').forEach(button => {
                     button.addEventListener('click', function() {
                         const index = this.getAttribute('data-index');
-                        Swal.fire({
-                            title: 'Digite a senha de autorização',
-                            input: 'password',
-                            inputAttributes: {
-                                autocapitalize: 'off'
-                            },
-                            showCancelButton: true,
-                            confirmButtonText: 'Confirmar',
-                            cancelButtonText: 'Cancelar',
-                            showLoaderOnConfirm: true,
-                            preConfirm: (senha) => {
-                                if (senha === '123456') {
-                                    return true;
-                                } else {
-                                    Swal.showValidationMessage('Senha incorreta');
-                                    return false;
-                                }
-                            },
-                            allowOutsideClick: () => !Swal.isLoading()
-                        }).then((result) => {
-                            if (result.isConfirmed) {
+                        const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
+                        senhaModal.show();
+
+                        document.getElementById('confirmarSenha').onclick = function() {
+                            const senha = document.getElementById('senhaInput').value;
+                            if (senha === '123456') {
+                                senhaModal.hide();
+                                const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
+                                statusModal.show();
+
+                                document.getElementById('confirmarStatus').onclick = function() {
+                                    const novoStatus = document.getElementById('statusSelect').value;
+                                    dados[index].retiradaDevolucao = novoStatus;
+                                    localStorage.setItem('historicoFormularios', JSON.stringify(dados));
+                                    statusModal.hide();
+                                    document.getElementById('exibirTabela').click();
+                                };
+                            } else {
                                 Swal.fire({
-                                    title: 'Escolha o novo status',
-                                    input: 'select',
-                                    inputOptions: {
-                                        'Retirado': 'Retirado',
-                                        'Devolvido': 'Devolvido'
-                                    },
-                                    inputPlaceholder: 'Selecione o status',
-                                    showCancelButton: true,
-                                    confirmButtonText: 'Confirmar',
-                                    cancelButtonText: 'Cancelar'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        dados[index].retiradaDevolucao = result.value;
-                                        localStorage.setItem('historicoFormularios', JSON.stringify(dados));
-                                        Swal.fire({
-                                            icon: 'success',
-                                            title: 'Status atualizado com sucesso!',
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        });
-                                        // Atualiza a tabela
-                                        document.getElementById('exibirTabela').click();
-                                    }
+                                    icon: 'error',
+                                    title: 'Senha incorreta!',
+                                    showConfirmButton: false,
+                                    timer: 1500
                                 });
                             }
-                        });
+                        };
                     });
                 });
             } else {
@@ -599,7 +577,7 @@ Toast.fire({
 
         document.getElementById('limparHistorico').addEventListener('click', function() {
             Swal.fire({
-                title: 'Você tem certeza?',
+                title: 'Tem certeza?',
                 text: "Você não poderá reverter isso!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -610,16 +588,14 @@ Toast.fire({
                 if (result.isConfirmed) {
                     localStorage.removeItem('historicoFormularios');
                     Swal.fire({
+                        title: 'Limpo!',
+                        text: 'O histórico foi limpo.',
                         icon: 'success',
-                        title: 'Histórico limpo!',
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    // Atualiza a tabela
                     document.getElementById('exibirTabela').click();
-                } else if (
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Cancelado',
                         text: 'Seu histórico está seguro :)',

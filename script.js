@@ -43,11 +43,10 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
 
 // Obtém os valores dos campos do formulário
             
-            var retiradaDevolucao = document.getElementById('retirada_devolucao').value;
-           
+           var retiradaDevolucao = document.getElementById('retirada_devolucao').value;
             var coletor = document.getElementById('coletor').value;
+            var datetime = new Date().toLocaleString(); // Adiciona data e hora atual
 
-           
             // Obtenha os dados salvos no LocalStorage, ou uma lista vazia se não houver dados
             var historico = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
 
@@ -513,7 +512,7 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-      //document.getElementById('exibirTabela').addEventListener('click', function() {
+        document.getElementById('exibirTabela').addEventListener('click', function() {
             const dadosSalvos = localStorage.getItem('historicoFormularios');
             if (dadosSalvos) {
                 const dados = JSON.parse(dadosSalvos);
@@ -530,14 +529,73 @@ Toast.fire({
                         <td>${dado.coletor}</td>
                         <td class="${dado.retiradaDevolucao === 'Devolvido' ? 'devolvido' : 'retirado'}">${dado.retiradaDevolucao}</td>
                         <td>${dado.datetime}</td>
+                        <td><i class="fas fa-edit edit-btn" data-index="${index}"></i></td>
                     `;
                     tabelaBody.appendChild(novaLinha);
                 });
 
+                document.querySelectorAll('.edit-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        Swal.fire({
+                            title: 'Digite a senha de autorização',
+                            input: 'password',
+                            inputAttributes: {
+                                autocapitalize: 'off'
+                            },
+                            showCancelButton: true,
+                            confirmButtonText: 'Confirmar',
+                            cancelButtonText: 'Cancelar',
+                            showLoaderOnConfirm: true,
+                            preConfirm: (senha) => {
+                                if (senha === '123456') {
+                                    return true;
+                                } else {
+                                    Swal.showValidationMessage('Senha incorreta');
+                                    return false;
+                                }
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: 'Escolha o novo status',
+                                    input: 'select',
+                                    inputOptions: {
+                                        'Retirado': 'Retirado',
+                                        'Devolvido': 'Devolvido'
+                                    },
+                                    inputPlaceholder: 'Selecione o status',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        dados[index].retiradaDevolucao = result.value;
+                                        localStorage.setItem('historicoFormularios', JSON.stringify(dados));
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Status atualizado com sucesso!',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                        // Atualiza a tabela
+                                        document.getElementById('exibirTabela').click();
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
             } else {
-                
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nenhum dado salvo ainda.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             }
-        //});
+        });
 
         document.getElementById('limparHistorico').addEventListener('click', function() {
             Swal.fire({
@@ -551,48 +609,61 @@ Toast.fire({
             }).then((result) => {
                 if (result.isConfirmed) {
                     localStorage.removeItem('historicoFormularios');
-                    document.querySelector('#tabelaDados tbody').innerHTML = '';
-                    Swal.fire(
-                        'Limpo!',
-                        'Seu histórico foi limpo.',
-                        'success'
-                    );
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire(
-                        'Cancelado',
-                        'Seu histórico está seguro :)',
-                        'error'
-                    );
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Histórico limpo!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // Atualiza a tabela
+                    document.getElementById('exibirTabela').click();
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    Swal.fire({
+                        title: 'Cancelado',
+                        text: 'Seu histórico está seguro :)',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
         });
 
         document.getElementById('gerarRelatorio').addEventListener('click', function() {
-            const dadosSalvos = localStorage.getItem('historicoFormularios');
-            if (dadosSalvos) {
-                Swal.fire({
-                    title: 'Escolha o formato do relatório',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'PDF',
-                    cancelButtonText: 'XLSX',
-                    reverseButtons: true
-                }).then((result) => {
-                    const dados = JSON.parse(dadosSalvos);
-                    if (result.isConfirmed) {
-                        gerarRelatorioPDF(dados);
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        gerarRelatorioXLSX(dados);
-                    }
-                });
-            } else {
+            const dadosSalvos = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
+            if (dadosSalvos.length === 0) {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Nenhum dado salvo ainda.',
+                    title: 'Nenhum dado disponível para gerar relatório.',
                     showConfirmButton: false,
                     timer: 1500
                 });
+                return;
             }
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "Escolha o formato do relatório",
+                showCancelButton: true,
+                confirmButtonText: "PDF",
+                cancelButtonText: "XLSX",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    gerarRelatorioPDF(dadosSalvos);
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    gerarRelatorioXLSX(dadosSalvos);
+                }
+            });
         });
 
         function gerarRelatorioPDF(dados) {
@@ -600,11 +671,10 @@ Toast.fire({
             const doc = new jsPDF();
 
             doc.text('Relatório de Coletas', 10, 10);
-
-            let linha = 20;
+            let y = 20;
             dados.forEach((dado, index) => {
-                doc.text(`${index + 1}. Coletor: ${dado.coletor}, Status: ${dado.retiradaDevolucao}, Data/Hora: ${dado.datetime}`, 10, linha);
-                linha += 10;
+                doc.text(`${index + 1}. Coletor: ${dado.coletor}, Status: ${dado.retiradaDevolucao}, Data: ${dado.datetime}`, 10, y);
+                y += 10;
             });
 
             doc.save('relatorio_coletas.pdf');
@@ -617,6 +687,5 @@ Toast.fire({
 
             XLSX.writeFile(workbook, 'relatorio_coletas.xlsx');
         }
-
         var clienteSalvo = localStorage.getItem('nomeCompleto');
     document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"

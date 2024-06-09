@@ -62,7 +62,7 @@ document.getElementById('meuFormulario').addEventListener('submit', function(e) 
             }
 
             // Se a lista tiver mais de 5 itens, remova o último
-            if (historico.length > 5) {
+            if (historico.length > 10) {
                 historico.pop();
             }
 

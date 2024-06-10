@@ -602,7 +602,7 @@ Toast.fire({
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    document.getElementById('exibirTabela').click();
+                   
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Cancelado',

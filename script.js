@@ -579,7 +579,7 @@ Toast.fire({
            document.getElementById('limparHistorico').addEventListener('click', function() {
            const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
             senhaModal.show();
-            ocument.getElementById('confirmarSenha').onclick = function() {  
+            document.getElementById('confirmarSenha').onclick = function() {  
             const senha = document.getElementById('senhaInput').value;
             if (senha === '123456') {
             senhaModal.hide();

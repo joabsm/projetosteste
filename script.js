@@ -512,7 +512,7 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-       document.getElementById('exibirTabela').addEventListener('click', function() {
+      // document.getElementById('exibirTabela').addEventListener('click', function() {
             const dadosSalvos = localStorage.getItem('historicoFormularios');
             if (dadosSalvos) {
                 const dados = JSON.parse(dadosSalvos);
@@ -574,10 +574,17 @@ Toast.fire({
                     timer: 1500
                 });
             }
-        });
+       // });
 
-        document.getElementById('limparHistorico').addEventListener('click', function() {
-            Swal.fire({
+           document.getElementById('limparHistorico').addEventListener('click', function() {
+           const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
+            senhaModal.show();
+            ocument.getElementById('confirmarSenha').onclick = function() {  
+            const senha = document.getElementById('senhaInput').value;
+            if (senha === '123456') {
+            senhaModal.hide();
+
+                 Swal.fire({
                 title: 'Tem certeza?',
                 text: "Você não poderá reverter isso!",
                 icon: 'warning',
@@ -606,6 +613,18 @@ Toast.fire({
                     });
                 }
             });
+   
+              } else {
+              Swal.fire({
+              icon: 'error',
+              title: 'Senha incorreta!',
+              showConfirmButton: false,
+              timer: 1500
+                 });
+                }
+              };
+           
+               
         });
 
         document.getElementById('gerarRelatorio').addEventListener('click', function() {

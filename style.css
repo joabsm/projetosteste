@@ -1,4 +1,6 @@
 
+
+
 /* Estilos adicionais para alinhar os rótulos com as caixas de seleção */
 
         .checkbox-group {
@@ -265,6 +267,7 @@
             text-align: left;
             border-bottom: 1px solid #ddd;
             font-size: 15px;
+            color: #000000;
         }
 
         thead th {
@@ -325,7 +328,7 @@
         }
 
         .atualizarRelatorio:hover{
-             background-color: #218838;
+             background-color: #28a745;
             
         }
 
@@ -340,6 +343,15 @@
 
         .swal2-container {
             z-index: 1050 !important; /* Ajuste o z-index dos alertas */
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+        body.light-mode {
+            background-color: white;
+            color: black;
         }
 
 

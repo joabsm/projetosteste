@@ -512,7 +512,7 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-      // document.getElementById('exibirTabela').addEventListener('click', function() {
+      document.getElementById('exibirTabela').addEventListener('click', function() {
             const dadosSalvos = localStorage.getItem('historicoFormularios');
             if (dadosSalvos) {
                 const dados = JSON.parse(dadosSalvos);
@@ -574,7 +574,7 @@ Toast.fire({
                     timer: 1500
                 });
             }
-       // });
+        });
 
            document.getElementById('limparHistorico').addEventListener('click', function() {
            const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
@@ -701,3 +701,19 @@ document.getElementById('exibirTabela').addEventListener('click', function() {
             icon.classList.add('fa-refresh');
         }, 3000);
     });
+
+
+document.getElementById('theme-toggle').addEventListener('click', function () {
+            let body = document.body;
+            let themeIcon = document.getElementById('theme-icon');
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('bi-moon');
+                themeIcon.classList.add('bi-sun');
+            } else {
+                themeIcon.classList.remove('bi-sun');
+                themeIcon.classList.add('bi-moon');
+            }
+        });

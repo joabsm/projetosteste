@@ -11,7 +11,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
 
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 
@@ -28,7 +28,7 @@
 
 
 </head>
-<body class="p-3 m-0 border-0 bd-example">
+<body class="p-3 m-0 border-0 bd-example light-mode">
 
      <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #e3f2fd;">
       <div class="container-fluid">
@@ -47,8 +47,8 @@
      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-           <img src="logo5.png" alt="Minha Logo" style="height: 30px; margin-right: 8px;">
-          <span id="nomeCliente"></span>
+           <img src="logo5.png" alt="Minha Logo" style="height: 30px; margin-right: 8px; ">
+          <span id="nomeCliente" style="color: #4682B4;"></span>
           </h5>
 
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -61,7 +61,7 @@
            <div style="display: flex; justify-content: space-between; width: 100%;">
         
         <button id="gerarRelatorio" class="btn gerarRelatorio">
-            <i class="fas fa-download" aria-hidden="true"></i> Gerar Relat..
+            <i class="fas fa-download" aria-hidden="true"></i>Gerar Relat..
         </button>
 
         <button id="limparHistorico" class="btn limparHistorico">
@@ -100,6 +100,12 @@
         </ul>
         
       </div>
+       <div class="container text-center my-5">
+
+        <button id="theme-toggle" class="btn btn-primary">
+            <i id="theme-icon" class="bi bi-moon"></i>
+        </button>
+    </div>
     </div>
   </div>
 </nav>
@@ -112,7 +118,7 @@
            
                 <div class="modal-header">
            
-                    <h5 class="modal-title" id="senhaModalLabel">Precisa de acesso para editar</h5>
+                    <h5 class="modal-title" id="senhaModalLabel">Precisa de acesso para editar ou Limpar</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -309,6 +315,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 <script src="script.js"></script>

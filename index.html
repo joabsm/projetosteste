@@ -98,6 +98,7 @@
 <br>
  <h2 class="modal-title">Clica em atualizar para mostrar os dados</h2>
 
+
  </div>
         </ul>
         
@@ -156,6 +157,56 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal para Configurações -->
+<div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="configModalLabel">Configurações do Equipamento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Informações</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="edit-status-tab" data-bs-toggle="tab" data-bs-target="#edit-status" type="button" role="tab" aria-controls="edit-status" aria-selected="false">Editar </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="clear-status-tab" data-bs-toggle="tab" data-bs-target="#clear-status" type="button" role="tab" aria-controls="clear-status" aria-selected="false">Limpar </button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                        <div class="mt-3">
+                            <h6>Informações do Equipamento</h6>
+                            <p id="equipamento-info"></p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="edit-status" role="tabpanel" aria-labelledby="edit-status-tab">
+                        <div class="mt-3">
+                            <h6>Editar Status</h6>
+                            <select id="statusSelectModal" class="form-select">
+                                <option value="Retirado">Retirado</option>
+                                <option value="Devolvido">Devolvido</option>
+                            </select>
+                            <button id="confirmarStatusModal" class="btn btn-primary mt-3">Confirmar</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="clear-status" role="tabpanel" aria-labelledby="clear-status-tab">
+                        <div class="mt-3">
+                            <h6>Limpar Status</h6>
+                            <button id="limparStatusModal" class="btn btn-danger">Limpar Status</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
    
     <!-- Seu conteúdo aqui -->
     <form id="meuFormulario" method="post" action="https://api.sheetmonkey.io/form/3LYYTQDqgosfg2vzMwknPe" autoComplete="on" class="row g-3 needs-validation was-validated" >

@@ -512,69 +512,67 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-      document.getElementById('exibirTabela').addEventListener('click', function() {
-            const dadosSalvos = localStorage.getItem('historicoFormularios');
-            if (dadosSalvos) {
-                const dados = JSON.parse(dadosSalvos);
-                const tabelaBody = document.querySelector('#tabelaDados tbody');
-                
-                // Limpe o conteúdo da tabela antes de exibir os novos dados
-                tabelaBody.innerHTML = '';
+       function exibirTabela() {
+    const dadosSalvos = localStorage.getItem('historicoFormularios');
+    const tabelaBody = document.querySelector('#tabelaDados tbody');
+    tabelaBody.innerHTML = ''; // Limpa a tabela antes de reexibir os dados
 
-                // Crie uma nova linha na tabela para cada conjunto de dados
-                dados.forEach((dado, index) => {
-                    const novaLinha = document.createElement('tr');
-                    novaLinha.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${dado.coletor}</td>
-                        <td class="${dado.retiradaDevolucao === 'Devolvido' ? 'devolvido' : 'retirado'}">${dado.retiradaDevolucao}</td>
-                        <td>${dado.datetime}</td>
-                        <td><i class="fas fa-edit edit-btn" data-index="${index}"></i></td>
-                    `;
-                    tabelaBody.appendChild(novaLinha);
-                });
-
-                document.querySelectorAll('.edit-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const index = this.getAttribute('data-index');
-                        const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
-                        senhaModal.show();
-
-                        document.getElementById('confirmarSenha').onclick = function() {
-                             
-                            const senha = document.getElementById('senhaInput').value;
-                            if (senha === '123456') {
-                                senhaModal.hide();
-                                const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
-                                statusModal.show();
-
-                                document.getElementById('confirmarStatus').onclick = function() {
-                                    const novoStatus = document.getElementById('statusSelect').value;
-                                    dados[index].retiradaDevolucao = novoStatus;
-                                    localStorage.setItem('historicoFormularios', JSON.stringify(dados));
-                                    statusModal.hide();
-                                    document.getElementById('exibirTabela').click();
-                                };
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Senha incorreta!',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                            }
-                        };
-                    });
-                });
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Nenhum dado salvo ainda.',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+    if (dadosSalvos) {
+        const dados = JSON.parse(dadosSalvos);
+        
+        // Crie uma nova linha na tabela para cada conjunto de dados
+        dados.forEach((dado, index) => {
+            const novaLinha = document.createElement('tr');
+            novaLinha.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${dado.coletor}</td>
+                <td class="${dado.retiradaDevolucao === 'Devolvido' ? 'devolvido' : 'retirado'}">${dado.retiradaDevolucao}</td>
+                <td>${dado.datetime}</td>
+                <td><i class="fas fa-edit edit-btn" data-index="${index}"></i></td>
+            `;
+            tabelaBody.appendChild(novaLinha);
         });
+
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
+                senhaModal.show();
+
+                document.getElementById('confirmarSenha').onclick = function() {
+                    const senha = document.getElementById('senhaInput').value;
+                    if (senha === '123456') {
+                        senhaModal.hide();
+                        const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
+                        statusModal.show();
+
+                        document.getElementById('confirmarStatus').onclick = function() {
+                            const novoStatus = document.getElementById('statusSelect').value;
+                            dados[index].retiradaDevolucao = novoStatus;
+                            localStorage.setItem('historicoFormularios', JSON.stringify(dados));
+                            statusModal.hide();
+                            exibirTabela(); // Atualiza a tabela automaticamente
+                        };
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Senha incorreta!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                };
+            });
+        });
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Nenhum dado salvo ainda.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+}
 
            document.getElementById('limparHistorico').addEventListener('click', function() {
            const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
@@ -601,8 +599,10 @@ Toast.fire({
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1500
-                    });
-                   
+                    }).then(() => {
+                exibirTabela(); // Atualiza a tabela automaticamente
+            });
+                    
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Cancelado',
@@ -683,11 +683,14 @@ Toast.fire({
 
             XLSX.writeFile(workbook, 'relatorio_coletas.xlsx');
         }
+
+
+
         var clienteSalvo = localStorage.getItem('nomeCompleto');
     document.getElementById('nomeCliente').textContent = clienteSalvo || 'Cliente'; // Se não houver nome salvo, exibe "Cliente"
 
 //mude o corpotamento do botao atualizar
-document.getElementById('exibirTabela').addEventListener('click', function() {
+document.getElementById('atualizarTabela').addEventListener('click', function() {
         var button = this;
         var icon = button.querySelector('i');
 
@@ -717,3 +720,4 @@ document.getElementById('theme-toggle').addEventListener('click', function () {
                 themeIcon.classList.add('bi-moon');
             }
         });
+ document.getElementById('atualizarTabela').addEventListener('click', exibirTabela);

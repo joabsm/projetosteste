@@ -353,6 +353,16 @@
             background-color: white;
             color: black;
         }
+        .refresh-btn {
+            cursor: pointer;
+            color: #2ecc71;
+            font-size: 1.5em;
+            margin-left: 10px;
+        }
+
+        .refresh-btn:hover {
+            color: #27ae60;
+        }
 
 
 

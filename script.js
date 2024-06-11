@@ -512,7 +512,8 @@ Toast.fire({
         const tabelaDados = document.getElementById('tabelaDados');
 
         //Caso queira exibir tabela apenas se clicar no butao
-       function exibirTabela() {
+
+    function exibirTabela() {
     const dadosSalvos = localStorage.getItem('historicoFormularios');
     const tabelaBody = document.querySelector('#tabelaDados tbody');
     tabelaBody.innerHTML = ''; // Limpa a tabela antes de reexibir os dados
@@ -528,32 +529,46 @@ Toast.fire({
                 <td>${dado.coletor}</td>
                 <td class="${dado.retiradaDevolucao === 'Devolvido' ? 'devolvido' : 'retirado'}">${dado.retiradaDevolucao}</td>
                 <td>${dado.datetime}</td>
-                <td><i class="fas fa-edit edit-btn" data-index="${index}"></i></td>
+                <td><i class="fas fa-cog config-btn" data-index="${index}"></i></td>
             `;
             tabelaBody.appendChild(novaLinha);
         });
 
-        document.querySelectorAll('.edit-btn').forEach(button => {
+        document.querySelectorAll('.config-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const index = this.getAttribute('data-index');
                 const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
                 senhaModal.show();
-
                 document.getElementById('confirmarSenha').onclick = function() {
                     const senha = document.getElementById('senhaInput').value;
                     if (senha === '123456') {
                         senhaModal.hide();
-                        const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
-                        statusModal.show();
+                const configModal = new bootstrap.Modal(document.getElementById('configModal'));
+                const equipamentoInfo = document.getElementById('equipamento-info');
+                equipamentoInfo.textContent = `Coletor: ${dados[index].coletor}, Status: ${dados[index].retiradaDevolucao}, Data: ${dados[index].datetime}`;
+                
+                configModal.show();
+                
 
-                        document.getElementById('confirmarStatus').onclick = function() {
-                            const novoStatus = document.getElementById('statusSelect').value;
-                            dados[index].retiradaDevolucao = novoStatus;
-                            localStorage.setItem('historicoFormularios', JSON.stringify(dados));
-                            statusModal.hide();
-                            exibirTabela(); // Atualiza a tabela automaticamente
-                        };
-                    } else {
+                document.getElementById('confirmarStatusModal').onclick = function() {
+                    const novoStatus = document.getElementById('statusSelectModal').value;
+                    dados[index].retiradaDevolucao = novoStatus;
+                    localStorage.setItem('historicoFormularios', JSON.stringify(dados));
+                    configModal.hide();
+                    exibirTabela(); // Atualiza a tabela automaticamente
+                };
+
+
+                document.getElementById('limparStatusModal').onclick = function() {
+                    dados.splice(index, 1);
+                    localStorage.setItem('historicoFormularios', JSON.stringify(dados));
+                    configModal.hide();
+                    exibirTabela(); // Atualiza a tabela automaticamente
+                };
+
+                    } 
+                    
+                    else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Senha incorreta!',
@@ -562,8 +577,11 @@ Toast.fire({
                         });
                     }
                 };
+
             });
         });
+
+
     } else {
         Swal.fire({
             icon: 'warning',
@@ -575,10 +593,21 @@ Toast.fire({
 }
 
            document.getElementById('limparHistorico').addEventListener('click', function() {
+            const dadosSalvos = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
+            if (dadosSalvos.length === 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nenhum dado disponível para Limpar',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                return;
+            }
            const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
             senhaModal.show();
             document.getElementById('confirmarSenha').onclick = function() {  
             const senha = document.getElementById('senhaInput').value;
+
             if (senha === '123456') {
             senhaModal.hide();
 

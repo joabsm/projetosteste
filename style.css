@@ -332,12 +332,12 @@
             
         }
 
-        .edit-btn {
+        .config-btn {
             cursor: pointer;
             color: #3498db;
         }
 
-        .edit-btn:hover {
+        .config-btn:hover {
             color: #2980b9;
         }
 

@@ -517,6 +517,7 @@ Toast.fire({
     const dadosSalvos = localStorage.getItem('historicoFormularios');
     const tabelaBody = document.querySelector('#tabelaDados tbody');
     tabelaBody.innerHTML = ''; // Limpa a tabela antes de reexibir os dados
+    var nomeSalvoCliente = localStorage.getItem('nomeCompleto');
 
     if (dadosSalvos) {
         const dados = JSON.parse(dadosSalvos);
@@ -546,8 +547,14 @@ Toast.fire({
                         
                 senhaModal.hide();
                 const configModal = new bootstrap.Modal(document.getElementById('configModal'));
-                const equipamentoInfo = document.getElementById('equipamento-info');
-                equipamentoInfo.textContent = `Coletor: ${dados[index].coletor}, Status: ${dados[index].retiradaDevolucao}, Data: ${dados[index].datetime}`;
+                const equipamentoColetor = document.getElementById('equipamento-Coletor');
+                const equipamentoStatus = document.getElementById('equipamento-Status');
+                const equipamentoData = document.getElementById('equipamento-Data');
+                const nomecompleto = document.getElementById('nome-completo');
+                nomecompleto.textContent = `Colaborador: ${nomeSalvoCliente}`;
+                equipamentoColetor.textContent = `Coletor: ${dados[index].coletor}`;
+                equipamentoStatus.textContent = `Status: ${dados[index].retiradaDevolucao}`;
+                equipamentoData.textContent = `Data: ${dados[index].datetime}`;
                 
 
                      const statuAtual = document.getElementById('statuAtual');
@@ -628,15 +635,39 @@ Toast.fire({
                 }
             });
          };
+         const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+         });
+         Toast.fire({
+         title: 'Login ok',
+         icon: 'success',
+});
       } 
                     
          else if (senha === '') {
-         iziToast.error({
-                title: 'Erro',
-                message: 'Senha não pode ser vazia!',
-                position: 'topRight',
-                timeout: 1500
-            });
+         const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+});
+Toast.fire({
+  title: '⚠️ Senha não pode ser vazia!',
+  icon: 'error',
+});
         
     }else if (senha !== 'senhaSalva') {
         const Toast = Swal.mixin({
@@ -725,12 +756,21 @@ Toast.fire({
             });
    
               } else {
-              Swal.fire({
-              icon: 'error',
-              title: 'Senha incorreta!',
-              showConfirmButton: false,
-              timer: 1500
-                 });
+              const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+});
+Toast.fire({
+  title: '⚠️ Senha inválida!',
+  icon: 'error',
+});
                 }
               };
            
@@ -838,6 +878,7 @@ const criarSenhaModal = new bootstrap.Modal(document.getElementById('criarSenhaM
 
    // Adicionar evento para o link de criar senha
 document.getElementById('criarSenhaLink').onclick = function() {
+    
     senhaModal.hide();
     criarSenhaModal.show();
 };
@@ -903,11 +944,20 @@ document.getElementById('salvarSenha').onclick = function() {
          icon: 'error',
 });
     } else if (novaSenha === '') {
-        iziToast.error({
-                title: 'Erro',
-                message: 'Senha não pode ser vazia!',
-                position: 'topRight',
-                timeout: 1500
-            });
+        const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+         });
+         Toast.fire({
+         title: 'Senha não pode ser vazia!',
+         icon: 'error',
+});
     }
 };

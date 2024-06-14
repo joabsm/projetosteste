@@ -631,21 +631,12 @@ Toast.fire({
       } 
                     
          else if (senha === '') {
-         const Toast = Swal.mixin({
-         toast: true,
-         position: "top-end",
-         showConfirmButton: false,
-         timer: 1500,
-         timerProgressBar: true,
-         didOpen: (toast) => {
-         toast.onmouseenter = Swal.stopTimer;
-         toast.onmouseleave = Swal.resumeTimer;
-         }
-});
-Toast.fire({
-  title: '⚠️ Senha não pode ser vazia!',
-  icon: 'error',
-});
+         iziToast.error({
+                title: 'Erro',
+                message: 'Senha não pode ser vazia!',
+                position: 'topRight',
+                timeout: 1500
+            });
         
     }else if (senha !== 'senhaSalva') {
         const Toast = Swal.mixin({
@@ -912,20 +903,11 @@ document.getElementById('salvarSenha').onclick = function() {
          icon: 'error',
 });
     } else if (novaSenha === '') {
-        const Toast = Swal.mixin({
-         toast: true,
-         position: "top-end",
-         showConfirmButton: false,
-         timer: 1500,
-         timerProgressBar: true,
-         didOpen: (toast) => {
-         toast.onmouseenter = Swal.stopTimer;
-         toast.onmouseleave = Swal.resumeTimer;
-         }
-         });
-         Toast.fire({
-         title: 'Senha não pode ser vazia!',
-         icon: 'error',
-});
+        iziToast.error({
+                title: 'Erro',
+                message: 'Senha não pode ser vazia!',
+                position: 'topRight',
+                timeout: 1500
+            });
     }
 };

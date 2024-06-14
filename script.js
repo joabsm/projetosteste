@@ -541,45 +541,132 @@ Toast.fire({
                 senhaModal.show();
                 document.getElementById('confirmarSenha').onclick = function() {
                     const senha = document.getElementById('senhaInput').value;
-                    if (senha === '123456') {
-                        senhaModal.hide();
+                     const senhaSalva = localStorage.getItem('senhaUsuario');
+                    if (senha === senhaSalva) {
+                        
+                senhaModal.hide();
                 const configModal = new bootstrap.Modal(document.getElementById('configModal'));
                 const equipamentoInfo = document.getElementById('equipamento-info');
                 equipamentoInfo.textContent = `Coletor: ${dados[index].coletor}, Status: ${dados[index].retiradaDevolucao}, Data: ${dados[index].datetime}`;
                 
+
+                     const statuAtual = document.getElementById('statuAtual');
+                    const status = dados[index].retiradaDevolucao;
+
+                  statuAtual.textContent = `Status atual: ${status}`;
+
+                 // Define a classe baseada no status
+                 if (status === 'Retirado') {
+                 statuAtual.classList.add('status-retirado');
+                 } else if (status === 'Devolvido') {
+                statuAtual.classList.add('status-devolvido');
+               }
+                
                 configModal.show();
                 
 
-                document.getElementById('confirmarStatusModal').onclick = function() {
-                    const novoStatus = document.getElementById('statusSelectModal').value;
+                document.getElementById('confirmarStatusModal').onclick = function() {              
+                   const novoStatus = document.getElementById('statusSelectModal').value;
                     dados[index].retiradaDevolucao = novoStatus;
                     localStorage.setItem('historicoFormularios', JSON.stringify(dados));
-                    configModal.hide();
+                   
                     exibirTabela(); // Atualiza a tabela automaticamente
+                    Swal.fire({
+                        title: 'Feito!',
+                        text: `Novo status ${novoStatus}`,
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500 ,
+                        customClass: {
+                        container: 'swal2-container-custom'
+                                    }
+                    });
+                   
                 };
 
 
                 document.getElementById('limparStatusModal').onclick = function() {
+                   
+                     Swal.fire({
+                title: 'Tem certeza?',
+                text: "Você não poderá reverter isso!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, limpar!',
+                cancelButtonText: 'Não, cancelar!',
+                reverseButtons: true,
+                customClass: {
+                container: 'swal2-container-custom'
+        }
+            }).then((result) => {
+                if (result.isConfirmed) {
                     dados.splice(index, 1);
                     localStorage.setItem('historicoFormularios', JSON.stringify(dados));
                     configModal.hide();
                     exibirTabela(); // Atualiza a tabela automaticamente
-                };
-
-                    } 
-                    
-                    else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Senha incorreta!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }
-                };
-
+                    Swal.fire({
+                        title: 'Limpo!',
+                        text: 'O histórico foi limpo.',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500 ,
+                        customClass: {
+                        container: 'swal2-container-custom'
+                                    }
+                    }).then(() => {
+               
             });
-        });
+                    
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Cancelado',
+                        text: 'Seu histórico está seguro :)',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+         };
+      } 
+                    
+         else if (senha === '') {
+         const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+});
+Toast.fire({
+  title: '⚠️ Senha não pode ser vazia!',
+  icon: 'error',
+});
+        
+    }else if (senha !== 'senhaSalva') {
+        const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+});
+Toast.fire({
+  title: '⚠️ Senha inválida!',
+  icon: 'error',
+});
+            }
+         };
+     });
+ });
 
 
     } else {
@@ -591,6 +678,8 @@ Toast.fire({
         });
     }
 }
+
+
 
            document.getElementById('limparHistorico').addEventListener('click', function() {
             const dadosSalvos = JSON.parse(localStorage.getItem('historicoFormularios')) || [];
@@ -607,8 +696,9 @@ Toast.fire({
             senhaModal.show();
             document.getElementById('confirmarSenha').onclick = function() {  
             const senha = document.getElementById('senhaInput').value;
+            const senhaSalva = localStorage.getItem('senhaUsuario');
 
-            if (senha === '123456') {
+           if (senha === senhaSalva) {
             senhaModal.hide();
 
                  Swal.fire({
@@ -749,4 +839,93 @@ document.getElementById('theme-toggle').addEventListener('click', function () {
                 themeIcon.classList.add('bi-moon');
             }
         });
- document.getElementById('atualizarTabela').addEventListener('click', exibirTabela);
+   document.getElementById('atualizarTabela').addEventListener('click', exibirTabela);
+
+
+   const senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
+const criarSenhaModal = new bootstrap.Modal(document.getElementById('criarSenhaModal'));
+
+   // Adicionar evento para o link de criar senha
+document.getElementById('criarSenhaLink').onclick = function() {
+    senhaModal.hide();
+    criarSenhaModal.show();
+};
+ document.getElementById('voltar').onclick = function() {
+  criarSenhaModal.hide();                     
+  
+  };
+
+   // Adicionar evento para o botão de salvar senha
+document.getElementById('salvarSenha').onclick = function() {
+    const usuario = document.getElementById('usuarioInput').value;
+    const novaSenha = document.getElementById('novaSenhaInput').value;
+    const repetirSenha = document.getElementById('repetirSenhaInput').value;
+
+    if (usuario === 'cpd' && novaSenha === repetirSenha && novaSenha !== '') {
+        localStorage.setItem('senhaUsuario', novaSenha);
+        criarSenhaModal.hide();
+        const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+         });
+         Toast.fire({
+         title: 'Senha criada com sucesso!',
+         icon: 'success',
+});
+    } else if (usuario !== 'cpd') {
+         const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+         });
+         Toast.fire({
+         title: 'Usuario inválido!',
+         icon: 'error',
+});
+    } else if (novaSenha !== repetirSenha) {
+        const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+         });
+         Toast.fire({
+         title: 'As senhas não coincidem!',
+         icon: 'error',
+});
+    } else if (novaSenha === '') {
+        const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+         toast.onmouseenter = Swal.stopTimer;
+         toast.onmouseleave = Swal.resumeTimer;
+         }
+         });
+         Toast.fire({
+         title: 'Senha não pode ser vazia!',
+         icon: 'error',
+});
+    }
+};

@@ -367,6 +367,9 @@
     .status-devolvido {
       color: green;
     }
+ .iziToast {
+            z-index: 1056 !important; /* Bootstrap modals have a z-index of 1050 by default */
+        }
 
 
 

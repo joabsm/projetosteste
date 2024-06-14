@@ -341,9 +341,7 @@
             color: #2980b9;
         }
 
-        .swal2-container {
-            z-index: 1050 !important; /* Ajuste o z-index dos alertas */
-        }
+      
 
         body.dark-mode {
             background-color: #121212;
@@ -363,6 +361,12 @@
         .refresh-btn:hover {
             color: #27ae60;
         }
+    .status-retirado {
+      color: red;
+    }
+    .status-devolvido {
+      color: green;
+    }
 
 
 

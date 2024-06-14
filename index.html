@@ -86,7 +86,7 @@
              <th>Coletor</th>
              <th>Status</th>
              <th>Data</th>
-             <th>Editar</th>
+             <th>Conf</th>
             
             
         </tr>
@@ -116,24 +116,46 @@
 
 <!-- Modal de Senha -->
     <div class="modal fade" id="senhaModal" tabindex="-1" aria-labelledby="senhaModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-           
-                <div class="modal-header">
-           
-                    <h5 class="modal-title" id="senhaModalLabel">Precisa de acesso para editar ou Limpar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="password" id="senhaInput" class="form-control" placeholder="Digite a Senha">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmarSenha">Confirmar</button>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="senhaModalLabel">Precisa de acesso para Continuar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="password" id="senhaInput" class="form-control" placeholder="Digite a Senha">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmarSenha">Confirmar</button>
+                <button type="button" class="btn btn-link" id="criarSenhaLink">Criar Senha</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal de Criar Senha -->
+<div class="modal fade" id="criarSenhaModal" tabindex="-1" aria-labelledby="criarSenhaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="criarSenhaModalLabel">Criar Nova Senha</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="usuarioInput" class="form-control mb-2" placeholder="Usuário">
+                <input type="password" id="novaSenhaInput" class="form-control mb-2" placeholder="Criar Senha">
+                <input type="password" id="repetirSenhaInput" class="form-control mb-2" placeholder="Repetir Senha">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="voltar">Voltar</button>
+                <button type="button" class="btn btn-primary" id="salvarSenha">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <!-- Modal de Status -->
     <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
@@ -170,6 +192,7 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Informações</button>
+                        
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="edit-status-tab" data-bs-toggle="tab" data-bs-target="#edit-status" type="button" role="tab" aria-controls="edit-status" aria-selected="false">Editar </button>
@@ -183,11 +206,14 @@
                         <div class="mt-3">
                             <h6>Informações do Equipamento</h6>
                             <p id="equipamento-info"></p>
+                            <img src="coletor.png" alt="Minha Logo" style="height: 70px; margin-right: 8px; ">
                         </div>
                     </div>
                     <div class="tab-pane fade" id="edit-status" role="tabpanel" aria-labelledby="edit-status-tab">
                         <div class="mt-3">
+                            <p id="statuAtual"></p>
                             <h6>Editar Status</h6>
+
                             <select id="statusSelectModal" class="form-select">
                                 <option value="Retirado">Retirado</option>
                                 <option value="Devolvido">Devolvido</option>

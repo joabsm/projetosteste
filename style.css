@@ -370,6 +370,21 @@
  .iziToast {
             z-index: 1056 !important; /* Bootstrap modals have a z-index of 1050 by default */
         }
+.zoom img {
+        max-width: 100%;
+        -moz-transition: all 1.5s;
+        -webkit-transition: all 1.5s;
+        transition: all 1.5s;
+    }
+
+     .zoom:hover img {
+        -webkit-transform: scale(5.25) translate(50%, 30%);
+        -moz-transform: scale(2.25) translate(50%, 30%);
+        -o-transform: scale(2.25) translate(50%, 30%);
+        -ms-transform: scale(2.25) translate(50%, 30%);
+        transform: scale(2.25) translate(50%, 30%);
+        /*position: absolute;*/
+    }
 
 
 

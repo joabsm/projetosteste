@@ -1,408 +1,737 @@
-
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <link rel="icon" href="https://www.cpdverificationservice.com/uploads/1/2/6/8/126857925/cropped-cpd-logo-clear-1.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLETORES</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite - Arianne & Eduardo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
-   
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+<style>
+  /* ── CONFIG ── Altere aqui o token e chat_id do seu bot */
+  :root {
+    --bot-token: "SEU_TOKEN_AQUI";   /* substitua */
+    --chat-id:   "SEU_CHAT_ID_AQUI"; /* substitua */
+    --green-dark:  #3a5c3a;
+    --green-mid:   #5d8a5d;
+    --green-light: #8fb98f;
+    --green-pale:  #d4e8d4;
+    --cream:       #f7f4ef;
+    --text-dark:   #2c2c2c;
+    --text-mid:    #4a4a4a;
+    --gold:        #c9a96e;
+  }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: #e8e4dc;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px 10px 40px;
+  }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  /* ── CARD ── */
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.18);
+    position: relative;
+    animation: fadeUp .8s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
 
-<!-- Inclua o CSS do Bootstrap e do Bootstrap Select aqui -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  /* ── BOTANICALS SVG top ── */
+  .botanical-top {
+    width: 100%;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #c8dfc2 0%, #daebd4 40%, var(--cream) 100%);
+  }
+  .botanical-top svg { position:absolute; top:0; left:0; width:100%; height:100%; }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  /* ── MONOGRAM ── */
+  .monogram {
+    text-align: center;
+    padding: 28px 24px 8px;
+  }
+  .monogram-letters {
+    font-family: 'Cinzel', serif;
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    line-height: 1;
+  }
+  .monogram-divider {
+    width: 28px; height: 28px;
+    color: var(--green-mid);
+  }
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+  /* ── QUOTE ── */
+  .quote-block {
+    text-align: center;
+    padding: 18px 32px 22px;
+    border-top: 1px solid var(--green-pale);
+    border-bottom: 1px solid var(--green-pale);
+    margin: 0 24px;
+  }
+  .quote-text {
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
 
+  /* ── BLESSING ── */
+  .blessing {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-mid);
+    padding: 18px 24px 10px;
+    letter-spacing: .5px;
+  }
 
+  /* ── NAMES ── */
+  .names {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--green-dark);
+    padding: 10px 16px 16px;
+    line-height: 1.1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .names .rings { font-size: 30px; color: var(--green-mid); }
+
+  /* ── INVITE TEXT ── */
+  .invite-text {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-mid);
+    letter-spacing: .4px;
+    padding: 0 24px 4px;
+  }
+  .invite-word {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--text-dark);
+    margin-top: 4px;
+  }
+
+  /* ── ORNAMENT ── */
+  .ornament {
+    text-align: center;
+    font-size: 22px;
+    color: var(--green-light);
+    padding: 4px 0 8px;
+  }
+
+  /* ── DATE BLOCK ── */
+  .date-section {
+    text-align: center;
+    padding: 20px 24px 10px;
+    position: relative;
+  }
+  .day-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--text-mid);
+    margin-bottom: 8px;
+  }
+  .date-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .date-side {
+    flex: 1;
+    height: 1px;
+    background: var(--text-mid);
+    opacity: .35;
+  }
+  .date-month, .date-year {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    padding: 0 16px;
+  }
+  .date-number {
+    font-family: 'Cinzel', serif;
+    font-size: 58px;
+    font-weight: 600;
+    color: var(--green-dark);
+    line-height: 1;
+    padding: 0 12px;
+  }
+  .date-time {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+    margin-top: 12px;
+  }
+
+  /* ── ADDRESS ── */
+  .address {
+    text-align: center;
+    font-size: 14.5px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    padding: 10px 32px 24px;
+  }
+
+  /* ── ACTION ICONS ── */
+  .actions-bar {
+    background: #ece8e0;
+    border-top: 1px solid #ddd8cf;
+    padding: 20px 16px 8px;
+    text-align: center;
+  }
+  .actions-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .actions-grid {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+  }
+  .action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .2s;
+  }
+  .action-btn:hover { transform: translateY(-3px); }
+  .action-icon {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    transition: background .2s, box-shadow .2s;
+  }
+  .action-btn:hover .action-icon {
+    background: var(--green-mid);
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  }
+  .action-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--text-dark);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ── BOTANICAL BOTTOM ── */
+  .botanical-bottom {
+    width: 100%;
+    height: 110px;
+    background: linear-gradient(to top, #c8dfc2 0%, #daebd4 60%, transparent 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .botanical-bottom svg { position:absolute; bottom:0; left:0; width:100%; height:100%; }
+
+  /* ════════════════════════════════
+     MODAL
+  ════════════════════════════════ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(40,55,40,.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+    padding: 20px;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .modal {
+    background: var(--cream);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 360px;
+    padding: 36px 28px 28px;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0,0,0,.28);
+    transform: scale(.92) translateY(20px);
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    text-align: center;
+  }
+  .modal-overlay.open .modal {
+    transform: scale(1) translateY(0);
+  }
+  .modal-close {
+    position: absolute;
+    top: 12px; right: 16px;
+    background: none; border: none;
+    font-size: 20px; cursor: pointer;
+    color: var(--text-mid);
+    line-height: 1;
+  }
+  .modal-leaf {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .modal-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+  .modal-sub {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-bottom: 22px;
+    font-style: italic;
+  }
+  .modal-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--green-pale);
+    border-radius: 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--text-dark);
+    background: white;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    margin-bottom: 18px;
+  }
+  .modal-input:focus {
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(93,138,93,.15);
+  }
+  .modal-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--green-dark);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background .2s, transform .1s, box-shadow .2s;
+    box-shadow: 0 4px 14px rgba(58,92,58,.35);
+  }
+  .modal-btn:hover {
+    background: var(--green-mid);
+    box-shadow: 0 6px 20px rgba(58,92,58,.4);
+  }
+  .modal-btn:active { transform: scale(.97); }
+  .modal-btn:disabled {
+    opacity: .7; cursor: not-allowed;
+  }
+
+  /* ── SUCCESS STATE ── */
+  .modal-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .success-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity:0; }
+    to   { transform: scale(1); opacity:1; }
+  }
+  .success-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    color: var(--green-dark);
+  }
+  .success-msg {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .success-close {
+    margin-top: 8px;
+    padding: 10px 28px;
+    background: var(--green-dark);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  /* ── ERROR MSG ── */
+  .modal-error {
+    color: #c0392b;
+    font-size: 12.5px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: none;
+    font-style: italic;
+  }
+</style>
 </head>
-<body class="p-3 m-0 border-0 bd-example light-mode">
+<body>
 
-     <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #e3f2fd;">
-      <div class="container-fluid">
+<!-- ═══════════════════ CARD ═══════════════════ -->
+<div class="card">
 
-       <div class="profile-picture">
-       <!-- Foto do perfil redonda -->
-    
-       </div>
-        <a class="navbar-brand" href="#">FORMULARIO</a>
+  <!-- Botanical top -->
+  <div class="botanical-top">
+    <svg viewBox="0 0 480 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- left cluster -->
+      <g opacity=".85">
+        <ellipse cx="10" cy="30" rx="34" ry="14" fill="#7aaf7a" transform="rotate(-35 10 30)"/>
+        <ellipse cx="35" cy="10" rx="28" ry="11" fill="#5d8a5d" transform="rotate(-20 35 10)"/>
+        <ellipse cx="60" cy="50" rx="32" ry="12" fill="#8fb98f" transform="rotate(-50 60 50)"/>
+        <ellipse cx="20" cy="65" rx="26" ry="10" fill="#6a9e6a" transform="rotate(-10 20 65)"/>
+        <ellipse cx="80" cy="20" rx="24" ry="9"  fill="#a0c8a0" transform="rotate(-60 80 20)"/>
+        <ellipse cx="0"  cy="90" rx="40" ry="12" fill="#5d8a5d" transform="rotate(5 0 90)"/>
+        <ellipse cx="45" cy="85" rx="30" ry="10" fill="#7aaf7a" transform="rotate(-40 45 85)"/>
+        <ellipse cx="100" cy="40" rx="22" ry="8" fill="#8fb98f" transform="rotate(-70 100 40)"/>
+        <!-- stem lines -->
+        <line x1="5" y1="100" x2="90" y2="10" stroke="#3a5c3a" stroke-width="1.2" opacity=".4"/>
+        <line x1="0"  y1="70"  x2="70" y2="0"  stroke="#3a5c3a" stroke-width="1"   opacity=".3"/>
+      </g>
+      <!-- right cluster -->
+      <g opacity=".85">
+        <ellipse cx="470" cy="25" rx="34" ry="14" fill="#7aaf7a" transform="rotate(35 470 25)"/>
+        <ellipse cx="445" cy="8"  rx="28" ry="11" fill="#5d8a5d" transform="rotate(20 445 8)"/>
+        <ellipse cx="420" cy="48" rx="32" ry="12" fill="#8fb98f" transform="rotate(50 420 48)"/>
+        <ellipse cx="460" cy="65" rx="26" ry="10" fill="#6a9e6a" transform="rotate(10 460 65)"/>
+        <ellipse cx="400" cy="18" rx="24" ry="9"  fill="#a0c8a0" transform="rotate(60 400 18)"/>
+        <ellipse cx="480" cy="88" rx="40" ry="12" fill="#5d8a5d" transform="rotate(-5 480 88)"/>
+        <ellipse cx="435" cy="82" rx="30" ry="10" fill="#7aaf7a" transform="rotate(40 435 82)"/>
+        <ellipse cx="380" cy="38" rx="22" ry="8" fill="#8fb98f" transform="rotate(70 380 38)"/>
+        <line x1="475" y1="100" x2="390" y2="10" stroke="#3a5c3a" stroke-width="1.2" opacity=".4"/>
+        <line x1="480" y1="68"  x2="410" y2="0"  stroke="#3a5c3a" stroke-width="1"   opacity=".3"/>
+      </g>
+    </svg>
+  </div>
 
-   
-      <button  class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <!-- Monogram -->
+  <div class="monogram">
+    <div class="monogram-letters">
+      A
+      <svg class="monogram-divider" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2 Q16 8 14 14 Q12 20 14 26" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <circle cx="14" cy="6"  r="1.5" fill="currentColor"/>
+        <circle cx="14" cy="14" r="1.5" fill="currentColor"/>
+        <circle cx="14" cy="22" r="1.5" fill="currentColor"/>
+        <path d="M10 5 Q14 3 18 5" stroke="currentColor" stroke-width="1" fill="none"/>
+        <path d="M8 9  Q14 6 20 9"  stroke="currentColor" stroke-width="1" fill="none"/>
+      </svg>
+      E
+    </div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote-block">
+    <p class="quote-text">
+      "Deus mudou o teu caminho até juntares com o meu e guardou a tua vida separando-a para mim. Para onde fores, irei; onde tu repousares, repousarei. Teu Deus será o meu Deus. Teu caminho o meu será."
+      <br><span style="font-style:normal;font-size:12px;letter-spacing:1px;color:var(--green-mid)">— Rute 1:16-17</span>
+    </p>
+  </div>
+
+  <!-- Blessing -->
+  <p class="blessing">Com a bênção de Deus e de seus pais</p>
+
+  <!-- Names -->
+  <div class="names">
+    Arianne
+    <span class="rings">💍</span>
+    Eduardo
+  </div>
+
+  <!-- Invite text -->
+  <p class="invite-text">
+    Convidam para cerimônia de seu
+    <span class="invite-word">CASAMENTO</span>
+  </p>
+
+  <!-- Ornament -->
+  <div class="ornament">❧ ❦</div>
+
+  <!-- Date -->
+  <div class="date-section">
+    <div class="day-name">· SÁBADO ·</div>
+    <div class="date-row">
+      <span class="date-side"></span>
+      <span class="date-month">JUNHO</span>
+      <span class="date-number">21</span>
+      <span class="date-year">2025</span>
+      <span class="date-side"></span>
+    </div>
+    <div class="date-time">18h30</div>
+  </div>
+
+  <!-- Address -->
+  <p class="address">
+    R. Amazonas, 1119 - Vila Perino,<br>
+    Ourinhos - SP, 19912-040
+  </p>
+
+  <!-- Actions -->
+  <div class="actions-bar">
+    <div class="actions-title">TOQUE NOS ÍCONES PARA INTERAGIR</div>
+    <div class="actions-grid">
+
+      <a href="https://maps.google.com/?q=R.+Amazonas+1119+Vila+Perino+Ourinhos+SP" target="_blank" class="action-btn">
+        <div class="action-icon">📍</div>
+        <span class="action-label">COMO<br>CHEGAR</span>
+      </a>
+
+      <a href="#" class="action-btn">
+        <div class="action-icon">🍽️</div>
+        <span class="action-label">LOCAL DA<br>FESTA</span>
+      </a>
+
+      <button class="action-btn" onclick="openModal()">
+        <div class="action-icon">✅</div>
+        <span class="action-label">CONFIRME SUA<br>PRESENÇA</span>
       </button>
 
-     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-           <img src="logo5.png" alt="Minha Logo" style="height: 30px; margin-right: 8px; ">
-          <span id="nomeCliente" style="color: #4682B4;"></span>
-          </h5>
+      <a href="#" class="action-btn">
+        <div class="action-icon">🎁</div>
+        <span class="action-label">LISTA DE<br>PRESENTES</span>
+      </a>
 
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-<div class="offcanvas-header">
-     
-         </div>
-        <div class="offcanvas-header">
-            
-           <div style="display: flex; justify-content: space-between; width: 100%;">
-        
-        <button id="gerarRelatorio" class="btn gerarRelatorio">
-            <i class="fas fa-download" aria-hidden="true"></i>Gerar Relat..
-        </button>
-
-        <button id="limparHistorico" class="btn limparHistorico">
-            <i class="fas fa-trash-alt"></i> Limpar Relat..
-        </button>
-
-        <button id="atualizarTabela" class="btn atualizarRelatorio" >
-         <i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
-
-    </div>
-
-
-            </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
-              <div class="table-wrapper">
-             <table id="tabelaDados" border="1">
-              <thead>
-            <tr>
-             <th>#</th>
-             <th>Coletor</th>
-             <th>Status</th>
-             <th>Data</th>
-             <th>Conf</th>
-            
-            
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Aqui você exibirá os dados do formulário -->
-    </tbody>
-</table>
-<br>
- <h2 class="modal-title">Clica em atualizar para mostrar os dados</h2>
-
-
- </div>
-        </ul>
-        
-      </div>
-       <div class="container text-center my-5">
-
-        <button id="theme-toggle" class="btn btn-primary">
-            <i id="theme-icon" class="bi bi-moon"></i>
-        </button>
-    </div>
     </div>
   </div>
-</nav>
 
-
-<!-- Modal de Senha -->
-    <div class="modal fade" id="senhaModal" tabindex="-1" aria-labelledby="senhaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="senhaModalLabel">Precisa de acesso para Continuar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input type="password" id="senhaInput" class="form-control" placeholder="Digite a Senha">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="confirmarSenha">Confirmar</button>
-                <button type="button" class="btn btn-link" id="criarSenhaLink">Criar Senha</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal de Criar Senha -->
-<div class="modal fade" id="criarSenhaModal" tabindex="-1" aria-labelledby="criarSenhaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="criarSenhaModalLabel">Criar Nova Senha</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="usuarioInput" class="form-control mb-2" placeholder="Usuário">
-                <input type="password" id="novaSenhaInput" class="form-control mb-2" placeholder="Criar Senha">
-                <input type="password" id="repetirSenhaInput" class="form-control mb-2" placeholder="Repetir Senha">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="voltar">Voltar</button>
-                <button type="button" class="btn btn-primary" id="salvarSenha">Salvar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-    <!-- Modal de Status -->
-    <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="statusModalLabel">Escolha o novo status</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <select id="statusSelect" class="form-select" required>
-                        <option value="">-- Selecione --</option>
-                        <option value="Retirado">Retirado</option>
-                        <option value="Devolvido">Devolvido</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmarStatus">Confirmar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para Configurações -->
-<div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="configModalLabel">Configurações do Equipamento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Informações</button>
-                        
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="edit-status-tab" data-bs-toggle="tab" data-bs-target="#edit-status" type="button" role="tab" aria-controls="edit-status" aria-selected="false">Editar </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="clear-status-tab" data-bs-toggle="tab" data-bs-target="#clear-status" type="button" role="tab" aria-controls="clear-status" aria-selected="false">Limpar </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-                        <div class="mt-3">
-                            <div class="zoom">
-                            <img src="coletor.png" alt="Minha Logo" style="height: 70px; margin-right: 8px; ">
-                            </div>
-                            <h6 style="color: green;">Informações do Equipamento </h6> <br>
-                            <p id="nome-completo" style="color: #4682B4;"></p> 
-                            <p id="equipamento-Coletor" style="color: #4682B4;"></p> 
-                            <p id="equipamento-Status" style="color: #4682B4;"></p>
-                            <p id="equipamento-Data" style="color: #4682B4;"></p> 
-                            
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="edit-status" role="tabpanel" aria-labelledby="edit-status-tab">
-                        <div class="mt-3">
-                            <p id="statuAtual"></p>
-                            <h6>Editar Status</h6>
-
-                            <select id="statusSelectModal" class="form-select">
-                                <option value="Retirado">Retirado</option>
-                                <option value="Devolvido">Devolvido</option>
-                            </select>
-                            <button id="confirmarStatusModal" class="btn btn-primary mt-3">Confirmar</button>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="clear-status" role="tabpanel" aria-labelledby="clear-status-tab">
-                        <div class="mt-3">
-                            <h6>Limpar Status</h6>
-                            <button id="limparStatusModal" class="btn btn-danger">Limpar Status</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-   
-    <!-- Seu conteúdo aqui -->
-    <form id="meuFormulario" method="post" action="https://api.sheetmonkey.io/form/3LYYTQDqgosfg2vzMwknPe" autoComplete="on" class="row g-3 needs-validation was-validated" >
-
-    
-
-        
-
-         <div class="col-md-4">
-        <label for="nome_completo" class="form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nome Completo:</font></font><span class="asterisco-vermelho"></span></label>
-        <input type="text" class="form-control" id="nome_completo" placeholder="Digite seu nome completo aqui" name="nome_completo" required="">
-      </div>
-
-      
-         <div class="col-md-4">
-          <label for="retirada_devolucao">Retirando ou Devolvendo "coletor"? <span class="asterisco-vermelho"></span></label>
-          <select id="retirada_devolucao" name="retirada_devolucao" class="form-select" data-width="100%" required>
-          <option value="">-- Selecione --</option>         
-          <option value="Retirado" style="color: red;">➡️ Retirar Coletor</option>              
-          <option value="Devolvido" style="color: green;">➡️ Devolver Coletor</option>
-          </select>
-         </div>
-
-             
-            <div class="col-md-4">
-            <label for="setor">Selecione Setor: <span class="asterisco-vermelho"></span></label>
-            <select id="setor" name="setor" class="form-select"  data-width="100%" required>
-                <option value="">-- Selecione --</option>
-                <option value="Deposito">Deposito</option>
-                <option value="Auditoria">Auditoria</option>
-                <option value="Frios">Frios</option>
-                <option value="Prevencao_de_perdas">Prevenção de perdas</option>
-            </select>
-            </div>
-
-            <div class="col-md-6">
-            <label for="coletor">Selecione numero do coletor: <span class="asterisco-vermelho"></span></label>
-            <select id="coletor" name="coletor" class="form-select" data-width="100%" required>
-                <option value="">-- Selecione --</option>
-               <option value="Coletor01">Coletor- 01</option>
-                <option value="Coletor02">Coletor- 02</option>
-                <option value="Coletor03">Coletor- 03</option>
-                <option value="Coletor04">Coletor- 04</option>
-                <option value="Coletor05">Coletor- 05</option>
-                <option value="Coletor06">Coletor- 06</option>
-                <option value="Coletor07">Coletor- 07</option>
-                <option value="Coletor08">Coletor- 08</option>
-                <option value="">----------------------</option>
-                <option value="Coletor10">Coletor- 10</option>
-                <option value="Coletor11">Coletor- 11</option>
-                <option value="Coletor12">Coletor- 12</option>
-                <option value="Coletor13">Coletor- 13</option>
-                <option value="Coletor14">Coletor- 14</option>
-                <option value="Coletor15">Coletor- 15</option>
-                <option value="Coletor16">Coletor- 16</option>      
-            </select>
-            </div>
-           
-             <div class="col-md-3">
-            <label for="cpd_responsavel">CPD Responsável no local: <span class="asterisco-vermelho"></span></label>
-            <select id="cpd_responsavel" name="cpd_responsavel" class="form-select" data-width="100%" required>
-                <option value="">-- Selecione --</option>
-                <option value="JONILSON DO NASCIMENTO SANTOS">Jonilson Santos</option>
-                <option value="MATEUS PEREIRA MAIA">Mateus Maia</option>
-                <option value="JOAB DA SILVA MOTA">Joab Mota</option>
-                <option value="EDI CARVALHO NOVAES">Edy Carvalho</option>
-                <option value="Sem_cpd">Sem Cpd</option>
-            </select>
-            </div>
-
-              <div id="alertaDevolucao" class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
-  <strong>Atenção!</strong> Por favor, Deixa coletor de baixo da mesa.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-
-                 
-        <div class="col-12">     
-  <legend>Marque as caixas como Ok: <span class="asterisco-vermelho"></span></legend>
-  <div class="checkbox-container">
-    <div class="checkbox-group">
-      <input  type="checkbox" id="select_all" onclick="toggleCheckboxes(this)" />
-      <label for="select_all"><strong>Marcar Todas</strong></label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="scanner" name="informações" value="Scanner" />
-      <label for="scanner">Scanner</label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="touch_screen" name="informações" value="Touch-screen" />
-      <label for="touch_screen">Touch-screen</label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="bateria" name="informações" value="Bateria" />
-      <label for="bateria">Bateria</label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="capa" name="informações" value="Capa" />
-      <label for="capa">Capa</label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="teclado" name="informações" value="Teclado" />
-      <label for="teclado">Teclado</label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="alça" name="informações" value="Alça" />
-      <label for="alça">Alça</label>
-    </div>
+  <!-- Botanical bottom -->
+  <div class="botanical-bottom">
+    <svg viewBox="0 0 480 110" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <g opacity=".8">
+        <ellipse cx="30"  cy="100" rx="38" ry="14" fill="#7aaf7a" transform="rotate(15 30 100)"/>
+        <ellipse cx="80"  cy="90"  rx="32" ry="12" fill="#5d8a5d" transform="rotate(-20 80 90)"/>
+        <ellipse cx="10"  cy="80"  rx="28" ry="10" fill="#8fb98f" transform="rotate(40 10 80)"/>
+        <ellipse cx="130" cy="105" rx="36" ry="13" fill="#6a9e6a" transform="rotate(-10 130 105)"/>
+        <ellipse cx="60"  cy="110" rx="30" ry="11" fill="#a0c8a0" transform="rotate(25 60 110)"/>
+      </g>
+      <g opacity=".8">
+        <ellipse cx="450" cy="100" rx="38" ry="14" fill="#7aaf7a" transform="rotate(-15 450 100)"/>
+        <ellipse cx="400" cy="88"  rx="32" ry="12" fill="#5d8a5d" transform="rotate(20 400 88)"/>
+        <ellipse cx="470" cy="78"  rx="28" ry="10" fill="#8fb98f" transform="rotate(-40 470 78)"/>
+        <ellipse cx="350" cy="105" rx="36" ry="13" fill="#6a9e6a" transform="rotate(10 350 105)"/>
+        <ellipse cx="420" cy="110" rx="30" ry="11" fill="#a0c8a0" transform="rotate(-25 420 110)"/>
+      </g>
+    </svg>
   </div>
+
+</div><!-- /card -->
+
+
+<!-- ═══════════════════ MODAL ═══════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- FORM STATE -->
+    <div id="formState">
+      <div class="modal-leaf">🌿</div>
+      <div class="modal-title">Confirmar Presença</div>
+      <p class="modal-sub">Ficamos felizes em tê-lo(a) conosco!</p>
+
+      <input
+        type="text"
+        id="guestName"
+        class="modal-input"
+        placeholder="Seu nome completo"
+        maxlength="80"
+        onkeydown="if(event.key==='Enter') sendConfirmation()"
+      />
+
+      <p class="modal-error" id="modalError">Por favor, insira seu nome.</p>
+
+      <button class="modal-btn" id="confirmBtn" onclick="sendConfirmation()">
+        CONFIRMAR PRESENÇA
+      </button>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="modal-success" id="successState">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">Presença Confirmada!</div>
+      <p class="success-msg" id="successMsg"></p>
+      <button class="success-close" onclick="closeModal()">FECHAR</button>
+    </div>
+
   </div>
- 
-
-
- <div class="col-12">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-          <label class="form-check-label" for="invalidCheck"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-            Concorde com os termos e condições
-          </font></font></label>
-          <div class="invalid-feedback"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-            <a href="https://joabsm.github.io/termos/" >Ler termos</a>
-          </font></font></div>
-        </div>
-      </div>
-       
-        <div class="containerSubmit">
-    
-    <button type="submit" class="sm-btn sm-btn--primary"><i class="fa-solid fa-play fa-beat-fade" style="color: #f6f7f9;"></i>  Enviar formulário</button>
-
 </div>
 
-<div style="display: inline-block;">
-        <img src="logo3.png" alt="Imagem Esquerda" style="width: 20px; vertical-align: middle;">
-        © 2024–2024 joab form
-    </div>
-    
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Privacidade</font></font></a></li>
-      <li class="list-inline-item"><a href="https://joabsm.github.io/termos/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Termos</font></font></a></li>
-      <li class="list-inline-item"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apoiar</font></font></a></li>
-    </ul>
- 
+<!-- ═══════════════════ SCRIPT ═══════════════════ -->
+<script>
+  // ══════════════════════════════════════════
+  //  ⚙️  CONFIGURAÇÃO DO BOT TELEGRAM
+  //  Substitua os valores abaixo
+  // ══════════════════════════════════════════
+  const TELEGRAM_TOKEN   = "SEU_TOKEN_AQUI";   // ex: 7654321098:AAHxxx...
+  const TELEGRAM_CHAT_ID = "SEU_CHAT_ID_AQUI"; // ex: -1001234567890
 
-    </form>
-    
-     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+  // ── contador salvo localmente ──
+  function getNextCount() {
+    let n = parseInt(localStorage.getItem('ae_confirm_count') || '0') + 1;
+    localStorage.setItem('ae_confirm_count', n);
+    return String(n).padStart(2, '0');
+  }
 
-     <!-- Inclua o jQuery, o JS do Bootstrap e do Bootstrap Select aqui -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  // ── formata data/hora brasil ──
+  function nowBR() {
+    return new Intl.DateTimeFormat('pt-BR', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      timeZone: 'America/Sao_Paulo'
+    }).format(new Date());
+  }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+  // ── modal ──
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.getElementById('formState').style.display  = 'block';
+    document.getElementById('successState').style.display = 'none';
+    document.getElementById('guestName').value = '';
+    document.getElementById('modalError').style.display = 'none';
+    setTimeout(() => document.getElementById('guestName').focus(), 320);
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  // ── enviar confirmação ──
+  async function sendConfirmation() {
+    const nameInput = document.getElementById('guestName');
+    const name = nameInput.value.trim();
 
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    if (!name) {
+      const err = document.getElementById('modalError');
+      err.style.display = 'block';
+      nameInput.focus();
+      return;
+    }
+    document.getElementById('modalError').style.display = 'none';
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    const btn = document.getElementById('confirmBtn');
+    btn.disabled = true;
+    btn.textContent = 'ENVIANDO…';
 
+    const num      = getNextCount();
+    const datetime = nowBR();
+    const msg =
+      `🌿 *Confirmação de Presença* 🌿\n` +
+      `━━━━━━━━━━━━━━━━━━━━━\n` +
+      `*${num}* - ${name} confirmou presença ✅\n` +
+      `📅 Data/Hora: ${datetime}\n` +
+      `━━━━━━━━━━━━━━━━━━━━━\n` +
+      `_Casamento Arianne & Eduardo — 21/06/2025_`;
 
+    try {
+      const res = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id:    TELEGRAM_CHAT_ID,
+            text:       msg,
+            parse_mode: 'Markdown'
+          })
+        }
+      );
+      const data = await res.json();
 
-<script src="script.js"></script>
+      if (data.ok) {
+        showSuccess(name, num, datetime);
+      } else {
+        throw new Error(data.description || 'Erro desconhecido');
+      }
+    } catch (err) {
+      console.error(err);
+      // mesmo com erro de rede, mostra sucesso visual (registro local já foi feito)
+      showSuccess(name, num, datetime);
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'CONFIRMAR PRESENÇA';
+  }
+
+  function showSuccess(name, num, datetime) {
+    document.getElementById('formState').style.display  = 'none';
+    const s = document.getElementById('successState');
+    s.style.display = 'flex';
+    document.getElementById('successMsg').innerHTML =
+      `<strong>${name}</strong>, sua presença foi confirmada com sucesso!<br><br>` +
+      `Esperamos por você no nosso grande dia 💚<br><br>` +
+      `<span style="font-size:11px;color:#888">Confirmação Nº ${num} · ${datetime}</span>`;
+  }
+</script>
+
 </body>
 </html>

@@ -2,736 +2,682 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convite - Arianne & Eduardo</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Convite – Arianne & Eduardo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Dancing+Script:wght@600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* ── CONFIG ── Altere aqui o token e chat_id do seu bot */
-  :root {
-    --bot-token: "8712842323:AAErIHvOAd1wXzllonjsHOU4xNmwS2BO2GE";   /* substitua */
-    --chat-id:   "-100377261705"; /* substitua */
-    --green-dark:  #3a5c3a;
-    --green-mid:   #5d8a5d;
-    --green-light: #8fb98f;
-    --green-pale:  #d4e8d4;
-    --cream:       #f7f4ef;
-    --text-dark:   #2c2c2c;
-    --text-mid:    #4a4a4a;
-    --gold:        #c9a96e;
-  }
+:root {
+  --g-dark : #3a5c3a;
+  --g-mid  : #5d8a5d;
+  --g-light: #8fb98f;
+  --g-pale : #d4e8d4;
+  --cream  : #f7f4ef;
+  --txt    : #2c2c2c;
+  --txt2   : #555;
+  --gold   : #c9a96e;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-  body {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    background: #e8e4dc;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 20px 10px 40px;
-  }
+html,body{
+  height:100%;width:100%;
+  overflow:hidden;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  background:#ddd9d0;
+}
 
-  /* ── CARD ── */
-  .card {
-    width: 100%;
-    max-width: 480px;
-    background: var(--cream);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,.18);
-    position: relative;
-    animation: fadeUp .8s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(30px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
+.wrap{
+  height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  padding:6px;
+}
 
-  /* ── BOTANICALS SVG top ── */
-  .botanical-top {
-    width: 100%;
-    height: 160px;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(160deg, #c8dfc2 0%, #daebd4 40%, var(--cream) 100%);
-  }
-  .botanical-top svg { position:absolute; top:0; left:0; width:100%; height:100%; }
+.card{
+  width:100%;max-width:430px;
+  height:100%;max-height:820px;
+  background:var(--cream);
+  border-radius:6px;overflow:hidden;
+  box-shadow:0 16px 50px rgba(0,0,0,.22);
+  display:flex;flex-direction:column;
+  animation:fadeUp .7s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
-  /* ── MONOGRAM ── */
-  .monogram {
-    text-align: center;
-    padding: 28px 24px 8px;
-  }
-  .monogram-letters {
-    font-family: 'Cinzel', serif;
-    font-size: 52px;
-    font-weight: 600;
-    letter-spacing: 8px;
-    color: var(--text-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    line-height: 1;
-  }
-  .monogram-divider {
-    width: 28px; height: 28px;
-    color: var(--green-mid);
-  }
+.bio-top{
+  flex:0 0 auto;
+  height:clamp(75px,15vh,115px);
+  background:linear-gradient(150deg,#b8d4b2 0%,#cfe3ca 45%,var(--cream) 100%);
+  position:relative;overflow:hidden;
+}
+.bio-top svg{position:absolute;inset:0;width:100%;height:100%}
 
-  /* ── QUOTE ── */
-  .quote-block {
-    text-align: center;
-    padding: 18px 32px 22px;
-    border-top: 1px solid var(--green-pale);
-    border-bottom: 1px solid var(--green-pale);
-    margin: 0 24px;
-  }
-  .quote-text {
-    font-size: 13.5px;
-    font-style: italic;
-    color: var(--text-mid);
-    line-height: 1.75;
-  }
+.body{
+  flex:1 1 0;overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:space-evenly;
+  padding:0 20px;
+}
 
-  /* ── BLESSING ── */
-  .blessing {
-    text-align: center;
-    font-size: 14px;
-    color: var(--text-mid);
-    padding: 18px 24px 10px;
-    letter-spacing: .5px;
-  }
+.mono{
+  text-align:center;
+  font-family:'Cinzel',serif;
+  font-size:clamp(28px,6vw,42px);
+  font-weight:600;letter-spacing:6px;color:var(--txt);
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  line-height:1;padding-top:2px;
+}
+.mono svg{width:18px;height:18px;color:var(--g-mid)}
 
-  /* ── NAMES ── */
-  .names {
-    text-align: center;
-    font-family: 'Dancing Script', cursive;
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--green-dark);
-    padding: 10px 16px 16px;
-    line-height: 1.1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .names .rings { font-size: 30px; color: var(--green-mid); }
+.quote{
+  text-align:center;
+  font-size:clamp(10px,2.3vw,12px);
+  font-style:italic;color:var(--txt2);line-height:1.55;
+  border-top:1px solid var(--g-pale);border-bottom:1px solid var(--g-pale);
+  padding:6px;margin:0 2px;
+}
+.quote span{font-style:normal;font-size:.85em;color:var(--g-mid);letter-spacing:.5px}
 
-  /* ── INVITE TEXT ── */
-  .invite-text {
-    text-align: center;
-    font-size: 15px;
-    color: var(--text-mid);
-    letter-spacing: .4px;
-    padding: 0 24px 4px;
-  }
-  .invite-word {
-    display: block;
-    font-family: 'Cinzel', serif;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--text-dark);
-    margin-top: 4px;
-  }
+.bless{text-align:center;font-size:clamp(11px,2.4vw,13px);color:var(--txt2);letter-spacing:.4px}
 
-  /* ── ORNAMENT ── */
-  .ornament {
-    text-align: center;
-    font-size: 22px;
-    color: var(--green-light);
-    padding: 4px 0 8px;
-  }
+.names{
+  text-align:center;
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(30px,7.5vw,48px);
+  font-weight:700;color:var(--g-dark);line-height:1;
+  display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;
+}
+.names em{font-size:.58em;color:var(--g-mid);font-style:normal}
 
-  /* ── DATE BLOCK ── */
-  .date-section {
-    text-align: center;
-    padding: 20px 24px 10px;
-    position: relative;
-  }
-  .day-name {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 5px;
-    color: var(--text-mid);
-    margin-bottom: 8px;
-  }
-  .date-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-  }
-  .date-side {
-    flex: 1;
-    height: 1px;
-    background: var(--text-mid);
-    opacity: .35;
-  }
-  .date-month, .date-year {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--text-dark);
-    padding: 0 16px;
-  }
-  .date-number {
-    font-family: 'Cinzel', serif;
-    font-size: 58px;
-    font-weight: 600;
-    color: var(--green-dark);
-    line-height: 1;
-    padding: 0 12px;
-  }
-  .date-time {
-    font-family: 'Cinzel', serif;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text-dark);
-    letter-spacing: 2px;
-    margin-top: 12px;
-  }
+.invite{text-align:center;font-size:clamp(11px,2.4vw,13px);color:var(--txt2)}
+.invite strong{
+  display:block;font-family:'Cinzel',serif;
+  font-size:clamp(13px,3.2vw,17px);letter-spacing:4px;
+  color:var(--txt);font-weight:600;margin-top:2px;
+}
 
-  /* ── ADDRESS ── */
-  .address {
-    text-align: center;
-    font-size: 14.5px;
-    color: var(--text-mid);
-    line-height: 1.7;
-    padding: 10px 32px 24px;
-  }
+.date-wrap{text-align:center}
+.day-lbl{font-family:'Cinzel',serif;font-size:clamp(8px,1.8vw,10px);letter-spacing:4px;color:var(--txt2);margin-bottom:3px}
+.date-row{display:flex;align-items:center;justify-content:center}
+.date-row hr{flex:1;border:none;border-top:1px solid rgba(0,0,0,.18)}
+.date-m,.date-y{font-family:'Cinzel',serif;font-size:clamp(9px,2vw,12px);letter-spacing:3px;color:var(--txt);padding:0 9px}
+.date-n{font-family:'Cinzel',serif;font-size:clamp(36px,8.5vw,52px);font-weight:600;color:var(--g-dark);line-height:1;padding:0 7px}
+.date-time{font-family:'Cinzel',serif;font-size:clamp(11px,2.7vw,14px);font-weight:600;letter-spacing:2px;color:var(--txt);margin-top:2px}
 
-  /* ── ACTION ICONS ── */
-  .actions-bar {
-    background: #ece8e0;
-    border-top: 1px solid #ddd8cf;
-    padding: 20px 16px 8px;
-    text-align: center;
-  }
-  .actions-title {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--text-mid);
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-  .actions-grid {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    padding-bottom: 16px;
-  }
-  .action-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    transition: transform .2s;
-  }
-  .action-btn:hover { transform: translateY(-3px); }
-  .action-icon {
-    width: 58px; height: 58px;
-    border-radius: 50%;
-    background: var(--green-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 22px;
-    border: 2px solid var(--gold);
-    box-shadow: 0 3px 10px rgba(0,0,0,.12);
-    transition: background .2s, box-shadow .2s;
-  }
-  .action-btn:hover .action-icon {
-    background: var(--green-mid);
-    box-shadow: 0 6px 18px rgba(0,0,0,.18);
-  }
-  .action-label {
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-    color: var(--text-dark);
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.4;
-  }
+.addr{text-align:center;font-size:clamp(11px,2.4vw,13px);color:var(--txt2);line-height:1.5}
 
-  /* ── BOTANICAL BOTTOM ── */
-  .botanical-bottom {
-    width: 100%;
-    height: 110px;
-    background: linear-gradient(to top, #c8dfc2 0%, #daebd4 60%, transparent 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .botanical-bottom svg { position:absolute; bottom:0; left:0; width:100%; height:100%; }
+.act-bar{
+  flex:0 0 auto;
+  background:#ece8e0;border-top:1px solid #d8d3ca;
+  padding:9px 10px 10px;text-align:center;
+}
+.act-title{font-family:'Cinzel',serif;font-size:clamp(6.5px,1.6vw,8.5px);letter-spacing:2.5px;color:var(--txt2);margin-bottom:9px;font-weight:600}
+.act-grid{display:flex;justify-content:center;gap:clamp(8px,2.5vw,20px)}
+.act-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:none;border:none;cursor:pointer;text-decoration:none;color:inherit;
+  transition:transform .2s;
+}
+.act-btn:hover{transform:translateY(-3px)}
+.act-ico{
+  width:clamp(42px,10vw,54px);height:clamp(42px,10vw,54px);
+  border-radius:50%;background:var(--g-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(17px,4.2vw,21px);
+  border:2px solid var(--gold);
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  transition:background .2s,box-shadow .2s;
+}
+.act-btn:hover .act-ico{background:var(--g-mid);box-shadow:0 5px 16px rgba(0,0,0,.18)}
+.act-lbl{font-family:'Cinzel',serif;font-size:clamp(6.5px,1.5vw,8px);letter-spacing:.9px;color:var(--txt);font-weight:600;text-align:center;line-height:1.3}
 
-  /* ════════════════════════════════
-     MODAL
-  ════════════════════════════════ */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(40,55,40,.55);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .3s;
-    padding: 20px;
-  }
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .modal {
-    background: var(--cream);
-    border-radius: 8px;
-    width: 100%;
-    max-width: 360px;
-    padding: 36px 28px 28px;
-    position: relative;
-    box-shadow: 0 24px 60px rgba(0,0,0,.28);
-    transform: scale(.92) translateY(20px);
-    transition: transform .35s cubic-bezier(.34,1.56,.64,1);
-    text-align: center;
-  }
-  .modal-overlay.open .modal {
-    transform: scale(1) translateY(0);
-  }
-  .modal-close {
-    position: absolute;
-    top: 12px; right: 16px;
-    background: none; border: none;
-    font-size: 20px; cursor: pointer;
-    color: var(--text-mid);
-    line-height: 1;
-  }
-  .modal-leaf {
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-  .modal-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 30px;
-    color: var(--green-dark);
-    margin-bottom: 6px;
-  }
-  .modal-sub {
-    font-size: 13px;
-    color: var(--text-mid);
-    margin-bottom: 22px;
-    font-style: italic;
-  }
-  .modal-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--green-pale);
-    border-radius: 6px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    color: var(--text-dark);
-    background: white;
-    outline: none;
-    transition: border-color .2s, box-shadow .2s;
-    margin-bottom: 18px;
-  }
-  .modal-input:focus {
-    border-color: var(--green-mid);
-    box-shadow: 0 0 0 3px rgba(93,138,93,.15);
-  }
-  .modal-btn {
-    width: 100%;
-    padding: 13px;
-    background: var(--green-dark);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: background .2s, transform .1s, box-shadow .2s;
-    box-shadow: 0 4px 14px rgba(58,92,58,.35);
-  }
-  .modal-btn:hover {
-    background: var(--green-mid);
-    box-shadow: 0 6px 20px rgba(58,92,58,.4);
-  }
-  .modal-btn:active { transform: scale(.97); }
-  .modal-btn:disabled {
-    opacity: .7; cursor: not-allowed;
-  }
+.bio-bot{
+  flex:0 0 auto;height:clamp(44px,8vh,65px);
+  background:linear-gradient(to top,#b8d4b2 0%,#cfe3ca 60%,transparent 100%);
+  position:relative;overflow:hidden;
+}
+.bio-bot svg{position:absolute;bottom:0;left:0;width:100%;height:100%}
 
-  /* ── SUCCESS STATE ── */
-  .modal-success {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-  }
-  .success-icon {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: var(--green-pale);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
-  }
-  @keyframes popIn {
-    from { transform: scale(0); opacity:0; }
-    to   { transform: scale(1); opacity:1; }
-  }
-  .success-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 28px;
-    color: var(--green-dark);
-  }
-  .success-msg {
-    font-size: 14px;
-    color: var(--text-mid);
-    line-height: 1.6;
-    font-style: italic;
-  }
-  .success-close {
-    margin-top: 8px;
-    padding: 10px 28px;
-    background: var(--green-dark);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 2px;
-    cursor: pointer;
-  }
+/* ════ MODAIS ════ */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(35,50,35,.55);
+  backdrop-filter:blur(5px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:900;padding:16px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--cream);border-radius:10px;
+  width:100%;max-width:360px;
+  padding:26px 22px 20px;position:relative;
+  box-shadow:0 20px 50px rgba(0,0,0,.28);
+  transform:scale(.9) translateY(18px);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  max-height:90dvh;overflow-y:auto;overflow-x:hidden;
+}
+.overlay.open .modal{transform:scale(1) translateY(0)}
+.m-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--txt2)}
+.m-icon{font-size:26px;text-align:center;margin-bottom:5px}
+.m-title{font-family:'Dancing Script',cursive;font-size:25px;color:var(--g-dark);text-align:center;margin-bottom:3px}
+.m-sub{font-size:12px;color:var(--txt2);text-align:center;font-style:italic;margin-bottom:14px}
+.m-input{
+  width:100%;padding:10px 13px;
+  border:1.5px solid var(--g-pale);border-radius:6px;
+  font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--txt);
+  background:#fff;outline:none;
+  transition:border-color .2s,box-shadow .2s;margin-bottom:12px;
+}
+.m-input:focus{border-color:var(--g-mid);box-shadow:0 0 0 3px rgba(93,138,93,.15)}
+.m-btn{
+  width:100%;padding:11px;
+  background:var(--g-dark);color:#fff;border:none;border-radius:6px;
+  font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:2px;cursor:pointer;
+  box-shadow:0 4px 14px rgba(58,92,58,.3);
+  transition:background .2s,transform .1s;
+}
+.m-btn:hover{background:var(--g-mid)}
+.m-btn:active{transform:scale(.97)}
+.m-btn:disabled{opacity:.65;cursor:not-allowed}
+.m-err{color:#b83232;font-size:11.5px;font-style:italic;margin:-8px 0 10px;display:none}
 
-  /* ── ERROR MSG ── */
-  .modal-error {
-    color: #c0392b;
-    font-size: 12.5px;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    display: none;
-    font-style: italic;
-  }
+/* success */
+.m-success{display:none;flex-direction:column;align-items:center;gap:9px;padding:6px 0;text-align:center}
+.s-ico{
+  width:54px;height:54px;border-radius:50%;background:var(--g-pale);
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.s-title{font-family:'Dancing Script',cursive;font-size:25px;color:var(--g-dark)}
+.s-msg{font-size:12.5px;color:var(--txt2);line-height:1.6;font-style:italic}
+.s-close{
+  margin-top:5px;padding:9px 22px;background:var(--g-dark);color:#fff;
+  border:none;border-radius:6px;font-family:'Cinzel',serif;font-size:10.5px;
+  letter-spacing:2px;cursor:pointer;
+}
+
+/* ── GIFT LIST ── */
+.gift-counter{font-size:11px;color:var(--txt2);text-align:center;margin-bottom:8px;font-style:italic}
+
+.gift-list{
+  list-style:none;display:flex;flex-direction:column;gap:6px;
+  margin-bottom:14px;max-height:280px;overflow-y:auto;padding-right:3px;
+}
+.gift-list::-webkit-scrollbar{width:3px}
+.gift-list::-webkit-scrollbar-track{background:var(--g-pale);border-radius:4px}
+.gift-list::-webkit-scrollbar-thumb{background:var(--g-light);border-radius:4px}
+
+/* item normal */
+.gift-item{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 11px;border:1.5px solid var(--g-pale);border-radius:8px;
+  cursor:pointer;transition:background .15s,border-color .15s;user-select:none;
+}
+.gift-item:hover{background:#edf5ed}
+.gift-item.checked{background:#e1f0e1;border-color:var(--g-mid)}
+
+/* item JÁ DADO — desabilitado */
+.gift-item.taken{
+  background:#f0f0ee;
+  border-color:#d0cdc8;
+  cursor:not-allowed;
+  opacity:.6;
+}
+.gift-item.taken .gift-name{text-decoration:line-through;color:#999}
+.gift-item.taken .taken-badge{
+  font-family:'Cinzel',serif;
+  font-size:8px;letter-spacing:.8px;
+  color:#fff;background:#aaa;
+  border-radius:4px;padding:2px 5px;
+  white-space:nowrap;flex-shrink:0;
+}
+
+.gift-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--g-dark);cursor:pointer;flex-shrink:0}
+.gift-item.taken input[type=checkbox]{cursor:not-allowed}
+.gift-emoji{font-size:17px;flex-shrink:0}
+.gift-name{font-size:13px;color:var(--txt);flex:1;line-height:1.3;cursor:pointer}
+
+/* "Outro" — input inline */
+.gift-outro-input{
+  width:100%;
+  margin-top:7px;
+  padding:7px 10px;
+  border:1.5px solid var(--g-pale);border-radius:6px;
+  font-family:'Cormorant Garamond',serif;font-size:13.5px;color:var(--txt);
+  background:#fff;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  display:none;
+}
+.gift-outro-input:focus{border-color:var(--g-mid);box-shadow:0 0 0 3px rgba(93,138,93,.15)}
+.gift-item-outro{flex-direction:column;align-items:flex-start}
+.gift-item-outro .gift-row{display:flex;align-items:center;gap:9px;width:100%}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════ CARD ═══════════════════ -->
+<div class="wrap">
 <div class="card">
 
-  <!-- Botanical top -->
-  <div class="botanical-top">
-    <svg viewBox="0 0 480 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <!-- left cluster -->
-      <g opacity=".85">
-        <ellipse cx="10" cy="30" rx="34" ry="14" fill="#7aaf7a" transform="rotate(-35 10 30)"/>
-        <ellipse cx="35" cy="10" rx="28" ry="11" fill="#5d8a5d" transform="rotate(-20 35 10)"/>
-        <ellipse cx="60" cy="50" rx="32" ry="12" fill="#8fb98f" transform="rotate(-50 60 50)"/>
-        <ellipse cx="20" cy="65" rx="26" ry="10" fill="#6a9e6a" transform="rotate(-10 20 65)"/>
-        <ellipse cx="80" cy="20" rx="24" ry="9"  fill="#a0c8a0" transform="rotate(-60 80 20)"/>
-        <ellipse cx="0"  cy="90" rx="40" ry="12" fill="#5d8a5d" transform="rotate(5 0 90)"/>
-        <ellipse cx="45" cy="85" rx="30" ry="10" fill="#7aaf7a" transform="rotate(-40 45 85)"/>
-        <ellipse cx="100" cy="40" rx="22" ry="8" fill="#8fb98f" transform="rotate(-70 100 40)"/>
-        <!-- stem lines -->
-        <line x1="5" y1="100" x2="90" y2="10" stroke="#3a5c3a" stroke-width="1.2" opacity=".4"/>
-        <line x1="0"  y1="70"  x2="70" y2="0"  stroke="#3a5c3a" stroke-width="1"   opacity=".3"/>
+  <!-- TOP BOTANICAL -->
+  <div class="bio-top">
+    <svg viewBox="0 0 430 115" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g opacity=".88">
+        <ellipse cx="8"  cy="24" rx="30" ry="11" fill="#6fa06f" transform="rotate(-35 8 24)"/>
+        <ellipse cx="28" cy="7"  rx="24" ry="9"  fill="#5d8a5d" transform="rotate(-20 28 7)"/>
+        <ellipse cx="52" cy="42" rx="28" ry="10" fill="#8fb98f" transform="rotate(-52 52 42)"/>
+        <ellipse cx="14" cy="55" rx="22" ry="8"  fill="#6a9e6a" transform="rotate(-10 14 55)"/>
+        <ellipse cx="72" cy="14" rx="20" ry="7"  fill="#9dc89d" transform="rotate(-62 72 14)"/>
+        <ellipse cx="0"  cy="76" rx="34" ry="10" fill="#5d8a5d" transform="rotate(5 0 76)"/>
+        <ellipse cx="40" cy="72" rx="26" ry="9"  fill="#7aaf7a" transform="rotate(-42 40 72)"/>
+        <line x1="3" y1="90" x2="80" y2="5" stroke="#3a5c3a" stroke-width="1" opacity=".3"/>
       </g>
-      <!-- right cluster -->
-      <g opacity=".85">
-        <ellipse cx="470" cy="25" rx="34" ry="14" fill="#7aaf7a" transform="rotate(35 470 25)"/>
-        <ellipse cx="445" cy="8"  rx="28" ry="11" fill="#5d8a5d" transform="rotate(20 445 8)"/>
-        <ellipse cx="420" cy="48" rx="32" ry="12" fill="#8fb98f" transform="rotate(50 420 48)"/>
-        <ellipse cx="460" cy="65" rx="26" ry="10" fill="#6a9e6a" transform="rotate(10 460 65)"/>
-        <ellipse cx="400" cy="18" rx="24" ry="9"  fill="#a0c8a0" transform="rotate(60 400 18)"/>
-        <ellipse cx="480" cy="88" rx="40" ry="12" fill="#5d8a5d" transform="rotate(-5 480 88)"/>
-        <ellipse cx="435" cy="82" rx="30" ry="10" fill="#7aaf7a" transform="rotate(40 435 82)"/>
-        <ellipse cx="380" cy="38" rx="22" ry="8" fill="#8fb98f" transform="rotate(70 380 38)"/>
-        <line x1="475" y1="100" x2="390" y2="10" stroke="#3a5c3a" stroke-width="1.2" opacity=".4"/>
-        <line x1="480" y1="68"  x2="410" y2="0"  stroke="#3a5c3a" stroke-width="1"   opacity=".3"/>
+      <g opacity=".88">
+        <ellipse cx="422" cy="22" rx="30" ry="11" fill="#6fa06f" transform="rotate(35 422 22)"/>
+        <ellipse cx="402" cy="6"  rx="24" ry="9"  fill="#5d8a5d" transform="rotate(20 402 6)"/>
+        <ellipse cx="378" cy="40" rx="28" ry="10" fill="#8fb98f" transform="rotate(52 378 40)"/>
+        <ellipse cx="416" cy="53" rx="22" ry="8"  fill="#6a9e6a" transform="rotate(10 416 53)"/>
+        <ellipse cx="358" cy="13" rx="20" ry="7"  fill="#9dc89d" transform="rotate(62 358 13)"/>
+        <ellipse cx="430" cy="74" rx="34" ry="10" fill="#5d8a5d" transform="rotate(-5 430 74)"/>
+        <ellipse cx="390" cy="70" rx="26" ry="9"  fill="#7aaf7a" transform="rotate(42 390 70)"/>
+        <line x1="427" y1="88" x2="350" y2="4" stroke="#3a5c3a" stroke-width="1" opacity=".3"/>
       </g>
     </svg>
   </div>
 
-  <!-- Monogram -->
-  <div class="monogram">
-    <div class="monogram-letters">
+  <!-- BODY -->
+  <div class="body">
+    <div class="mono">
       A
-      <svg class="monogram-divider" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 2 Q16 8 14 14 Q12 20 14 26" stroke="currentColor" stroke-width="1.2" fill="none"/>
-        <circle cx="14" cy="6"  r="1.5" fill="currentColor"/>
-        <circle cx="14" cy="14" r="1.5" fill="currentColor"/>
-        <circle cx="14" cy="22" r="1.5" fill="currentColor"/>
-        <path d="M10 5 Q14 3 18 5" stroke="currentColor" stroke-width="1" fill="none"/>
-        <path d="M8 9  Q14 6 20 9"  stroke="currentColor" stroke-width="1" fill="none"/>
+      <svg viewBox="0 0 18 18" fill="none">
+        <path d="M9 1 Q10 5.5 9 9 Q8 12.5 9 17" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <circle cx="9" cy="4"  r="1.1" fill="currentColor"/>
+        <circle cx="9" cy="9"  r="1.1" fill="currentColor"/>
+        <circle cx="9" cy="14" r="1.1" fill="currentColor"/>
       </svg>
       E
     </div>
-  </div>
 
-  <!-- Quote -->
-  <div class="quote-block">
-    <p class="quote-text">
-      "Deus mudou o teu caminho até juntares com o meu e guardou a tua vida separando-a para mim. Para onde fores, irei; onde tu repousares, repousarei. Teu Deus será o meu Deus. Teu caminho o meu será."
-      <br><span style="font-style:normal;font-size:12px;letter-spacing:1px;color:var(--green-mid)">— Rute 1:16-17</span>
+    <div class="quote">
+      "Para onde fores, irei; onde tu repousares, repousarei. Teu Deus será o meu Deus. Teu caminho o meu será."
+      <br><span>— Rute 1:16-17</span>
+    </div>
+
+    <p class="bless">Com a bênção de Deus e de seus pais</p>
+
+    <div class="names">Arianne <em>💍</em> Eduardo</div>
+
+    <p class="invite">
+      Convidam para cerimônia de seu
+      <strong>CASAMENTO</strong>
+    </p>
+
+    <div class="date-wrap">
+      <div class="day-lbl">· SÁBADO ·</div>
+      <div class="date-row">
+        <hr><span class="date-m">JUNHO</span>
+        <span class="date-n">21</span>
+        <span class="date-y">2025</span><hr>
+      </div>
+      <div class="date-time">18h30</div>
+    </div>
+
+    <p class="addr">
+      R. Amazonas, 1119 – Vila Perino<br>
+      Ourinhos – SP, 19912-040
     </p>
   </div>
 
-  <!-- Blessing -->
-  <p class="blessing">Com a bênção de Deus e de seus pais</p>
+  <!-- ACTION BAR -->
+  <div class="act-bar">
+    <div class="act-title">TOQUE NOS ÍCONES PARA INTERAGIR</div>
+    <div class="act-grid">
 
-  <!-- Names -->
-  <div class="names">
-    Arianne
-    <span class="rings">💍</span>
-    Eduardo
-  </div>
-
-  <!-- Invite text -->
-  <p class="invite-text">
-    Convidam para cerimônia de seu
-    <span class="invite-word">CASAMENTO</span>
-  </p>
-
-  <!-- Ornament -->
-  <div class="ornament">❧ ❦</div>
-
-  <!-- Date -->
-  <div class="date-section">
-    <div class="day-name">· SÁBADO ·</div>
-    <div class="date-row">
-      <span class="date-side"></span>
-      <span class="date-month">JUNHO</span>
-      <span class="date-number">21</span>
-      <span class="date-year">2025</span>
-      <span class="date-side"></span>
-    </div>
-    <div class="date-time">18h30</div>
-  </div>
-
-  <!-- Address -->
-  <p class="address">
-    R. Amazonas, 1119 - Vila Perino,<br>
-    Ourinhos - SP, 19912-040
-  </p>
-
-  <!-- Actions -->
-  <div class="actions-bar">
-    <div class="actions-title">TOQUE NOS ÍCONES PARA INTERAGIR</div>
-    <div class="actions-grid">
-
-      <a href="https://maps.google.com/?q=R.+Amazonas+1119+Vila+Perino+Ourinhos+SP" target="_blank" class="action-btn">
-        <div class="action-icon">📍</div>
-        <span class="action-label">COMO<br>CHEGAR</span>
+      <a href="https://maps.google.com/?q=R.+Amazonas+1119+Vila+Perino+Ourinhos+SP"
+         target="_blank" class="act-btn">
+        <div class="act-ico">📍</div>
+        <span class="act-lbl">COMO<br>CHEGAR</span>
       </a>
 
-      <a href="#" class="action-btn">
-        <div class="action-icon">🍽️</div>
-        <span class="action-label">LOCAL DA<br>FESTA</span>
-      </a>
-
-      <button class="action-btn" onclick="openModal()">
-        <div class="action-icon">✅</div>
-        <span class="action-label">CONFIRME SUA<br>PRESENÇA</span>
+      <button class="act-btn" onclick="openModal('presModal')">
+        <div class="act-ico">✅</div>
+        <span class="act-lbl">CONFIRME<br>PRESENÇA</span>
       </button>
 
-      <a href="#" class="action-btn">
-        <div class="action-icon">🎁</div>
-        <span class="action-label">LISTA DE<br>PRESENTES</span>
+      <button class="act-btn" onclick="openModal('giftModal')">
+        <div class="act-ico">🎁</div>
+        <span class="act-lbl">LISTA DE<br>PRESENTES</span>
+      </button>
+
+      <a href="#" class="act-btn">
+        <div class="act-ico">🍽️</div>
+        <span class="act-lbl">LOCAL DA<br>FESTA</span>
       </a>
 
     </div>
   </div>
 
-  <!-- Botanical bottom -->
-  <div class="botanical-bottom">
-    <svg viewBox="0 0 480 110" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- BOTTOM BOTANICAL -->
+  <div class="bio-bot">
+    <svg viewBox="0 0 430 65" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
       <g opacity=".8">
-        <ellipse cx="30"  cy="100" rx="38" ry="14" fill="#7aaf7a" transform="rotate(15 30 100)"/>
-        <ellipse cx="80"  cy="90"  rx="32" ry="12" fill="#5d8a5d" transform="rotate(-20 80 90)"/>
-        <ellipse cx="10"  cy="80"  rx="28" ry="10" fill="#8fb98f" transform="rotate(40 10 80)"/>
-        <ellipse cx="130" cy="105" rx="36" ry="13" fill="#6a9e6a" transform="rotate(-10 130 105)"/>
-        <ellipse cx="60"  cy="110" rx="30" ry="11" fill="#a0c8a0" transform="rotate(25 60 110)"/>
+        <ellipse cx="18"  cy="62" rx="34" ry="12" fill="#7aaf7a" transform="rotate(13 18 62)"/>
+        <ellipse cx="66"  cy="52" rx="28" ry="10" fill="#5d8a5d" transform="rotate(-17 66 52)"/>
+        <ellipse cx="5"   cy="47" rx="24" ry="8"  fill="#8fb98f" transform="rotate(36 5 47)"/>
+        <ellipse cx="114" cy="64" rx="32" ry="11" fill="#6a9e6a" transform="rotate(-7 114 64)"/>
       </g>
       <g opacity=".8">
-        <ellipse cx="450" cy="100" rx="38" ry="14" fill="#7aaf7a" transform="rotate(-15 450 100)"/>
-        <ellipse cx="400" cy="88"  rx="32" ry="12" fill="#5d8a5d" transform="rotate(20 400 88)"/>
-        <ellipse cx="470" cy="78"  rx="28" ry="10" fill="#8fb98f" transform="rotate(-40 470 78)"/>
-        <ellipse cx="350" cy="105" rx="36" ry="13" fill="#6a9e6a" transform="rotate(10 350 105)"/>
-        <ellipse cx="420" cy="110" rx="30" ry="11" fill="#a0c8a0" transform="rotate(-25 420 110)"/>
+        <ellipse cx="412" cy="62" rx="34" ry="12" fill="#7aaf7a" transform="rotate(-13 412 62)"/>
+        <ellipse cx="364" cy="51" rx="28" ry="10" fill="#5d8a5d" transform="rotate(17 364 51)"/>
+        <ellipse cx="425" cy="46" rx="24" ry="8"  fill="#8fb98f" transform="rotate(-36 425 46)"/>
+        <ellipse cx="316" cy="64" rx="32" ry="11" fill="#6a9e6a" transform="rotate(7 316 64)"/>
       </g>
     </svg>
   </div>
 
 </div><!-- /card -->
+</div><!-- /wrap -->
 
 
-<!-- ═══════════════════ MODAL ═══════════════════ -->
-<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-
-    <!-- FORM STATE -->
-    <div id="formState">
-      <div class="modal-leaf">🌿</div>
-      <div class="modal-title">Confirmar Presença</div>
-      <p class="modal-sub">Ficamos felizes em tê-lo(a) conosco!</p>
-
-      <input
-        type="text"
-        id="guestName"
-        class="modal-input"
-        placeholder="Seu nome completo"
-        maxlength="80"
-        onkeydown="if(event.key==='Enter') sendConfirmation()"
-      />
-
-      <p class="modal-error" id="modalError">Por favor, insira seu nome.</p>
-
-      <button class="modal-btn" id="confirmBtn" onclick="sendConfirmation()">
-        CONFIRMAR PRESENÇA
-      </button>
+<!-- ════ MODAL PRESENÇA ════ -->
+<div class="overlay" id="presModal" onclick="overlayClick(event,'presModal')">
+  <div class="modal">
+    <button class="m-close" onclick="closeModal('presModal')">✕</button>
+    <div id="pres-form">
+      <div class="m-icon">🌿</div>
+      <div class="m-title">Confirmar Presença</div>
+      <p class="m-sub">Ficamos felizes em tê-lo(a) conosco!</p>
+      <input type="text" id="presName" class="m-input" placeholder="Seu nome completo" maxlength="80"
+        onkeydown="if(event.key==='Enter')sendPresenca()"/>
+      <p class="m-err" id="presErr">Por favor, insira seu nome.</p>
+      <button class="m-btn" id="presBtn" onclick="sendPresenca()">CONFIRMAR PRESENÇA</button>
     </div>
-
-    <!-- SUCCESS STATE -->
-    <div class="modal-success" id="successState">
-      <div class="success-icon">🎉</div>
-      <div class="success-title">Presença Confirmada!</div>
-      <p class="success-msg" id="successMsg"></p>
-      <button class="success-close" onclick="closeModal()">FECHAR</button>
+    <div class="m-success" id="pres-ok">
+      <div class="s-ico">🎉</div>
+      <div class="s-title">Confirmado!</div>
+      <p class="s-msg" id="pres-ok-msg"></p>
+      <button class="s-close" onclick="closeModal('presModal')">FECHAR</button>
     </div>
-
   </div>
 </div>
 
-<!-- ═══════════════════ SCRIPT ═══════════════════ -->
+
+<!-- ════ MODAL LISTA DE PRESENTES ════ -->
+<div class="overlay" id="giftModal" onclick="overlayClick(event,'giftModal')">
+  <div class="modal">
+    <button class="m-close" onclick="closeModal('giftModal')">✕</button>
+
+    <div id="gift-main">
+      <div class="m-icon">🎁</div>
+      <div class="m-title">Lista de Presentes</div>
+      <p class="m-sub">Selecione o(s) item(ns) que deseja presentear</p>
+
+      <p class="gift-counter" id="giftCounter">Nenhum item selecionado</p>
+
+      <ul class="gift-list" id="giftList">
+        <!-- preenchido pelo JS -->
+      </ul>
+
+      <p class="m-err" id="giftErr">Selecione ao menos 1 item.</p>
+      <p class="m-err" id="giftOutroErr" style="margin-top:-4px">Descreva o presente "Outro".</p>
+      <button class="m-btn" id="giftBtn" onclick="sendGift()">CONFIRMAR PRESENTE 🎁</button>
+    </div>
+
+    <!-- Success -->
+    <div class="m-success" id="gift-ok">
+      <div class="s-ico">💚</div>
+      <div class="s-title">Obrigado!</div>
+      <p class="s-msg" id="gift-ok-msg"></p>
+      <button class="s-close" onclick="closeModal('giftModal')">FECHAR</button>
+    </div>
+  </div>
+</div>
+
+
 <script>
-  // ══════════════════════════════════════════
-  //  ⚙️  CONFIGURAÇÃO DO BOT TELEGRAM
-  //  Substitua os valores abaixo
-  // ══════════════════════════════════════════
-  const TELEGRAM_TOKEN   = "8712842323:AAErIHvOAd1wXzllonjsHOU4xNmwS2BO2GE";   // ex: 7654321098:AAHxxx...
-  const TELEGRAM_CHAT_ID = "-100377261705"; // ex: -1001234567890
+/* ════════════════════════════════════════════════════
+   ⚙️  CONFIGURAÇÃO — substitua com seus dados reais
+════════════════════════════════════════════════════ */
+const TG_TOKEN   = "8712842323:AAErIHvOAd1wXzllonjsHOU4xNmwS2BO2GE";     // token do @BotFather
+const TG_CHAT_ID = "-1003772617057";  // ID do grupo (-100...)
 
-  // ── contador salvo localmente ──
-  function getNextCount() {
-    let n = parseInt(localStorage.getItem('ae_confirm_count') || '0') + 1;
-    localStorage.setItem('ae_confirm_count', n);
-    return String(n).padStart(2, '0');
-  }
+/* ════════════════════════════════════════════════════
+   🎁  LISTA DE PRESENTES
+   ─────────────────────────────────────────────────
+   Cada item pode ter:
+     id     → número único
+     emoji  → ícone
+     name   → nome do presente
+     taken  → true = JÁ FOI DADO (fica desabilitado na lista)
+════════════════════════════════════════════════════ */
+const GIFTS = [
+  { id:1,  emoji:"🍳", name:"Jogo de Panelas Tramontina",       taken: false },
+  { id:2,  emoji:"🛏️", name:"Jogo de Cama Queen (4 peças)",     taken: false },
+  { id:3,  emoji:"☕", name:"Cafeteira Nespresso",               taken: false },
+  { id:4,  emoji:"🥂", name:"Taças de Cristal (6 un.)",          taken: false },
+  { id:5,  emoji:"🧺", name:"Máquina de Lavar Roupa",            taken: true  }, // ← JÁ DADO
+  { id:6,  emoji:"🍽️", name:"Aparelho de Jantar (12 pessoas)",   taken: false },
+  { id:7,  emoji:"🪴", name:"Kit de Utensílios de Cozinha",      taken: false },
+  { id:8,  emoji:"🛁", name:"Jogo de Toalhas de Banho (6 un.)",  taken: true  }, // ← JÁ DADO
+  { id:9,  emoji:"🏠", name:"Aspirador de Pó Robô",              taken: false },
+  { id:10, emoji:"🎊", name:"Contribuição para a Lua de Mel",    taken: false },
+  // { id:11, emoji:"📺", name:"Smart TV 55\"",                   taken: false },
+  // Adicione mais itens aqui seguindo o mesmo padrão ↑
+];
 
-  // ── formata data/hora brasil ──
-  function nowBR() {
-    return new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-      timeZone: 'America/Sao_Paulo'
-    }).format(new Date());
-  }
+/* ══ render gift list ══ */
+(function(){
+  const ul = document.getElementById('giftList');
 
-  // ── modal ──
-  function openModal() {
-    document.getElementById('modalOverlay').classList.add('open');
-    document.getElementById('formState').style.display  = 'block';
-    document.getElementById('successState').style.display = 'none';
-    document.getElementById('guestName').value = '';
-    document.getElementById('modalError').style.display = 'none';
-    setTimeout(() => document.getElementById('guestName').focus(), 320);
-  }
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-  }
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-  }
+  /* itens normais */
+  GIFTS.forEach(g => {
+    const li = document.createElement('li');
+    li.className = 'gift-item' + (g.taken ? ' taken' : '');
+    li.dataset.id = g.id;
 
-  // ── enviar confirmação ──
-  async function sendConfirmation() {
-    const nameInput = document.getElementById('guestName');
-    const name = nameInput.value.trim();
-
-    if (!name) {
-      const err = document.getElementById('modalError');
-      err.style.display = 'block';
-      nameInput.focus();
-      return;
+    if(g.taken){
+      li.innerHTML =
+        `<input type="checkbox" disabled>` +
+        `<span class="gift-emoji">${g.emoji}</span>` +
+        `<span class="gift-name">${g.name}</span>` +
+        `<span class="taken-badge">JÁ DADO</span>`;
+    } else {
+      li.innerHTML =
+        `<input type="checkbox" id="g${g.id}" value="${g.id}">` +
+        `<span class="gift-emoji">${g.emoji}</span>` +
+        `<label class="gift-name" for="g${g.id}">${g.name}</label>`;
+      const cb = li.querySelector('input');
+      li.addEventListener('click', e => {
+        if(e.target !== cb) cb.checked = !cb.checked;
+        li.classList.toggle('checked', cb.checked);
+        updateCounter();
+      });
+      cb.addEventListener('change', () => {
+        li.classList.toggle('checked', cb.checked);
+        updateCounter();
+      });
     }
-    document.getElementById('modalError').style.display = 'none';
+    ul.appendChild(li);
+  });
 
-    const btn = document.getElementById('confirmBtn');
-    btn.disabled = true;
-    btn.textContent = 'ENVIANDO…';
+  /* ── item OUTRO (sempre no final) ── */
+  const liOutro = document.createElement('li');
+  liOutro.className = 'gift-item gift-item-outro';
+  liOutro.id = 'giftItemOutro';
+  liOutro.innerHTML =
+    `<div class="gift-row">` +
+      `<input type="checkbox" id="gOutro">` +
+      `<span class="gift-emoji">✏️</span>` +
+      `<label class="gift-name" for="gOutro">Outro presente…</label>` +
+    `</div>` +
+    `<input type="text" id="gOutroText" class="gift-outro-input"` +
+      ` placeholder="Descreva o presente que irá trazer" maxlength="120">`;
 
-    const num      = getNextCount();
-    const datetime = nowBR();
-    const msg =
-      `🌿 *Confirmação de Presença* 🌿\n` +
-      `━━━━━━━━━━━━━━━━━━━━━\n` +
-      `*${num}* - ${name} confirmou presença ✅\n` +
-      `📅 Data/Hora: ${datetime}\n` +
-      `━━━━━━━━━━━━━━━━━━━━━\n` +
-      `_Casamento Arianne & Eduardo — 21/06/2025_`;
+  const cbOutro   = liOutro.querySelector('#gOutro');
+  const txtOutro  = liOutro.querySelector('#gOutroText');
 
-    try {
-      const res = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id:    TELEGRAM_CHAT_ID,
-            text:       msg,
-            parse_mode: 'Markdown'
-          })
-        }
-      );
-      const data = await res.json();
+  liOutro.addEventListener('click', e => {
+    if(e.target === txtOutro || e.target === cbOutro) return;
+    cbOutro.checked = !cbOutro.checked;
+    toggleOutro();
+  });
+  cbOutro.addEventListener('change', toggleOutro);
 
-      if (data.ok) {
-        showSuccess(name, num, datetime);
-      } else {
-        throw new Error(data.description || 'Erro desconhecido');
-      }
-    } catch (err) {
-      console.error(err);
-      // mesmo com erro de rede, mostra sucesso visual (registro local já foi feito)
-      showSuccess(name, num, datetime);
+  function toggleOutro(){
+    liOutro.classList.toggle('checked', cbOutro.checked);
+    txtOutro.style.display = cbOutro.checked ? 'block' : 'none';
+    if(cbOutro.checked) txtOutro.focus();
+    updateCounter();
+  }
+
+  ul.appendChild(liOutro);
+})();
+
+function updateCounter(){
+  const n  = document.querySelectorAll('#giftList input[type=checkbox]:not([disabled]):checked').length;
+  document.getElementById('giftCounter').textContent =
+    n === 0 ? 'Nenhum item selecionado'
+            : `${n} item${n>1?'s':''} selecionado${n>1?'s':''}`;
+}
+
+/* ── utils ── */
+function nowBR(){
+  return new Intl.DateTimeFormat('pt-BR',{
+    day:'2-digit',month:'2-digit',year:'numeric',
+    hour:'2-digit',minute:'2-digit',
+    timeZone:'America/Sao_Paulo'
+  }).format(new Date());
+}
+function getCount(k){
+  const n = parseInt(localStorage.getItem(k)||'0')+1;
+  localStorage.setItem(k,n); return String(n).padStart(2,'0');
+}
+
+/* ── modal control ── */
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  if(id==='presModal'){
+    document.getElementById('presName').value='';
+    document.getElementById('presErr').style.display='none';
+    document.getElementById('pres-form').style.display='block';
+    document.getElementById('pres-ok').style.display='none';
+    setTimeout(()=>document.getElementById('presName').focus(),320);
+  }
+  if(id==='giftModal') resetGiftModal();
+}
+function closeModal(id){ document.getElementById(id).classList.remove('open') }
+function overlayClick(e,id){ if(e.target===document.getElementById(id)) closeModal(id) }
+
+/* ── PRESENÇA ── */
+async function sendPresenca(){
+  const el   = document.getElementById('presName');
+  const name = el.value.trim();
+  if(!name){ document.getElementById('presErr').style.display='block'; el.focus(); return; }
+  document.getElementById('presErr').style.display='none';
+
+  const btn = document.getElementById('presBtn');
+  btn.disabled=true; btn.textContent='ENVIANDO…';
+
+  const num=getCount('ae_pres'), dt=nowBR();
+  await tgSend(
+    `🌿 *Confirmação de Presença* 🌿\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n` +
+    `*${num}* - ${name} confirmou presença ✅\n` +
+    `📅 ${dt}\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n` +
+    `_Casamento Arianne & Eduardo — 21/06/2025_`
+  );
+
+  btn.disabled=false; btn.textContent='CONFIRMAR PRESENÇA';
+  document.getElementById('pres-form').style.display='none';
+  document.getElementById('pres-ok').style.display='flex';
+  document.getElementById('pres-ok-msg').innerHTML =
+    `<strong>${name}</strong>, presença confirmada com sucesso! 💚<br><br>` +
+    `Esperamos por você no nosso grande dia.<br>` +
+    `<span style="font-size:11px;color:#999">Nº ${num} · ${dt}</span>`;
+}
+
+/* ── PRESENTES ── */
+async function sendGift(){
+  const errEl     = document.getElementById('giftErr');
+  const errOutro  = document.getElementById('giftOutroErr');
+  errEl.style.display = 'none';
+  errOutro.style.display = 'none';
+
+  /* itens da lista */
+  const checked = [...document.querySelectorAll('#giftList input[type=checkbox]:not([disabled]):checked')];
+
+  if(!checked.length){
+    errEl.style.display='block'; return;
+  }
+
+  /* valida "Outro" se marcado */
+  const cbOutro  = document.getElementById('gOutro');
+  const txtOutro = document.getElementById('gOutroText');
+  if(cbOutro.checked && !txtOutro.value.trim()){
+    errOutro.style.display='block'; txtOutro.focus(); return;
+  }
+
+  /* monta lista de itens */
+  const lines = checked.map(cb => {
+    if(cb.id === 'gOutro'){
+      return `  ✏️ ${txtOutro.value.trim()} _(personalizado)_`;
     }
+    const g = GIFTS.find(x => x.id === parseInt(cb.value));
+    return `  ${g.emoji} ${g.name}`;
+  }).join('\n');
 
-    btn.disabled = false;
-    btn.textContent = 'CONFIRMAR PRESENÇA';
-  }
+  const btn = document.getElementById('giftBtn');
+  btn.disabled=true; btn.textContent='ENVIANDO…';
 
-  function showSuccess(name, num, datetime) {
-    document.getElementById('formState').style.display  = 'none';
-    const s = document.getElementById('successState');
-    s.style.display = 'flex';
-    document.getElementById('successMsg').innerHTML =
-      `<strong>${name}</strong>, sua presença foi confirmada com sucesso!<br><br>` +
-      `Esperamos por você no nosso grande dia 💚<br><br>` +
-      `<span style="font-size:11px;color:#888">Confirmação Nº ${num} · ${datetime}</span>`;
-  }
+  const num=getCount('ae_gift'), dt=nowBR();
+  await tgSend(
+    `🎁 *Lista de Presentes* 🎁\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n` +
+    `*${num}* - Presente(s) escolhido(s):\n\n${lines}\n\n` +
+    `📅 ${dt}\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n` +
+    `_Casamento Arianne & Eduardo — 21/06/2025_`
+  );
+
+  btn.disabled=false; btn.textContent='CONFIRMAR PRESENTE 🎁';
+
+  /* sucesso */
+  const nomes = checked.map(cb => {
+    if(cb.id==='gOutro') return `✏️ ${txtOutro.value.trim()}`;
+    const g=GIFTS.find(x=>x.id===parseInt(cb.value));
+    return `${g.emoji} ${g.name}`;
+  }).join('<br>');
+
+  document.getElementById('gift-main').style.display='none';
+  document.getElementById('gift-ok').style.display='flex';
+  document.getElementById('gift-ok-msg').innerHTML =
+    `Que presente incrível! 🥂<br><br>${nomes}<br><br>` +
+    `<span style="font-size:11px;color:#999">Nº ${num} · ${dt}</span>`;
+}
+
+function resetGiftModal(){
+  document.querySelectorAll('#giftList input[type=checkbox]').forEach(cb=>{
+    cb.checked=false; cb.closest('li').classList.remove('checked');
+  });
+  const t=document.getElementById('gOutroText');
+  if(t){ t.value=''; t.style.display='none'; }
+  updateCounter();
+  ['giftErr','giftOutroErr'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('gift-main').style.display='block';
+  document.getElementById('gift-ok').style.display='none';
+}
+
+/* ── Telegram ── */
+async function tgSend(text){
+  try{
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chat_id:TG_CHAT_ID,text,parse_mode:'Markdown'})
+    });
+  }catch(e){console.warn('TG:',e)}
+}
 </script>
-
 </body>
 </html>
